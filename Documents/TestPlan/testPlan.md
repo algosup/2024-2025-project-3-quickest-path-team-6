@@ -182,19 +182,55 @@ These criteria are:
 
 ## GitHub Issues Report
 
-**Document Review**
+### Document Review
 
-<!-- To provide a better bug report, I chose to create a bug report template that we can apply to GitHub issues. It allows the people who found a bug to report it quickly and effectively with the main information needed. \
+To provide a better track on document reviews, a template was created on the GitHub issue, allowing everyone to check their own document review to change and improve their documents accordingly.
+
+The Document template was created with the following parts:
+
+**Background Information**
+
+This part is here to inform how to read properly the issue and to have a better comprehension of the correction provided.
+
+This part contains two subparts, Display, and Conventions.
+
+The Display part is only here to provide a visual representation of the format used inside the issue.
+The Conventions part list all the formating used within the review.
+
+**Improvement(s)**
+
+Improvement(s) is the main part of the report. It is composed of five subparts which are:
+
+- Naming convention:
+  - Here will be displayed the errors found regarding the naming conventions defined in [this file](../Technical/conventions.md).
+
+- Spelling errors:
+  - This one is quite explicit. It will showcase the different spelling errors from the reviewed document.
+
+- Links misbehavior:
+  - If a link isn't redirecting to the proper page, it would be indicated there.
+
+- Tables malfunction:
+  - This section will mainly be used if a table isn't displayed properly.
+
+- Coherency issues:
+  - This section will list the wordy or incomprehensible sentences.
+
+**Other Suggestion(s)**
+
+Finally, this section would list suggestions to improve the document. It could be from adding a part to center a table.
+
 Here is a picture of the template:
 
-![Bug report high](/documents/QA/pictures/bug_report_high.png)
-![Bug report low](/documents/QA/pictures/bug_report_low.png) -->
+<!-- Put the screenshot -->
 
-**Dev Review**
+The template is also reachable on our GitHub repository or following this [link](https://github.com/algosup/2024-2025-project-3-quickest-path-team-6/blob/main/.github/ISSUE_TEMPLATE/document-review.md).
+
+### Dev Review
 
 <!-- TODO -->
 
-**Labels**
+### Labels
 
 <!-- I also provide labels to my team, permitting us to have a better comprehension of the bug, just with the title and the labels. There are 15 of them: -->
 
