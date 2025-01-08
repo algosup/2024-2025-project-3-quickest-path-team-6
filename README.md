@@ -37,7 +37,7 @@ Go forth, chart your fastest adventure, and remember—all roads lead to PathQui
 
 ## Collaborators
 
-<center>
+<div align="center">
 
 | Picture | Full name       | Role               | Links                                                             |
 | ----- | --------------- | ------------------------ | ----------------------------------------------------------------- |
@@ -49,4 +49,4 @@ Go forth, chart your fastest adventure, and remember—all roads lead to PathQui
 | <img src="https://avatars.githubusercontent.com/u/145995586?v=4" width=80> | Maxime THIZEAU | Quality assurance | [LinkedIn](https://www.linkedin.com/in/maxime-thizeau-0b311a293/) [GitHub](https://github.com/MaximeTAlgosup) |
 | <img src="https://avatars.githubusercontent.com/u/71769656?v=4" width=80> | Aurélien FERNANDEZ | Tech writer | [LinkedIn](https://www.linkedin.com/in/aurélien-fernandez-4971201b8/) [GitHub](https://github.com/aurelienfernandez) |
 
-</center>
+</div>
