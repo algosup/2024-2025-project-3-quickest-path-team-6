@@ -94,7 +94,9 @@ Finally, you could find our line of thoughts and different documents creating be
 
 ## Test Cases
 
-<!-- This table will be used as an example for all of our test cases to test our product. We will create a test case for each test of our product and will define their priority.
+The table underneath would be used as a template for all the different test cases designed during this project. Their would also be one test case for every single test we will proceed on our product.
+
+Here is the template of a test case:
 
 | Test Case ID              | ID                                                                         |
 |---------------------------|----------------------------------------------------------------------------|
@@ -108,7 +110,19 @@ Finally, you could find our line of thoughts and different documents creating be
 | Test Case Priority        | Defines if a test is important or not. Using numbers: Low  3 / Medium 2 / High 1 |
 | Test Case Assigned To     | Name of the tester                                                         |
 
-All the [test cases](/documents/QA/test_cases.md) will be stored in the markdown file ```test_cases.md``` and they will also be visible in a [google spreadsheet](https://docs.google.com/spreadsheets/d/1id9PyyKNDIzwIkmHkIvDcmPQQQDkbxNhASC-tRrBGfk/edit#gid=0). -->
+All the test cases will be stored in the markdown file test_cases.md that is accessible [ther](/documents/QA/test_cases.md). They will also be visible in a [google spreadsheet]().
+
+Moreover, all the test's results would be accessible on the second sheet of the same Google spreadsheet under this form:
+
+<!-- To redefine -->
+| Category name      | Input                                     |
+| ------------------ | ----------------------------------------- |
+| ID                 | The test case ID                          |
+| Name               | Name of the test case                     |
+| Description        | A short description of the test case      |
+| Date               | When the test was done                    |
+| Result state       | Did the test pass?                        |
+| Result description | The description of the result if it fails |
 
 ## Testing Tools
 
@@ -116,10 +130,12 @@ All the [test cases](/documents/QA/test_cases.md) will be stored in the markdown
 
 All the tests will be done on different tools:
 
-<!-- - [MacBook Air 2020](https://www.apple.com/fr/macbook-air-m1/)
-  - 13.3 inch (2560 x 1600)
-  - macOS Ventura 13.0
-  - Apple M1 Chip -->
+- [Apple MacBook Air - M3 10-core GPU](https://www.apple.com/fr/shop/buy-mac/macbook-air/13-pouces-m3)
+  - 13.6 inch (2560 x 1664)
+  - RAM: 16.0 GB
+  - macOS Sequoia 15.0
+  - Apple M3 Chip
+  - Qwerty keyboard
 
 - [Lenovo Thinkbook 14](https://pcsupport.lenovo.com/us/en/products/laptops-and-netbooks/thinkbook-series/thinkbook-14-iil/20sl)
   - Windows 11 Pro
@@ -139,7 +155,8 @@ All the tests will be done on different tools:
 
 - [Visual Studio Code](https://code.visualstudio.com/) for the development of the product.
 - [Git](https://git-scm.com/) for the version control and to track the defects.
-<!-- - [GCC](https://en.wikipedia.org/wiki/GNU_Compiler_Collection) for the compilation of the final product on [Windows](https://code.visualstudio.com/docs/cpp/config-mingw), [macOS](https://code.visualstudio.com/docs/cpp/config-clang-mac), [Linux](https://code.visualstudio.com/docs/cpp/config-linux). -->
+- [G++](https://en.wikipedia.org/wiki/GNU_Compiler_Collection) for the compilation of the final product on [Windows](https://code.visualstudio.com/docs/cpp/config-mingw), [macOS](https://code.visualstudio.com/docs/cpp/config-clang-mac).
+- [Postman](https://www.postman.com) to test the API produced by the development team.
 
 ## Test Criteria
 
