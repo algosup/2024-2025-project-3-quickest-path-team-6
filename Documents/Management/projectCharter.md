@@ -2,8 +2,6 @@
 
 ## Table of Content
 
-- [Project Charter](#project-charter---pathquick)
-    - [Table of Content](#table-of-content)
 - [Project Description](#project-description)
     - [Project Overview](#project-overview)
     - [Project Goals](#project-goals)
@@ -25,8 +23,8 @@ The purpose of this project is to create an algorithm<sup><a href="#1">[1]</a></
 Goals have been set for this project which are:
 
 - Creating an algorithm to find the quickest past between two landmarks
-- The algorithm as to be as quick as possible
-- An error range is set which is that the time of the path found as to be at maximum 10% slower than the actual quickest path time
+- The algorithm has to be as quick as possible
+- The identified can be at most 10% longer than the actual quickest path time
 - We have to use the provided data
 
 ## Stakeholders
@@ -65,9 +63,9 @@ We will deliver the following files during the project:
 - [Source code](../../Src/)
 - [Management resources](../Management/)
 
-Those files have for deadline February the 7th 2025.
+The deadlines are set on the 7th of February, 2025.
 
-The product will be presented to the client February the 14th 2025.
+The product will be presented to the client on February the 14th 2025.
 
 
 # Glossary
