@@ -136,34 +136,22 @@ The naming conventions are available [here](./conventions.md).
 
 ```md
 Src
-└─── main.cpp
-    ├─── Headers
-    │     ├─── Algorithm 
-    │     │     └─── (every necessary files to find the quickest path)
-    │     ├─── JSON&XML
-    │     │     └─── (every necessary files to parse JSON & XML)
-    │     └─── Player 
-    │           └─── (player model with camera for side view)
-    ├─── 3D
-    │     ├─── Maps 
-    │     │     ├─── Resources
-    │     │     │     ├─── Models
-    │     │     │     │     └─── (cube model files)
-    │     │     │     └─── (cube models map)
-    │     │     └─── (every 3D playable maps)
-    │     ├─── Objects 
-    │     │     ├─── Interactions
-    │     │     │     └─── (interactions logic)
-    │     │     └─── (interactable objects)
-    │     └─── Player 
-    │           └─── (player model with camera for top-down view)
-    └─── Sprites
-        ├─── CubeTextures
-        │     └─── (textures for the cube models)
-        ├─── Player
-        │     └─── (player sprites)
-        └─── Fonts
-                └─── (fonts)
+├─── main.cpp
+├─── Api
+│   ├─── Algorithm 
+│   │   └─── (every necessary files to find the quickest path)
+│   ├─── api.cpp
+│   ├─── Bin 
+│   │   └─── server
+│   └─── JsonXml 
+│       └─── (every necessary files to parse JSON & XML)
+├─── Bin
+│   └─── quickPath
+└─── Headers
+    ├─── Input
+    │   └─── (every necessary files to get user input)
+    └─── Display
+        └─── (every necessary files to print data onto the console)
 ```
 
 ### C++ libraries
