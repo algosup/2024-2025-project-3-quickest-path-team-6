@@ -15,9 +15,11 @@
   - [Main Program](#main-program)
     - [File Structure](#file-structure)
     - [C++ libraries](#c-libraries)
+      - [Standard libraries](#standard-libraries)
     - [C++ conventions](#c-conventions)
       - [Classes](#classes)
     - [REST API](#rest-api)
+    - [Algorithm](#algorithm)
   - [Glossary](#glossary)
 
 </details>
@@ -158,6 +160,17 @@ Src
 
 Some libraries will be needed to perform the project.
 
+#### Standard libraries
+
+**\<iostream>** is part of the Input/output library. We'll use it to get the **std namespace**.
+
+With std namespace, we will be able to use:
+
+- **cout**, to print strings of characters onto the console
+- **cin**, to get user input and store it into a variable
+
+**\<list>** is part of the list library. We'll use it to manipulate lists.
+
 ### C++ conventions
 
 #### Classes
@@ -207,8 +220,15 @@ The REST API is another huge part of the project, where the .csv file data will 
 
 The program will be able to **send requests** to this API.
 
-For example: 
-The program would need the connection between *landmark 3* and *landmark 9*. It will send a request with arguments (*landmark 3 and landmark 9 ids*) and the API will provide data, such as the time of the specific connection.
+For example:
+The program would need the connection between *landmark 3* and *landmark 9*.
+It will send a request with arguments (*landmark 3 and landmark 9 ids*) and the API will provide data, such as the time of the specific connection and the ordered list of landmarks in the path.
+
+Responses would be in both JSON and XML formats.
+
+### Algorithm
+
+To determine which path is the quickest, we'll need to create an algorithm.
 
 ## Glossary
 
