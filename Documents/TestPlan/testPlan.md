@@ -250,7 +250,7 @@ Finally, this section would list suggestions to improve the document. It could b
 
 Here is a picture of the template:
 
-<!-- Put the screenshot -->
+<img width="901" alt="Screenshot 2025-01-08 at 16 59 15" src="https://github.com/user-attachments/assets/ababddc0-8d18-4076-952b-befcb2cedeb4" />
 
 The template is also reachable on our GitHub repository or following this [link](https://github.com/algosup/2024-2025-project-3-quickest-path-team-6/blob/main/.github/ISSUE_TEMPLATE/document-review.md).
 
@@ -286,23 +286,22 @@ Like the previous template, it is reachable on our GitHub repository or followin
 Finally, to complete these issues, labels were created to have a better understanding of the issues at first sight.
 It would also help the team to know who is assigned to a dedicated issue.
 
-<!-- Need to implement Label's pictures -->
-|Label|Description|
-|:-----:|-----------|
-||Something isn't working|
-||critical priority level|
-||Development related|
-||Improvements or additions to documentation|
-||New feature or request|
-||Functional specifications related|
-||Extra attention is needed|
-||High priority level|
-||Low priority level|
-||Management related|
-||Medium priority level|
-||Technical specifications related|
-||User manual related|
-||This will not be worked on|
+| Label                                                                                                                             | Description                                |
+| :-------------------------------------------------------------------------------------------------------------------------------: | ------------------------------------------ |
+| <img src="https://github.com/user-attachments/assets/076c8b37-8337-47a0-a475-1d78c9f09491" alt="bug_label" width="100">           | Something isn't working                    |
+| <img src="https://github.com/user-attachments/assets/e44bec86-07eb-480b-a5af-e1d4be2c1bb3" alt="critical_label" width="100">      | Critical priority level                    |
+| <img src="https://github.com/user-attachments/assets/d5e148c4-e12e-4599-a38d-ebbac902e6fb" alt="dev_label" width="100">           | Development related                        |
+| <img src="https://github.com/user-attachments/assets/eb5f9039-d191-4494-beb4-fafc1491be44" alt="documentation_label" width="100"> | Improvements or additions to documentation |
+| <img src="https://github.com/user-attachments/assets/6030359e-26f9-4a88-8a75-a454a97533a0" alt="enhancement_label" width="100">   | New feature or request                     |
+| <img src="https://github.com/user-attachments/assets/42274989-5d59-42a1-a6e6-1d5942965b7d" alt="functional_label" width="100">    | Functional specifications related          |
+| <img src="https://github.com/user-attachments/assets/a8952957-0026-4de1-b5c6-6e2441a5c02b" alt="help_wanted_label" width="100">   | Extra attention is needed                  |
+| <img src="https://github.com/user-attachments/assets/0b18c354-a65b-4812-80c2-bc8aea056ced" alt="high_label" width="100">          | High priority level                        |
+| <img src="https://github.com/user-attachments/assets/f3033bf8-6d49-4bbf-bec4-663eb7fe8bbc" alt="low_label" width="100">           | Low priority level                         |
+| <img src="https://github.com/user-attachments/assets/c4ccab0d-6871-4d43-991d-6af59c623f5d" alt="management_label" width="100">    | Management related                         |
+| <img src="https://github.com/user-attachments/assets/317e223d-ece9-4349-9e00-af5cdc5d6579" alt="medium_label" width="100">        | Medium priority level                      |
+| <img src="https://github.com/user-attachments/assets/ce610b9f-a366-487c-822b-9a30d08fa6d0" alt="technical_label" width="100">     | Technical specifications related           |
+| <img src="https://github.com/user-attachments/assets/072bda87-7fdd-4e48-862a-8693376edc7d" alt="user_manual_label" width="100">   | User manual related                        |
+| <img src="https://github.com/user-attachments/assets/13206089-ea16-48f8-a160-385eec349c42" alt="wontfix_label" width="100">       | This will not be worked on                 |
 
 ## Testing Schedule And Estimation
 
