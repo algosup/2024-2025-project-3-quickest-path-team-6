@@ -20,6 +20,10 @@
       - [Classes](#classes)
     - [REST API](#rest-api)
     - [Algorithm](#algorithm)
+      - [Input Processing](#input-processing)
+      - [Core Algorithm](#core-algorithm)
+      - [Output Generation](#output-generation)
+      - [Advanced Features](#advanced-features)
   - [Glossary](#glossary)
 
 </details>
@@ -229,6 +233,60 @@ Responses would be in both JSON and XML formats.
 ### Algorithm
 
 To determine which path is the quickest, we'll need to create an algorithm.
+Here's a detailed look at how it would operate:
+
+#### Input Processing
+
+**Data Validation**:
+
+The algorithm starts by validating the input data from the `USA-roads.csv` file.
+It checks for missing or malformed entries, ensures the graph is bidirectional, and verifies connectivity between landmarks.
+
+**Graph Construction**:
+A weighted graph is constructed, where:
+Nodes represent landmarks.
+Edges represent roads, with weights corresponding to travel time or distance.
+
+#### Core Algorithm
+
+**Shortest Path Calculation**:
+
+PathQuick employs **Dijkstra's Algorithm** for precise and efficient route calculation.
+When speed is critical for large datasets, a **Bidirectional Dijkstra** approach is utilized, reducing computational time by simultaneously searching from the start and end points.
+
+**Heuristic Optimization**:
+
+For near-instant results, A* (A-star) algorithm is leveraged with heuristic functions based on geographical distance.
+This ensures routes are within 10% of the optimal shortest path while significantly reducing processing time.
+
+**Dynamic Query Handling**:
+
+The algorithm supports real-time queries, dynamically adapting to changes in the dataset without requiring a complete re-computation.
+This is achieved by caching frequent queries and reusing partial results for overlapping routes.
+
+#### Output Generation
+
+**Route Formatting**:
+
+Once the optimal path is determined, it is formatted as an ordered list of landmarks.
+Users can select between XML and JSON for their preferred data representation.
+
+**Performance Metrics**:
+
+Along with the route, PathQuick provides:
+
+- *Travel Time*: The estimated time for the journey.
+- *Landmark Highlights*: A summary of key locations along the path.
+
+#### Advanced Features
+
+**Scalability**:
+
+The algorithm handles datasets with millions of nodes and edges, maintaining performance through efficient data structures.
+
+**Error Handling**:
+
+Robust mechanisms ensure graceful handling of invalid or incomplete queries, providing meaningful error messages or fallback routes.
 
 ## Glossary
 
@@ -238,3 +296,4 @@ To determine which path is the quickest, we'll need to create an algorithm.
 | **Constructor** is a special type of function called to create an object. It prepares the new object for use, often accepting arguments that the constructor uses to set required member variables. | [Wikipedia](https://en.wikipedia.org/wiki/Constructor_(object-oriented_programming)) |
 | **REST (Representational State Transfer)** is a software architectural style that was created to guide the design and development of the architecture for the World Wide Web. | [Wikipedia](https://en.wikipedia.org/wiki/REST) |
 | An **Application Programming Interface (API)** is a connection between computers or between computer programs. It is a type of software interface, offering a service to other pieces of software. | [Wikipedia](https://en.wikipedia.org/wiki/API) |
+| **Dijkstra's Algorithm**  is an algorithm for finding the shortest paths between nodes in a weighted graph, which may represent, for example, a road network. | [Wikipedia](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm) |
