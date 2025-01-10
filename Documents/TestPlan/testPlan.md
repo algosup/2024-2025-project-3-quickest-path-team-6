@@ -7,7 +7,33 @@ The aim of this project is to create a quick pathfinding server according to a C
 <details>
 <summary>Table of Contents</summary>
 
-<!-- TODO -->
+- [Introduction](#introduction)
+  - [Overview](#overview)
+- [Testing Strategy](#testing-strategy)
+  - [Quality Assurance Team](#quality-assurance-team)
+  - [Testing Scope](#testing-scope)
+    - [In Scope](#in-scope)
+    - [Out Of Scope](#out-of-scope)
+  - [Testing Types](#testing-types)
+- [Test Cases](#test-cases)
+- [Testing Tools](#testing-tools)
+  - [Hardware](#hardware)
+  - [Software](#software)
+- [Test Criteria](#test-criteria)
+  - [Suspension Criteria](#suspension-criteria)
+  - [Entry Criteria](#entry-criteria)
+  - [Exit Criteria](#exit-criteria)
+- [GitHub Issues Report](#github-issues-report)
+  - [Document Review](#document-review)
+  - [Dev Review](#dev-review)
+  - [Labels](#labels)
+- [Testing Schedule And Estimation](#testing-schedule-and-estimation)
+  - [Tasks Time Estimation](#tasks-time-estimation)
+  - [Tasks Schedule](#tasks-schedule)
+- [Test Deliverables](#test-deliverables)
+- [Conclusion And Acknowledgments](#conclusion-and-acknowledgments)
+- [Sources](#sources)
+- [Glossary](#glossary)
     
 </details>
 
@@ -43,7 +69,7 @@ These different reviews would be done for each document's final version, once th
 
 These reviews must be done before the document deliverables which is on the 7th february of 2025.
 
-### Quality Assurance team
+### Quality Assurance Team
 
 The quality assurance team is only composed of myself. However, there are other quality assurances in other team. We could, therefore, create a quality assurance team between us. To improve our global test quality and to brainstorm test cases among us.
 
@@ -78,7 +104,7 @@ Finally, you could find our line of thoughts and different documents creating be
 <!-- - Font details;
 - Interrupt instruction; -->
 
-### Testing Type
+### Testing Types
 
 <!-- #### Smoke testing -->
 
@@ -110,7 +136,7 @@ Here is the template of a test case:
 | Test Case Priority        | Defines if a test is important or not. Using numbers: Low  3 / Medium 2 / High 1 |
 | Test Case Assigned To     | Name of the tester                                                         |
 
-All the test cases will be stored in the markdown file test_cases.md that is accessible [ther](/documents/QA/test_cases.md). They will also be visible in a [google spreadsheet]().
+All the test cases will be stored in the markdown file test_cases.md that is accessible [there](/documents/QA/test_cases.md). They will also be visible in a [google spreadsheet]().
 
 Moreover, all the test's results would be accessible on the second sheet of the same Google spreadsheet under this form:
 
@@ -220,6 +246,8 @@ Improvement(s) is the main part of the report. It is composed of five subparts w
 
 Finally, this section would list suggestions to improve the document. It could be from adding a part to center a table.
 
+---
+
 Here is a picture of the template:
 
 <!-- Put the screenshot -->
@@ -228,109 +256,115 @@ The template is also reachable on our GitHub repository or following this [link]
 
 ### Dev Review
 
-<!-- TODO -->
+A development template has also been created in order to keep track of the code and to assure a readable and well-functioning algorithm.
+This template is designed in the same way as the document review template. In other words, there is three main parts, which are:
+- Background Information;
+- Improvement(s);
+- Other Suggestion(s).
+
+The only differences with the previously stated template is on the Improvement(s)' content. It would be composed of:
+
+- Coding convention:
+  - It would identify all the errors regarding the coding conventions determined on the conventions.md file that you could find following [this link](../Technical/conventions.md).
+
+- Spelling errors:
+  - This section would be the same as the one in the document review template, it would mainly consist on listing any spelling errors found inside the code.
+
+- Outputs errors:
+  - During the reviez, tests will be done. Therefore, if the output of these tests aren't the one expected, they would be written in this section.
+
+---
+
+The development review template is shown below:
+
+<!-- Put the screenshot -->
+
+Like the previous template, it is reachable on our GitHub repository or following [this link](https://github.com/algosup/2024-2025-project-3-quickest-path-team-6/blob/main/.github/ISSUE_TEMPLATE/dev-review.md).
 
 ### Labels
 
-<!-- I also provide labels to my team, permitting us to have a better comprehension of the bug, just with the title and the labels. There are 15 of them: -->
+Finally, to complete these issues, labels were created to have a better understanding of the issues at first sight.
+It would also help the team to know who is assigned to a dedicated issue.
 
-<!-- |Label|Description|
+<!-- Need to implement Label's pictures -->
+|Label|Description|
 |:-----:|-----------|
-|![Bug Label](/documents/QA/pictures/bug_label.png)|Something isn't working|
-|![Critical Label](/documents/QA/pictures/critical_label.png)|Critical Priority|
-|![Dev Label](/documents/QA/pictures/dev_label.png)|Use for Dev|
-|![Documentation Label](/documents/QA/pictures/documentation_label.png)|Improvements or additions to documentation|
-|![Duplicate Label](/documents/QA/pictures/duplicate_label.png)|This issue or pull request already exists|
-|![Enhancement Label](/documents/QA/pictures/enhancement_label.png)|New feature or request|
-|![Good first issue Label](/documents/QA/pictures/good_first_issue_label.png)|Good for newcomers|
-|![Help wanted Label](/documents/QA/pictures/help_wanted_label.png)|Extra attention is needed|
-|![High Label](/documents/QA/pictures/high_label.png)|High Priority|
-|![Invalid Label](/documents/QA/pictures/invalid_label.png)|This doesn't seem right|
-|![Low Label](/documents/QA/pictures/low_label.png)|Low Priority|
-|![medium Label](/documents/QA/pictures/medium_label.png)|Medium Priority|
-|![Question Label](/documents/QA/pictures/question_label.png)|Further information is requested|
-|![Test case Label](/documents/QA/pictures/test_case_label.png)|Use for test case|
-|![Wontfix Label](/documents/QA/pictures/wontfix_label.png)|This will not be worked on| -->
+||Something isn't working|
+||critical priority level|
+||Development related|
+||Improvements or additions to documentation|
+||New feature or request|
+||Functional specifications related|
+||Extra attention is needed|
+||High priority level|
+||Low priority level|
+||Management related|
+||Medium priority level|
+||Technical specifications related|
+||User manual related|
+||This will not be worked on|
 
 ## Testing Schedule And Estimation
 
 ### Tasks Time Estimation
 
-<!-- |Task|Duration|
-|----|--------|
-|Requirement specification documentation review|5 hours|
-|Test plan writing|20 hours|
-|Test cases creation|10 hours|
-|Assembly testing|15 hours|
-|Quality assurance meeting|4 hours|
-|Test case execution|20 hours|
-|GitHub initialization|2 hours|
-|Bug reports|12 hours|
-|Bug data report|6 hours| -->
+| Task                             | Duration |
+| -------------------------------- | -------- |
+| Functional specifications review | 3 hours  |
+| Technical specifications review  | 5 hours  |
+| Test plan writing                | 15 hours |
+| Test plan review                 | 3 hours  |
+| Test case writing                | 20 hours |
+| Test case applying               | 30 hours |
+| User manual review               | 3 hours  |
+| Management review                | 6 hours  |
+| Bug reports                      | 3 hours  |
+| Bug data report creation         | 3 hours  |
+| Bug data report fulfilment       | 5 hours  |
 
-<!-- All the durations defined here are only estimations! It could take more or less time according to the advancement of the tasks, the extra hours outside the school, or even if the test cases don't occur any errors or issues. -->
+All the defined duration for each tasks only are expectation. Therefore, if a task take more time than needed, overtime hours could be done to complete these tasks before their deadlines.
 
 ### Tasks Schedule
 
-<!-- |Task|Start date|End date|
-|----|----------|--------|
-|GitHub initialization|01/22/24|01/22/24|
-|Test plan writing|01/22/24|02/16/24|
-|Test cases creation|01/22/24|02/16/24|
-|Assembly testing|01/22/24|01/30/24|
-|Functional specification review|01/29/24|01/30/24|
-|Quality assurance meeting|01/29/24|01/29/24|
-|Functional specification review|02/08/24|02/09/24|
-|Test case execution|01/30/24|02/23/24|
-|Bug reports|01/30/24|02/23/24|
-|Bug data report|01/30/24|02/23/24| -->
+This part would display the supposed schedule for the quality assurance part of the project. However, the team decided to proceed with an agile method. Therefore, these dates are meant to change over the time. Moreover, the expanded duration of the tasks are explained by this method.
+
+| Task                            | Start date | End date |
+| ------------------------------- | ---------- | -------- |
+| GitHub initialization           | 01/06/25   | 01/06/25 |
+| Test plan writing               | 01/06/25   | 01/24/25 |
+| Test cases creation             | 01/13/25   | 01/31/25 |
+| code testing                    | 01/14/25   | 02/07/25 |
+| Functional specification review | 01/14/25   | 02/07/25 |
+| Technical specification review  | 01/14/25   | 02/07/25 |
+| User manual review              | 01/14/25   | 02/07/25 |
+| Management review               | 01/14/25   | 02/14/25 |
+| Test case execution             | 01/24/25   | 02/07/25 |
+| Bug reports                     | 01/14/25   | 02/07/25 |
+| Bug data report                 | 01/14/25   | 02/07/25 |
 
 ## Test Deliverables
 
-<!-- - **Test plan:** It will define how the tests should be done and the strategy chosen.
+All the test deliverables should be delivered at the very least on the 7th of February.
+
+- **Test plan:** It will define how the tests should be done and the strategy chosen.
 - **Test cases:** It will contain all the tests that will be done to see if the product is functional.
 - **Bug reports:** Each will contain a report about a bug found during the test sessions.
-- **Bug data report:** It will allow us to see all of the reports in one place. -->
+- **Bug data report:** It will allow us to see all of the reports in one place.
 
 ## Conclusion And Acknowledgments
 
-<!-- The testing part of a project is one of the most important ones. If the quality isn't assured, then the product would not work as intended, this is why this part is such an important one.
+The testing part of a project is really important. It is there to assure the well behaving of the product, but also to have constant documentation to not be looked down.
 
 We would thank all the members of the team who worked on this project.
-We would thank the other quality assurances that we work with, our product would have been less good without their help.
 
-We would also thank our teacher [Caroline CORDIER](https://www.linkedin.com/in/caroline-cordier-dpo/), who taught us the fundamentals of a good test plan and the quality assurance role.
-
-We would also thank the previous project quality assurance, who helped us by giving us hints.
-
-Finally, we would then thank [ALGOSUP](https://algosup.com) for this project and this opportunity to develop our skills once again. -->
+Finally, we would then thank [ALGOSUP](https://algosup.com) for this project and this opportunity to develop our skills once again.
 
 ## Sources
 
-<!-- - [Cambridge Dictionary](https://dictionary.cambridge.org/)
 - [GitHub](https://github.com/)
-- [Informatica](https://www.informatica.com/eng.html)
-- [TechTarget](https://www.techtarget.com/)
-- [Wikipedia](https://en.wikipedia.org/wiki/Main_Page) -->
 
 ## Glossary
 
-<!-- |Term|Definition|Source|
+|Term|Definition|Source|
 |----|----------|------|
-|Agile testing|A software development practice that promotes frequent, automated testing of new code as it is completed and stipulates that defects should be fixed as soon as they are found.|[Informatica](https://www.informatica.com/in/services-and-training/glossary-of-terms/agile-testing-definition.html#:~:text=Agile%20testing%20is%20a%20software,soon%20as%20they%20are%20found.)|
-|Assembler|A program that changes computer instructions into machine code (= a set of numbers that gives instructions to a computer).|[Cambridge Dictionary](https://dictionary.cambridge.org/fr/dictionnaire/anglais/assembler)|
-|Assembly language|In computer programming, assembly language is any low-level programming language with a very strong correspondence between the instructions in the language and the architecture's machine code instructions.|[Wikipedia](https://en.wikipedia.org/wiki/Assembly_language)|
-|Compiler|In computing, a compiler is a computer program that translates computer code written in one programming language (the source language) into another language (the target language).|[Wikipedia](https://en.wikipedia.org/wiki/Compiler)|
-|C language|C is a general-purpose computer programming language. C is commonly used on computer architectures that range from the largest supercomputers to the smallest microcontrollers and embedded systems.|[Wikipedia](https://en.wikipedia.org/wiki/C_(programming_language))|
-|Git|A distributed version control system that tracks changes in any set of computer files, usually used for coordinating work among programmers who are collaboratively developing source code during software development.|[Wikipedia](https://en.wikipedia.org/wiki/Git)|
-|GitHub|GitHub, Inc. is an AI-powered developer platform that allows developers to create, store, manage, and share their code.|[Wikipedia](https://en.wikipedia.org/wiki/GitHub)|
-|GitHub Issues|GitHub Issues are items you can create in a repository to plan, discuss, and track work. Issues are simple to create and flexible to suit a variety of scenarios. You can use issues to track work, give or receive feedback, collaborate on ideas or tasks, and efficiently communicate with others.|[GitHub](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues)|
-|GNU Compiler Collection (GCC)|The GNU Compiler Collection (GCC) is an optimizing compiler produced by the GNU Project supporting various programming languages, hardware architectures, and operating systems.|[Wikipedia](https://en.wikipedia.org/wiki/GNU_Compiler_Collection)|
-|Interpreter|In computer science, an interpreter is a computer program that directly executes instructions written in a programming or scripting language, without requiring them previously to have been compiled into a machine language program.|[Wikipedia](https://en.wikipedia.org/wiki/Interpreter_(computing))|
-|Linux|Linux is a family of open-source Unix-like operating systems based on the Linux kernel, an operating system kernel first released on September 17, 1991, by Linus Torvalds.|[Wikipedia](https://en.wikipedia.org/wiki/Linux)|
-|MacOS|MacOS, originally Mac OS X, previously shortened as OS X, is an operating system developed and marketed by Apple Inc.|[Wikipedia](https://en.wikipedia.org/wiki/MacOS)|
-|Test case|In software engineering, a test case is a specification of the inputs, execution conditions, testing procedure, and expected results that define a single test to be executed to achieve a particular software testing objective, such as to exercise a particular program path or to verify compliance with a specific requirement.|[Wikipedia](https://en.wikipedia.org/wiki/Test_case)|
-|Smoke testing|A software testing method that is used to determine if a new software build is ready for the next testing phase. This testing method determines if the most crucial functions of a program work but does not delve into finer details.|[TechTarget](https://www.techtarget.com/searchsoftwarequality/definition/smoke-testing#:~:text=Smoke%20testing%2C%20also%20called%20build,not%20delve%20into%20finer%20details.)|
-|Unit testing|A software testing method by which individual units of source code—sets of one or more computer program modules together with associated control data, usage procedures, and operating procedures—are tested to determine whether they are fit for use.|[Wikipedia](https://en.wikipedia.org/wiki/Unit_testing)|
-|Visual Studio Code|Visual Studio Code, also commonly referred to as VS Code, is a source-code editor developed by Microsoft for Windows, Linux, and macOS. Features include support for debugging, syntax highlighting, intelligent code completion, snippets, code refactoring, and embedded Git.|[Wikipedia](https://en.wikipedia.org/wiki/Visual_Studio_Code)|
-|Windows|Microsoft Windows is a group of several proprietary graphical operating system families developed and marketed by Microsoft. Each family caters to a certain sector of the computing industry.|[Wikipedia](https://en.wikipedia.org/wiki/Microsoft_Windows)| -->
+||||
