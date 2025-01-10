@@ -24,16 +24,16 @@ Goals have been set for this project which are:
 
 - Creating an algorithm to find the quickest past between two landmarks
 - The algorithm has to be as quick as possible
-- The identified can be at most 10% longer than the actual quickest path time
+- The identified path can be at most 10% longer than the actual quickest path time
 - We have to use the provided data
 
 ## Stakeholders
 
 The stakeholders for this project are:
 
-| Name | Role | Represented by |
-| --- | --- | --- |
-| ALGOSUP | Client | Franck JEANNIN<br> [LinkedIn profile](https://www.linkedin.com/in/franck-jeannin/) |
+| Name | Role | Represented by | Link |
+| --- | --- | --- | --- |
+| ALGOSUP | Client | Franck JEANNIN<br> | [LinkedIn profile](https://www.linkedin.com/in/franck-jeannin/) |
 
 
 # Team Organization 

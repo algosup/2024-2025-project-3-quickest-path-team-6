@@ -1,8 +1,8 @@
-# Management artifacts - PathQuick
+# Management Artifacts - PathQuick
 
 This document is used to centralize all the management artifacts as listed below:
 
-- [Management artifacts](#management-artifacts---pathquick)
+- [Management Artifacts](#management-artifacts---pathquick)
     - [RACI Matrix](#raci-matrix)
     - [Risks \& Mitigations](#risks--mitigations)
     - [Key Performance Indicators](#key-performance-indicators)
@@ -36,13 +36,15 @@ Legend:
 
 | Risk | Consequence | Impact | Mitigation |
 | --- | --- | --- | --- |
-|  | 
+| A team member is absent | The progression of the project is slowed | High | Split the work evenly so if someone cannot work, other team members can work on it without problem |
+| Faulty data in the USA-roads.csv file | The input dataset may have errors or inconsistencies | High | Develop a robust data validation tool to check for graph integrity before processing. |
+| Memory inefficiency or suboptimal data structures. | The solution may not handle the scale of 24 million nodes efficiently. | High | Use memory-efficient data structure an streamline data parsing to load only necessary parts of the graph |
 
 ## Key Performance Indicators
 
-To follow the progress of the project, multiple KPIs have been defined. They can be viewed through our [KPIs spreed sheet](https://docs.google.com/spreadsheets/d/1eKVS6e0FwKcXLgHNbZsB1XYESFJWPV4A9yk-6R81024/edit?usp=sharing).
+To follow the progress of the project, multiple KPIs have been defined. They can be viewed through our [KPIs spread sheet](https://docs.google.com/spreadsheets/d/1eKVS6e0FwKcXLgHNbZsB1XYESFJWPV4A9yk-6R81024/edit?usp=sharing).
 
-Our KPIs have been separated in different categories as followed:
+Our KPIs have been separated into different categories as followed:
 
 - ### Documents
     - Project charter
@@ -65,9 +67,3 @@ Each week will be resumed in weekly documents listed [here](WeeklyReports), or b
 - [Week 4](WeeklyReports/weeklyReport4.md)
 - [Week 5](WeeklyReports/weeklyReport5.md)
 - [Week 6](WeeklyReports/weeklyReport6.md)
-
-
-
-
-
-
