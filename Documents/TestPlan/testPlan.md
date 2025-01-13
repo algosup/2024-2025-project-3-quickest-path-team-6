@@ -15,6 +15,11 @@ The aim of this project is to create a quick pathfinding server according to a C
     - [In Scope](#in-scope)
     - [Out Of Scope](#out-of-scope)
   - [Testing Types](#testing-types)
+    - [Agile Testing](#agile-testing)
+    - [Unit Testing](#unit-testing)
+    - [Smoke Testing](#smoke-testing)
+    - [System Testing](#system-testing)
+    - [Compatibility Testing](#compatibility-testing)
 - [Test Cases](#test-cases)
 - [Testing Tools](#testing-tools)
   - [Hardware](#hardware)
@@ -23,6 +28,7 @@ The aim of this project is to create a quick pathfinding server according to a C
   - [Suspension Criteria](#suspension-criteria)
   - [Entry Criteria](#entry-criteria)
   - [Exit Criteria](#exit-criteria)
+- [GitHub Actions](#github-actions)
 - [GitHub Issues Report](#github-issues-report)
   - [Document Review](#document-review)
   - [Dev Review](#dev-review)
@@ -59,7 +65,7 @@ This would be considered as the first test.
 
 However, other test would be done at periodic time. Hopefully, the more frequently possible. In the worst option, these tests would be made once in a week.
 
-<!-- Our testing strategy will be based on three different testing types. At first, we will use [smoke testing](#smoke-testing) to see basic functionalities. Then we will use some [unit tests](#unit-testing) to see in more detail if the code runs as expected. We will also use some [agile testing](#agile-testing) to test the code before each push on GitHub. -->
+Our testing strategy will mainly use the [agile testing](#agile-testing) strategy, to ensure no bugs come in between two different versions of our piece of software. However, this would not be the only method used. Some [unit tests](#unit-testing) would be written to test specific part of the code and would be run automatically during a pull request on the dev branch, thanks to [GitHub Actions](#github-actions). Finally, the QA team will also use some [smoke testing](#smoke-testing), [system testing](#system-testing) and [compatibility testing](#compatibility-testing). This would ensure the product would provide the critical functionalities and is compatible on every operating system.
 
 **Documentation Testing Strategy**
 
@@ -80,43 +86,58 @@ Finally, you could find our line of thoughts and different documents creating be
 
 ### Testing Scope
 
-<!-- Testing will focus on assembly instruction and the assembler. -->
+Testing will focus on our REST api and on the validation tool the development team will provide.
 
 #### In Scope
 
-<!-- - Assembly instruction:
-  - All the instructions defined in the [Functional Specification](/documents/functional/functional_specification.md) should function as intended.
-- Assembler:
-  - Absence of significant bug;
-  - Should run properly;
-  - Should assemble the files;
-- Emulator:
-  - Absence of significant bug;
-  - Should run properly;
-  - Should interpret ASM files;
+- REST API:
+  - Handle all possible method;
+  - Check for inputs possibilities;
+  - Check the output;
+  - Check the file format as output.
+- Algorithm:
+  - Check if the output is the one predict for a specific input;
+  - Check if the output is within a range of 10% with the shortest path;
+- Validation Tool:
+  - Check the format of the file provided as input;
 - Documentation:
   - Spelling accuracy;
   - Typographical errors;
-  - Naming conventions; -->
+  - Naming conventions;
+  - Coherency;
+  - Links;
+  - Tables;
 
 #### Out Of Scope
 
-<!-- - Font details;
-- Interrupt instruction; -->
+- Font details;
+- Graphical design;
+- Full application development;
+- Post-deployment maintenance;
 
 ### Testing Types
 
-<!-- #### Smoke testing -->
+#### Agile Testing
 
-<!-- The quality assurance would use a smoke testing strategy for the assembler, like this he would be sure that it would work as intended by doing some easy tests each time he would run the code. -->
+The first testing type is the agile one. It would allow the team to avoid creating bugs inbetween two different versions of the product. It would be used on the REST API, the validation tool and on the algorithm.
 
-<!-- #### Unit testing -->
+#### Unit Testing
 
-<!-- The quality assurance will also use Unit tests for all the particular instructions in the assembly language created by the team. It will also be used to ensure that some functions in the assembler work as intended. -->
+Unit testing will be used to ensure small functions are given the good output and not a non-intended one. Therefore, it would ensure every little part of the code would run as intended.
+It would be used on every code, especially on the validation tool.
 
-<!-- #### Agile testing -->
+#### Smoke Testing
 
-<!-- Finally, the quality assurance will use an agile testing strategy. This means that he should be reactive each time a version is pushed on the repository and test them. -->
+The smoke testing is really useful when testing small critical aspects and/or features of a project. We would use it mainly on the algorithm and rest API by following test cases.
+
+#### System Testing
+
+Next, we would use system Testing as a black box, providing it an input and checking if the output is the one intended or not. It would be use on the REST API and the validation tool.
+
+#### Compatibility Testing
+
+Finally, the product will be test on different operating system to be sure it is compatible.
+All of the product would pass this test.
 
 ## Test Cases
 
@@ -206,6 +227,12 @@ These criteria are:
 - We need to have no critical or high-severity defects during the tests;
 - All the little and medium severity issues should be reported; -->
 
+## GitHub Actions
+
+For this project, GitHub Actions have been made to handle the basic Unit tests at each pull request on the dev branch. This would ensure the functionning of the code and the automation would save a non negligable amount of time.
+
+These Actions can be fin on our GitHub repository, following [this link](https://github.com/algosup/2024-2025-project-3-quickest-path-team-6/actions).
+
 ## GitHub Issues Report
 
 ### Document Review
@@ -288,20 +315,20 @@ It would also help the team to know who is assigned to a dedicated issue.
 
 | Label                                                                                                                             | Description                                |
 | :-------------------------------------------------------------------------------------------------------------------------------: | ------------------------------------------ |
-| <img src="https://github.com/user-attachments/assets/076c8b37-8337-47a0-a475-1d78c9f09491" alt="bug_label" width="100">           | Something isn't working                    |
-| <img src="https://github.com/user-attachments/assets/e44bec86-07eb-480b-a5af-e1d4be2c1bb3" alt="critical_label" width="100">      | Critical priority level                    |
-| <img src="https://github.com/user-attachments/assets/d5e148c4-e12e-4599-a38d-ebbac902e6fb" alt="dev_label" width="100">           | Development related                        |
-| <img src="https://github.com/user-attachments/assets/eb5f9039-d191-4494-beb4-fafc1491be44" alt="documentation_label" width="100"> | Improvements or additions to documentation |
-| <img src="https://github.com/user-attachments/assets/6030359e-26f9-4a88-8a75-a454a97533a0" alt="enhancement_label" width="100">   | New feature or request                     |
-| <img src="https://github.com/user-attachments/assets/42274989-5d59-42a1-a6e6-1d5942965b7d" alt="functional_label" width="100">    | Functional specifications related          |
-| <img src="https://github.com/user-attachments/assets/a8952957-0026-4de1-b5c6-6e2441a5c02b" alt="help_wanted_label" width="100">   | Extra attention is needed                  |
-| <img src="https://github.com/user-attachments/assets/0b18c354-a65b-4812-80c2-bc8aea056ced" alt="high_label" width="100">          | High priority level                        |
-| <img src="https://github.com/user-attachments/assets/f3033bf8-6d49-4bbf-bec4-663eb7fe8bbc" alt="low_label" width="100">           | Low priority level                         |
-| <img src="https://github.com/user-attachments/assets/c4ccab0d-6871-4d43-991d-6af59c623f5d" alt="management_label" width="100">    | Management related                         |
-| <img src="https://github.com/user-attachments/assets/317e223d-ece9-4349-9e00-af5cdc5d6579" alt="medium_label" width="100">        | Medium priority level                      |
-| <img src="https://github.com/user-attachments/assets/ce610b9f-a366-487c-822b-9a30d08fa6d0" alt="technical_label" width="100">     | Technical specifications related           |
-| <img src="https://github.com/user-attachments/assets/072bda87-7fdd-4e48-862a-8693376edc7d" alt="user_manual_label" width="100">   | User manual related                        |
-| <img src="https://github.com/user-attachments/assets/13206089-ea16-48f8-a160-385eec349c42" alt="wontfix_label" width="100">       | This will not be worked on                 |
+| <img src="https://github.com/user-attachments/assets/076c8b37-8337-47a0-a475-1d78c9f09491" alt="bug_label" height="50">           | Something isn't working                    |
+| <img src="https://github.com/user-attachments/assets/e44bec86-07eb-480b-a5af-e1d4be2c1bb3" alt="critical_label" height="50">      | Critical priority level                    |
+| <img src="https://github.com/user-attachments/assets/d5e148c4-e12e-4599-a38d-ebbac902e6fb" alt="dev_label" height="50">           | Development related                        |
+| <img src="https://github.com/user-attachments/assets/eb5f9039-d191-4494-beb4-fafc1491be44" alt="documentation_label" height="50"> | Improvements or additions to documentation |
+| <img src="https://github.com/user-attachments/assets/6030359e-26f9-4a88-8a75-a454a97533a0" alt="enhancement_label" height="50">   | New feature or request                     |
+| <img src="https://github.com/user-attachments/assets/42274989-5d59-42a1-a6e6-1d5942965b7d" alt="functional_label" height="50">    | Functional specifications related          |
+| <img src="https://github.com/user-attachments/assets/a8952957-0026-4de1-b5c6-6e2441a5c02b" alt="help_wanted_label" height="50">   | Extra attention is needed                  |
+| <img src="https://github.com/user-attachments/assets/0b18c354-a65b-4812-80c2-bc8aea056ced" alt="high_label" height="50">          | High priority level                        |
+| <img src="https://github.com/user-attachments/assets/f3033bf8-6d49-4bbf-bec4-663eb7fe8bbc" alt="low_label" height="50">           | Low priority level                         |
+| <img src="https://github.com/user-attachments/assets/c4ccab0d-6871-4d43-991d-6af59c623f5d" alt="management_label" height="50">    | Management related                         |
+| <img src="https://github.com/user-attachments/assets/317e223d-ece9-4349-9e00-af5cdc5d6579" alt="medium_label" height="50">        | Medium priority level                      |
+| <img src="https://github.com/user-attachments/assets/ce610b9f-a366-487c-822b-9a30d08fa6d0" alt="technical_label" height="50">     | Technical specifications related           |
+| <img src="https://github.com/user-attachments/assets/072bda87-7fdd-4e48-862a-8693376edc7d" alt="user_manual_label" height="50">   | User manual related                        |
+| <img src="https://github.com/user-attachments/assets/13206089-ea16-48f8-a160-385eec349c42" alt="wontfix_label" height="50">       | This will not be worked on                 |
 
 ## Testing Schedule And Estimation
 
