@@ -34,7 +34,8 @@ private:
     std::string processRequest(const std::string& request);
 
     // Helper function to send error responses
-    std::string generateErrorResponse(const std::string& error_message);
+    std::string generateErrorResponse(const std::string &error_message, int status_code);
+
 
     void closeSocket(int socket); // Declaration of closeSocket function
 };

@@ -66,55 +66,93 @@ void Api::start() {
 }
 
 void Api::handleClient(int client_socket) {
-    char buffer[1024] = {0};
-    int bytes_received = recv(client_socket, buffer, sizeof(buffer), 0);
-    if (bytes_received <= 0) {
-        closeSocket(client_socket);
-        return;
+    try {
+        char buffer[1024] = {0};
+        int bytes_received = recv(client_socket, buffer, sizeof(buffer), 0);
+
+        if (bytes_received <= 0) {
+            closeSocket(client_socket);
+            return;
+        }
+
+        std::string request(buffer, bytes_received);
+        std::string response = processRequest(request);
+
+        send(client_socket, response.c_str(), response.size(), 0);
+    } catch (const std::exception &e) {
+        std::cerr << "Error handling client: " << e.what() << std::endl;
     }
 
-    std::string request(buffer, bytes_received);
-    std::string response = processRequest(request);
-
-    send(client_socket, response.c_str(), response.size(), 0);
     closeSocket(client_socket);
 }
 
-std::string Api::processRequest(const std::string& request) {
+
+std::string Api::processRequest(const std::string &request) {
+    // Parse the request for "source" and "dest" parameters
     size_t source_pos = request.find("source=");
     size_t dest_pos = request.find("&dest=");
+    
+    // Check if "source=" and "&dest=" are present
     if (source_pos == std::string::npos || dest_pos == std::string::npos) {
-        return generateErrorResponse("Missing source or destination parameters");
+        return generateErrorResponse("Missing source or destination parameters", 400);
     }
 
-    source_pos += 7;
+    // Extract source and destination
+    source_pos += 7; // Skip "source="
     std::string source_id = request.substr(source_pos, dest_pos - source_pos);
 
-    dest_pos += 6;
+    dest_pos += 6; // Skip "&dest="
     size_t end_pos = request.find(" ", dest_pos);
     std::string destination_id = request.substr(dest_pos, end_pos - dest_pos);
 
-    int travel_time = 15;
-    std::vector<std::string> path = {"LandmarkA", "LandmarkB", "LandmarkC"};
-
-    if (request.find("Accept: application/xml") != std::string::npos) {
-        return "HTTP/1.1 200 OK\r\nContent-Type: application/xml\r\n\r\n" +
-               XmlParser::formatResponse(travel_time, path);
+    // Validate if the source or destination is empty
+    if (source_id.empty() || destination_id.empty()) {
+        return generateErrorResponse("Source or destination cannot be empty", 400);
     }
 
-    return "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n\r\n" +
-           JsonParser::formatResponse(travel_time, path);
+    // Validate landmarks (replace this mock with actual graph checks)
+    if (source_id != "LandmarkA" && source_id != "LandmarkB" && source_id != "LandmarkC") {
+        return generateErrorResponse("Landmark not found: " + source_id, 404);
+    }
+    if (destination_id != "LandmarkA" && destination_id != "LandmarkB" && destination_id != "LandmarkC") {
+        return generateErrorResponse("Landmark not found: " + destination_id, 404);
+    }
+
+    // Mock backend logic (to be replaced)
+    int travel_time = 15; // Placeholder value
+    std::vector<std::string> path = {"LandmarkA", "LandmarkB", "LandmarkC"};
+
+    // Format response based on "Accept" header
+    if (request.find("Accept: application/xml") != std::string::npos) {
+    return "HTTP/1.1 200 OK\r\n"
+           "Content-Type: application/xml\r\n"
+           "Cache-Control: no-cache, no-store, must-revalidate\r\n"
+           "Pragma: no-cache\r\n"
+           "Expires: 0\r\n\r\n" +
+           XmlParser::formatResponse(travel_time, path);
 }
 
-std::string Api::generateErrorResponse(const std::string& error_message) {
-    return "HTTP/1.1 400 Bad Request\r\nContent-Type: text/plain\r\n\r\n" + error_message;
 }
 
-// Helper function to close a socket
-void Api::closeSocket(int socket) {
-#ifdef _WIN32
-    closesocket(socket);
-#else
-    close(socket);
-#endif
+std::string Api::generateErrorResponse(const std::string &error_message, int status_code) {
+    std::ostringstream response;
+    response << "HTTP/1.1 " << status_code;
+
+    if (status_code == 400) {
+        response << " Bad Request";
+    } else if (status_code == 404) {
+        response << " Not Found";
+    } else if (status_code == 500) {
+        response << " Internal Server Error";
+    }
+
+    response << "\r\nContent-Type: text/plain\r\n\r\n" << error_message;
+    return response.str();
 }
+
+
+
+
+
+
+
