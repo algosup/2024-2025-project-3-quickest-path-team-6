@@ -57,13 +57,13 @@ The testing strategy would be sorted in two different categories. The first one 
 
 **Code Testing Strategy**
 
-Regarding the Code Testing Strategy, we decided to test the diffrent version of the code as early as possible.
+Regarding the Code Testing Strategy, we decided to test the different versions of the code as early as possible.
 
-This project requires a programm running on diverse open source system. However, the development team is only using Windows computer. Therefore, each time they have a working prototype on their own branches, they would merge them into the dev branch for the entire team to test it on their machine.
+This project requires a programm running on diverse operating system. However, the development team is only using Windows computer. Therefore, each time they have a working prototype on their own branches, they would merge them into the dev branch for the entire team to test it on their machine.
 
 This would be considered as the first test.
 
-However, other test would be done at periodic time. Hopefully, the more frequently possible. In the worst option, these tests would be made once in a week.
+However, other test would be done at periodic time. Hopefully, the more frequently possible. In the worst case, these tests would be done once a week.
 
 Our testing strategy will mainly use the [agile testing](#agile-testing) strategy, to ensure no bugs come in between two different versions of our piece of software. However, this would not be the only method used. Some [unit tests](#unit-testing) would be written to test specific part of the code and would be run automatically during a pull request on the dev branch, thanks to [GitHub Actions](#github-actions). Finally, the QA team will also use some [smoke testing](#smoke-testing), [system testing](#system-testing) and [compatibility testing](#compatibility-testing). This would ensure the product would provide the critical functionalities and is compatible on every operating system.
 
@@ -77,7 +77,7 @@ These reviews must be done before the document deliverables which is on the 7th 
 
 ### Quality Assurance Team
 
-The quality assurance team is only composed of myself. However, there are other quality assurances in other team. We could, therefore, create a quality assurance team between us. To improve our global test quality and to brainstorm test cases among us.
+The quality assurance team is only composed of myself. However, there are other quality assurances in other teams. We could, therefore, create a quality assurance team between us. To improve our global test quality and to brainstorm test cases among us.
 
 It would lead quality assurances to improve their document and the global experience of the team. It would also be a plus for the development team, they would have more feedback on their product and could correct any issues detected more efficiently.
 
@@ -209,23 +209,21 @@ All the tests will be done on different tools:
 
 ### Suspension Criteria
 
-<!-- When a test is done, if a suspension criteria is reached, we stop the following test, and the development team, as well as the quality assurance team, will work together until the issue is fixed. This method will allow us to take issues one by one and not create a program with existing issues inside. It would avoid generating more issues. -->
+If a test reaches the suspension criteria, we will halt the subsequent testing. The development and quality assurance teams will then collaborate to address and resolve the issue before proceeding. This approach ensures that problems are handled individually, preventing the inclusion of unresolved issues in the program and avoiding the creation of additional problems.
 
 ### Entry Criteria
 
-<!-- The entry criteria are the criteria needed for the well-being of the test and to ensure to proceed in the best environment possible. \
-The three main criteria are:
-- Be sure to proceed with the tests on a valid version of the code;
-- Be sure to have the unit tests required;
-- Be sure that the environment is correctly set for the tests; -->
+The entry criteria are the prerequisites that must be met to ensure the test can be conducted in the best possible conditions. These include:
+- Confirming that testing is done on a valid version of the code;
+- Ensuring the necessary unit tests are available;
+- Verifying that the testing environment is correctly configured.
 
 ### Exit Criteria
 
-<!-- The exit criteria should specify the requirements to complete before the end of the testing phase. \
-These criteria are:
-- We need to have at least an 80% success rate;
-- We need to have no critical or high-severity defects during the tests;
-- All the little and medium severity issues should be reported; -->
+The exit criteria define the requirements for concluding the testing phase. These include:
+- Achieving a success rate of at least 80%;
+- Ensuring there are no critical or high-severity defects during testing;
+- Reporting all issues of medium or low severity.
 
 ## GitHub Actions
 
@@ -393,4 +391,21 @@ Finally, we would then thank [ALGOSUP](https://algosup.com) for this project and
 
 |Term|Definition|Source|
 |----|----------|------|
-||||
+|Agile testing|||
+|Algorithm|||
+|Bugs|||
+|Compatibility testing|||
+|CSV|||
+|GitHub|||
+|GitHub actions|||
+|GitHub branch|||
+|GitHub issues|||
+|GitHub merge|||
+|GitHub pull-request|||
+|Local host server|||
+|Path finder|||
+|Review|||
+|Smoke testing|||
+|System testing|||
+|Test cases|||
+|Unit tests|||
