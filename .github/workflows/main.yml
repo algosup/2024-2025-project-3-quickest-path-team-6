@@ -10,25 +10,19 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Team-6-PQ]
 
     steps:
     # Checkout the code from the repository
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # Install dependencies
-    - name: Install dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y g++ # Add additional dependencies if required
-
     # Compile the project
     - name: Compile project
       run: |
-        g++ -Wall -std=c++17 -o bin/test main.cpp api.cpp
+        g++ -std=c++17 -o test main.cpp api.cpp
 
     # Run unit tests
     - name: Run unit tests
       run: |
-        ./bin/test # Replace this with the actual command to execute your tests
+        ./test # Replace this with the actual command to execute your tests
