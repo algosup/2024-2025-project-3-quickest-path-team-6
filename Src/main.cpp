@@ -23,12 +23,18 @@ int main()
 void mainMenu()
 {
     clearScreen();
-    cout << "   Welcome on QuickPath !\n"
-         << "----------------------------\n"
-         << "1| Find my way\n"
-         << "2| Credits\n"
-         << "0| Exit\n\n"
-         << "Your choice -> ";
+    int input = 300;
+    while (input != 0)
+    {
+        cout << "   Welcome on QuickPath !\n"
+            << "----------------------------\n"
+            << "1| Find my way\n"
+            << "2| Credits\n"
+            << "0| Exit\n\n"
+            << "Your choice -> ";
+        input = userInputInt();
+    }
+    
 }
 
 void findMyWayMenu()
