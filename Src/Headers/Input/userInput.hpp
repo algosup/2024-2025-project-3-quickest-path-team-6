@@ -1,8 +1,27 @@
 #include <iostream>
 
-int userInputInt()
+using namespace std;
+
+int userInputInt(bool* exception)
 {
-    int input;
-    std::cin >> input;
-    return input;
+    int num;
+    bool validInput = false;
+
+    cin >> num;
+
+    // Check for type mismatch of the input
+    if (cin.fail()) 
+    {
+        // Clear the failbit and ignore the remaining input
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+        *exception = true;
+    }
+    else 
+    {
+        // Input is valid
+        validInput = true;
+    }
+
+    return num;
 }

@@ -6,13 +6,14 @@ using namespace std;
 void mainMenu();
 void findMyWayMenu();
 
-int lowestID = 1;
-int highestID = 23000000;
+const int LOWEST_ID = 1;
+const int HIGHEST_ID = 23000000;
 
 int departurePoint = 0;
 int destinationPoint = 0;
 
 int input = 1;
+bool inputException = false;
 
 void clearScreen()
 {
@@ -31,20 +32,34 @@ void display()
 
 void mainMenu()
 {
-    while (input != 0)
+    while (input != 0 || inputException)
     {
         clearScreen();
         cout << "          Welcome on QuickPath !\n"
             << "-----------------------------------------\n"
             << "1| Find my way\n"
             << "2| Credits\n"
-            << "0| Exit\n\n"
-            << "Your choice -> ";
-        input = userInputInt();
-        if(input == 1 || input == 2)
+            << "0| Exit\n" << endl;
+            if (inputException)
+            {
+                cout << "Invalid input! Expected a number from the list." << endl;
+                inputException = false;
+            }
+            else
+                cout << endl;
+        cout << "Your choice -> ";
+        input = userInputInt(&inputException);
+        if(input == 1)
+        {
+            findMyWayMenu();
+        } else if (input == 2)
         {
             break;
+        } else if (input != 0)
+        {
+            inputException = true;
         }
+        
     }
 }
 
@@ -53,11 +68,9 @@ void findMyWayMenu()
     clearScreen();
     cout << "               Find my way\n"
          << "-----------------------------------------\n"
-         << "Available points between " << lowestID << " and " << highestID << "\n"
-         << "Choose a departure -> ";
-    departurePoint = userInputInt();
-    cout << "Choose a destination -> ";
-    destinationPoint = userInputInt();
-
-    cout << departurePoint << "  " << destinationPoint;
+         << "Available points between " << LOWEST_ID << " and " << HIGHEST_ID << "\n"
+         << "Choose a departure ";
+    departurePoint = userInputInt(&inputException);
+    cout << "Choose a destination ";
+    destinationPoint = userInputInt(&inputException);
 }
