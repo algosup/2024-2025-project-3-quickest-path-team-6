@@ -1,5 +1,6 @@
 #include <iostream>
 #include "../Input/userInput.hpp"
+#include "../../Algorithm/algorithm.cpp"
 
 using namespace std;
 
@@ -89,11 +90,13 @@ void findMyWayMenu()
         }
         else if(destinationPoint == 0)
         {
+            cout << "Departure: " << departurePoint << endl;
             handleException();
             cout << "Choose a destination -> ";
             destinationPoint = userInputInt(&inputException);
         }
-    }   
+    }
+    algorithm(departurePoint, destinationPoint);
 }
 
 void creditsMenu()
@@ -117,7 +120,7 @@ void creditsMenu()
              << "       -> the Technical Writer:          \n"
              << "          Aurélien FERNANDEZ             \n\n"
              << "        -> the Project Manager:          \n"
-             << "              Evan UHRING                \n";
+             << "              Evan UHRING                \n" << endl;
         handleException();
         cout << "0| Go to main menu? -> ";
         input = userInputInt(&inputException);
