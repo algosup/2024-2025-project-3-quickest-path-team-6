@@ -61,6 +61,7 @@ void mainMenu()
         if(input == 1)
         {
             findMyWayMenu();
+            input = 1;
         } else if (input == 2)
         {
             creditsMenu();
@@ -76,7 +77,8 @@ void findMyWayMenu()
 {
     departurePoint = 0;
     destinationPoint = 0;
-    while(departurePoint == 0 || destinationPoint == 0 || inputException)
+    int validation = 3;
+    while(validation != 2 && validation != 1 && validation != 0 || inputException)
     {
         clearScreen();
         cout << "               Find my way\n"
@@ -95,8 +97,45 @@ void findMyWayMenu()
             cout << "Choose a destination -> ";
             destinationPoint = userInputInt(&inputException);
         }
+        else if(validation != 2 && validation != 1 && validation != 0 || inputException)
+        {
+            cout << "Departure: " << departurePoint << endl;
+            cout << "Destination: " << destinationPoint << "\n" << endl;
+            cout << "1| Everything is correct\n"
+                 << "2| Redefine my path\n"
+                 << "0| Go back to main menu\n" << endl;
+            handleException();
+            cout << "Your choice -> ";
+            validation = userInputInt(&inputException);
+            if(validation != 0 && validation != 1 && validation != 2)
+                inputException = true;
+        }
+        else if(validation == 0 && departurePoint != 0 && destinationPoint != 0 && !inputException)
+            break;
+        if(validation == 2)
+        {
+            departurePoint = 0;
+            destinationPoint = 0;
+            validation = 3;
+        }
     }
-    algorithm(departurePoint, destinationPoint);
+    if(validation == 1)
+    {
+        clearScreen();
+        cout << "               Find my way\n"
+             << "-----------------------------------------\n";
+        cout << "Departure: " << departurePoint << endl;
+        cout << "Destination: " << destinationPoint << "\n" << endl;
+        algorithm(departurePoint, destinationPoint);
+        while(input != 0)
+        {
+            handleException();
+            cout << "\n0| Go to main menu? -> ";
+            input = userInputInt(&inputException);
+            if(input != 0)
+                inputException = true;
+        }
+    }
 }
 
 void creditsMenu()

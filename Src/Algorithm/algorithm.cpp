@@ -10,6 +10,15 @@ using namespace std;
 using namespace std::chrono;
 
 vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int start, int end) {
+
+    vector<int> path;
+
+    if (start == end){
+        path.push_back(end);
+        reverse(path.begin(), path.end());
+        return path;
+    }
+
     // Min-heap: (total time, landmark ID)
     priority_queue<pair<double, int>, vector<pair<double, int>>, greater<>> pq;
 
@@ -42,7 +51,6 @@ vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int 
     }
 
     // Reconstruct the path
-    vector<int> path;
     for (int at = end; at != 0; at = previous[at]) {
         path.push_back(at);
         if (at == start) break; // Reached the start point
@@ -69,7 +77,7 @@ void algorithm(int start, int end) {
             cout << landmark << " ";
         }
         auto stop = high_resolution_clock::now();
-        auto duration = duration_cast<seconds>(stop - timeStart); // get task duration
-        cout << endl << "Path calculated in " << duration.count() << " seconds." << endl;
+        auto duration = duration_cast<milliseconds>(stop - timeStart); // get task duration
+        cout << endl << "Path calculated in " << duration.count() << " milliseconds." << endl;
     }
 }
