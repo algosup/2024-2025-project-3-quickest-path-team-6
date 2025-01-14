@@ -5,7 +5,6 @@ using namespace std;
 int userInputInt(bool* exception)
 {
     int num;
-    bool validInput = false;
 
     cin >> num;
 
@@ -20,7 +19,7 @@ int userInputInt(bool* exception)
     else 
     {
         // Input is valid
-        validInput = true;
+        *exception = false;
     }
 
     return num;
