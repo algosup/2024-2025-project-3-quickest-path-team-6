@@ -1,0 +1,38 @@
+{
+    "configurations": [
+      {
+        "name": "Win32",
+        "includePath": [
+          "${workspaceFolder}/Src",
+          "${workspaceFolder}/Src/Api",
+          "${workspaceFolder}/Src/Api/JsonXml",
+          "${workspaceFolder}/Src/Headers",
+          "${workspaceFolder}/Src/Headers/Input",
+          "${workspaceFolder}/Src/Headers/Display"
+        ],
+        "defines": ["_WIN32"],
+        "compilerPath": "cl.exe",
+        "cStandard": "c17",
+        "cppStandard": "c++17",
+        "intelliSenseMode": "windows-msvc-x64"
+      },
+      {
+        "name": "Mac",
+        "includePath": [
+          "${workspaceFolder}/Src",
+          "${workspaceFolder}/Src/Api",
+          "${workspaceFolder}/Src/Api/JsonXml",
+          "${workspaceFolder}/Headers",
+          "${workspaceFolder}/Headers/Input",
+          "${workspaceFolder}/Headers/Display"
+        ],
+        "defines": ["__APPLE__"],
+        "compilerPath": "/usr/bin/clang",
+        "cStandard": "c17",
+        "cppStandard": "c++17",
+        "intelliSenseMode": "macos-clang-x64"
+      }
+    ],
+    "version": 4
+  }
+  

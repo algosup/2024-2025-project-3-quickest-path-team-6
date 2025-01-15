@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build with MSVC",
+      "type": "shell",
+      "command": "cl",
+      "args": [
+        "/EHsc",
+        "/I", "Src",
+        "/I", "Src/Api",
+        "/I", "Src/Api/JsonXml",
+        "/I", "Headers",
+        "/I", "Headers/Input",
+        "/I", "Headers/Display",
+        "Src/main.cpp",
+        "Src/Api/api.cpp",
+        "Src/Api/JsonXml/jsonParser.cpp",
+        "Src/Api/JsonXml/xmlParser.cpp",
+        "/Fe:output.exe"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$msCompile"]
+    }
+  ]
+}
