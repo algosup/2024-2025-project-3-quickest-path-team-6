@@ -11,7 +11,7 @@
 | <img src="https://avatars.githubusercontent.com/u/145995586?v=4" width=150> | Maxime THIZEAU | Quality assurance|Tests the product to identify and document bugs and issues. Creates test plans and verifies that fixes are implemented correctly. | [LinkedIn](https://www.linkedin.com/in/maxime-thizeau-0b311a293/) [GitHub](https://github.com/MaximeTAlgosup) |
 | <img src="https://avatars.githubusercontent.com/u/71769656?v=4" width=150> | Aurélien FERNANDEZ | Tech writer | Creates the user manual. Ensures all materials are clear and easy to understand for end users. |[LinkedIn](https://www.linkedin.com/in/aurélien-fernandez-4971201b8/) [GitHub](https://github.com/aurelienfernandez) |
 ## Glossary
-|therm used | Definition|
+|Therm Used | Definition|
 |--------|---------|
 | ddd | dddd
 ## Functional Requirements 
@@ -85,8 +85,8 @@
    - Verify that the graph is fully connected (all nodes are reachable).
 
 4. **Performances**
-   - Query responses must be generated in less than **1 second**.
-   - Approximation of the result shouldn't exceed **10% deviation** from the shortest possible duration.
+   - Query responses must be generated in less than 1 second.
+   - Approximation of the result shouldn't exceed 10% deviation from the shortest possible duration.
 
 
 ## **Available Resources**
@@ -117,29 +117,10 @@ To have a better understanding of C++, data structures, algorithms, and REST API
 3. [Building RESTful APIs with C++](https://medium.com/@AlexanderObregon/building-restful-apis-with-c-4c8ac63fe8a7)  
    - Step-by-step guide to implementing REST APIs in C++.
 
----
+
+## **Personas**
+
+![Karen Lee](persona1.png)
 
 
-<!-- 
-
-### **Non-Functional Requirements**
-1. **Scalability**
-   - The system should support larger datasets in the future without significant performance degradation.
-
-2. **Reliability**
-   - The API must handle invalid inputs gracefully and ensure consistent behavior.
-
-3. **Security**
-   - Prevent malicious queries (e.g., input validation for SQL or injection attacks).
-
-4. **Maintainability**
-   - Ensure modular and well-documented code for easier updates and debugging.
-
-5. **Compatibility**
-   - Must run on a typical laptop with a C++-compatible environment.
-
-6. **Recovery**
-   - The system should recover from failures gracefully, with detailed error messages.
-
----
-
+<!-- thats one example, if yall like them i'll do two more -->
