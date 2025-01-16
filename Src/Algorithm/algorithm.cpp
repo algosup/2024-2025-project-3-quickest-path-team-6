@@ -78,6 +78,7 @@ double algorithm(int start, int end) {
     } else {
         cout << endl << "Shortest path from " << start << " to " << end << ":" << endl;
         convertIntoJson(path);
+        convertIntoXml(path);
 
         auto stop = high_resolution_clock::now();
         auto duration = duration_cast<milliseconds>(stop - timeStart); // get task duration
