@@ -366,6 +366,15 @@ A weighted graph is constructed, where:
 Nodes represent landmarks.
 Edges represent roads, with weights corresponding to travel time or distance.
 
+The edges are handled as a structure:
+
+```c++
+struct Edge {
+    int to; // the landmark it is connected to
+    double time; // the travel time between both landmarks
+};
+```
+
 #### Core Algorithm
 
 **Shortest Path Calculation**:
