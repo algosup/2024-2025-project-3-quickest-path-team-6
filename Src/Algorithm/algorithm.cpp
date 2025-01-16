@@ -1,12 +1,11 @@
-#include <iostream>
 #include <queue>
-#include <vector>
 #include <unordered_map>
 #include <limits>
 #include "loadData.cpp"
-
-using namespace std;
+#include "../Headers/Formatting/json.hpp"
+#include "../Headers/Formatting/xml.hpp"
 #include <chrono>
+
 using namespace std::chrono;
 
 vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int start, int end, double* time) {
@@ -75,12 +74,11 @@ double algorithm(int start, int end) {
 
 
     if (path.empty() || path.front() != start) {
-        cout << "No path found between " << start << " and " << end << "!" << endl;
+        cout << endl << "No path found between " << start << " and " << end << "!" << endl;
     } else {
-        cout << "Shortest path from " << start << " to " << end << ":" << endl;
-        for (int landmark : path) {
-            cout << landmark << " ";
-        }
+        cout << endl << "Shortest path from " << start << " to " << end << ":" << endl;
+        convertIntoJson(path);
+
         auto stop = high_resolution_clock::now();
         auto duration = duration_cast<milliseconds>(stop - timeStart); // get task duration
         if (duration.count() > 2000) {

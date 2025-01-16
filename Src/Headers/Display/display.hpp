@@ -147,7 +147,7 @@ void findMyWayMenu()
         cout << "Destination: " << destinationPoint << "\n" << endl;
         int travelTime = algorithm(departurePoint, destinationPoint);
         cout << endl << "Travel time: " << travelTime << endl;
-        while(input != 0)
+        while(input != 0 || inputException)
         {
             handleException();
             cout << "\n0| Go to main menu? -> ";
