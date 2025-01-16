@@ -9,7 +9,7 @@ using namespace std;
 #include <chrono>
 using namespace std::chrono;
 
-vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int start, int end) {
+vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int start, int end, double* time) {
 
     vector<int> path;
 
@@ -37,7 +37,10 @@ vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int 
         auto [current_time, current_node] = pq.top();
         pq.pop();
 
-        if (current_node == end) break; // Early exit if we reach the destination
+        if (current_node == end) {
+            *time = current_time;
+            break; // Early exit if we reach the destination
+        }
 
         for (const auto& edge : graph.at(current_node)) {
             double new_time = current_time + edge.time;
@@ -52,6 +55,7 @@ vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int 
 
     // Reconstruct the path
     for (int at = end; at != 0; at = previous[at]) {
+        
         path.push_back(at);
         if (at == start) break; // Reached the start point
     }
@@ -60,13 +64,14 @@ vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int 
     return path;
 }
 
-void algorithm(int start, int end) {
+double algorithm(int start, int end) {
 
     unordered_map<int, vector<Edge>> graph = loadDataset(); // get the entire graph (need to be handled by the server)
 
     cout << "Calculating shortest path..." << endl;
+    double pathTime;
     auto timeStart = high_resolution_clock::now(); // get time
-    vector<int> path = modifiedDijkstra(graph, start, end);
+    vector<int> path = modifiedDijkstra(graph, start, end, &pathTime);
 
 
     if (path.empty() || path.front() != start) {
@@ -78,6 +83,13 @@ void algorithm(int start, int end) {
         }
         auto stop = high_resolution_clock::now();
         auto duration = duration_cast<milliseconds>(stop - timeStart); // get task duration
-        cout << endl << "Path calculated in " << duration.count() << " milliseconds." << endl;
+        if (duration.count() > 2000) {
+            cout << endl << "Path calculated in " << duration.count()/1000 << " seconds." << endl;
+        } else {
+            cout << endl << "Path calculated in " << duration.count() << " milliseconds." << endl;
+        }
+        
     }
+
+    return pathTime;
 }
