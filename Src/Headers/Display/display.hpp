@@ -9,7 +9,7 @@ void findMyWayMenu();
 void creditsMenu();
 
 const int LOWEST_ID = 1;
-const int HIGHEST_ID = 23000000;
+const int HIGHEST_ID = 23947347;
 
 int departurePoint = 0;
 int destinationPoint = 0;
@@ -92,13 +92,13 @@ void findMyWayMenu()
              << "|  |\\ /|              |  | | | (_| y          /                           |\n"
              << "+-------------------------------------------------------------------------+\n"
              << "Available points between " << LOWEST_ID << " and " << HIGHEST_ID << "\n" << endl;
-        if(departurePoint == 0)
+        if(departurePoint <= 0 || departurePoint > HIGHEST_ID)
         {
             handleException();
             cout << "Choose a departure -> ";
             departurePoint = userInputInt(&inputException);
         }
-        else if(destinationPoint == 0)
+        else if(destinationPoint <= 0 || destinationPoint > HIGHEST_ID)
         {
             cout << "+----------\n"
                  << "| Departure: " << departurePoint << "\n"
