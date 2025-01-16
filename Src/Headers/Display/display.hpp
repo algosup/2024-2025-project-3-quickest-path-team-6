@@ -48,11 +48,16 @@ void mainMenu()
     while (input != 0 || inputException)
     {
         clearScreen();
-        cout << "          Welcome on QuickPath !\n"
-            << "-----------------------------------------\n"
-            << "1| Find my way\n"
-            << "2| Credits\n"
-            << "0| Exit\n" << endl;
+        cout << "+-------------------------------------------------------------------------+\n"
+             << "| \\    / _  |  _  _  ._ _   _    _|_  _    / \\     o  _ |  |_) _. _|_ |_  |\n"
+             << "|  \\/\\/ (/_ | (_ (_) | | | (/_    |_ (_)   \\_X |_| | (_ |< |  (_|  |_ | | |\n"
+             << "++------------------------------------------------------------------------+\n"
+             << "1| Find my way |                                            | M   |        \n"
+             << "-+-------------+                                            \\'_' /        \n"
+             << "2| Credits     |                                            |/ \\|         \n"
+             << "-+-------------+\n"
+             << "0| Exit        |\n" 
+             << "-+-------------+" << endl;
         handleException();
 
         cout << "Your choice -> ";
@@ -71,6 +76,7 @@ void mainMenu()
             inputException = true;
         }
     }
+    cout << "\nBye! See you later!" << endl;
 }
 
 void findMyWayMenu()
@@ -81,8 +87,10 @@ void findMyWayMenu()
     while(validation != 2 && validation != 1 && validation != 0 || inputException)
     {
         clearScreen();
-        cout << "               Find my way\n"
-             << "-----------------------------------------\n"
+        cout << "+----------------------_--------------------------------------------------+\n"
+             << "|                     |_ o ._   _| m \\/\\/ (_| \\/              |/ \\|       |\n"
+             << "|  |\\ /|              |  | | | (_| y          /                           |\n"
+             << "+-------------------------------------------------------------------------+\n"
              << "Available points between " << LOWEST_ID << " and " << HIGHEST_ID << "\n" << endl;
         if(departurePoint == 0)
         {
@@ -92,18 +100,27 @@ void findMyWayMenu()
         }
         else if(destinationPoint == 0)
         {
-            cout << "Departure: " << departurePoint << endl;
+            cout << "+----------\n"
+                 << "| Departure: " << departurePoint << "\n"
+                 << "+----------" << endl;
             handleException();
             cout << "Choose a destination -> ";
             destinationPoint = userInputInt(&inputException);
         }
         else if(validation != 2 && validation != 1 && validation != 0 || inputException)
         {
-            cout << "Departure: " << departurePoint << endl;
-            cout << "Destination: " << destinationPoint << "\n" << endl;
-            cout << "1| Everything is correct\n"
-                 << "2| Redefine my path\n"
-                 << "0| Go back to main menu\n" << endl;
+            cout << "+----------\n"
+                 << "| Departure: " << departurePoint << "\n"
+                 << "|     \\/\n"
+                 << "| Destination: " << destinationPoint << "\n"
+                 << "+----------\n" << endl;
+            cout << "-+-----------------------+\n"
+                 << "1| Everything is correct |\n"
+                 << "-+-----------------------+\n"
+                 << "2| Redefine my path      |\n"
+                 << "-+-----------------------+\n"
+                 << "0| Go back to main menu  |\n" 
+                 << "-+-----------------------+\n" << endl;
             handleException();
             cout << "Your choice -> ";
             validation = userInputInt(&inputException);
@@ -122,8 +139,10 @@ void findMyWayMenu()
     if(validation == 1)
     {
         clearScreen();
-        cout << "               Find my way\n"
-             << "-----------------------------------------\n";
+        cout << "+----------------------_--------------------------------------------------+\n"
+             << "|                     |_ o ._   _| m \\/\\/ (_| \\/              |/ \\|       |\n"
+             << "|  |\\ /|              |  | | | (_| y          /                           |\n"
+             << "+-------------------------------------------------------------------------+\n";
         cout << "Departure: " << departurePoint << endl;
         cout << "Destination: " << destinationPoint << "\n" << endl;
         int travelTime = algorithm(departurePoint, destinationPoint);
@@ -144,23 +163,32 @@ void creditsMenu()
     while(input != 0 || inputException)
     {
         clearScreen();
-        cout << "                Credits\n"
-             << "-----------------------------------------\n"
-             << "   All credits are given to the team 6   \n"
-             << "           Special thanks to             \n\n"
-             << "      -> the Software Engineers:         \n"
-             << "              Pavlo PRENDI               \n"
-             << "             Mariem ZAIANE               \n\n"
-             << "       -> the Technical Leader:          \n"
-             << "            Enzo GUILLOUCHE              \n\n"
-             << "       -> the Quality Assurance:         \n"
-             << "            Maxime THIZEAU               \n\n"
-             << "        -> the Program Manager:          \n"
-             << "            Manech LAGUENS               \n\n"
-             << "       -> the Technical Writer:          \n"
-             << "          Aurélien FERNANDEZ             \n\n"
-             << "        -> the Project Manager:          \n"
-             << "              Evan UHRING                \n" << endl;
+        cout << "+--------------------------_----------------------------------------------+\n"
+             << "|                         /  ._ _   _| o _|_  _                           |\n"
+             << "|                         \\_ | (/_ (_| |  |_ _>                           |\n"
+             << "+-------------------------------------------------------------------------+\n"
+             << "|                  All credits are given to the team 6                    |\n"
+             << "|                          Special thanks to                              |\n"
+             << "|                                                                         |\n"
+             << "|                     -> the Software Engineers:                          |\n"
+             << "|                             Pavlo PRENDI                                |\n"
+             << "|                            Mariem ZAIANE                                |\n"
+             << "|                                                                         |\n"
+             << "|                      -> the Technical Leader:                           |\n"
+             << "|                           Enzo GUILLOUCHE                               |\n"
+             << "|                                                                         |\n"
+             << "|                      -> the Quality Assurance:                          |\n"
+             << "|                           Maxime THIZEAU                                |\n"
+             << "|_ ___                                                                    |\n"
+             << "|_] O/                       -> the Program Manager:                      |\n"
+             << "|_  O|                           Manech LAGUENS                           |\n"
+             << "|_]__\\                                                                    |\n"
+             << "|                      -> the Technical Writer:                           |\n"
+             << "|                         Aurélien FERNANDEZ                              |\n"
+             << "|                                                                         |\n"
+             << "|                       -> the Project Manager:                           |\n"
+             << "|                             Evan UHRING                                 |\n"
+             << "+-------------------------------------------------------------------------+\n";
         handleException();
         cout << "0| Go to main menu? -> ";
         input = userInputInt(&inputException);
@@ -168,3 +196,6 @@ void creditsMenu()
             inputException = true;
     }
 }
+
+
+
