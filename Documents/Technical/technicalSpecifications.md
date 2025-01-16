@@ -16,6 +16,7 @@
     - [File Structure](#file-structure)
     - [C++ libraries](#c-libraries)
       - [Standard libraries](#standard-libraries)
+      - [Specific libraries](#specific-libraries)
     - [C++ conventions](#c-conventions)
       - [Classes](#classes)
     - [REST API](#rest-api)
@@ -166,14 +167,132 @@ Some libraries will be needed to perform the project.
 
 #### Standard libraries
 
-**\<iostream>** is part of the Input/output library. We'll use it to get the **std namespace**.
+A huge amount of these **STL libraries** needs the namespace `std`.
+A namespace is called like this:
 
-With std namespace, we will be able to use:
+```c++
+using namespace std;
+```
 
-- **cout**, to print strings of characters onto the console
-- **cin**, to get user input and store it into a variable
+1. **`<iostream>`**: Part of the input/output library, enabling console input and output operations.
 
-**\<list>** is part of the list library. We'll use it to manipulate lists.
+- `cout`, prints strings and variables to the console.
+- `endl`, inserts a newline character and flushes the output buffer.
+- `cin`, retrieves user input from the console and stores it into variables.
+
+2. **`<string>`**: This library provides the string class, which allows the handling of dynamic text sequences.
+
+- `std::string`, as a flexible container for storing and manipulating sequences of characters.
+  
+Useful for text processing, string concatenation, and manipulation.
+
+3. **`<vector>`**: Provides the vector container, a dynamic array-like structure that allows the efficient resizing of elements.
+
+- `std::vector<T>`: A sequence container that encapsulates dynamic arrays. The `T` stands for the data type, which needs to be specified.
+
+Supports dynamic resizing, random access, and fast insertions and deletions at the end.
+Often used for handling lists of items when the size may change during execution.
+
+4. **`<sstream>`**: Provides string stream functionality for reading and writing strings as streams.
+
+- `std::stringstream`: A stream class to operate on strings, enabling the parsing and formatting of data from and to strings.
+
+Useful for data conversion (e.g., string to integer) and for constructing formatted strings from variables.
+
+5. **`<fstream>`**: Enables file stream operations for reading from and writing to files.
+
+- `std::ifstream`: Input file stream, used for reading from files.
+- `std::ofstream`: Output file stream, used for writing to files.
+- `std::fstream`: A combination of both input and output file stream.
+
+These classes provide functionality for file handling in a platform-independent manner.
+
+6. **`<queue>`**: Provides the queue container, which implements a FIFO (First In, First Out) data structure.
+
+- `std::queue<T>`: A container adapter that provides a queue interface.
+
+Commonly used in situations where you need to process elements in the order they were added, such as reconstructing the path the algorithm formed.
+
+7. **`<unordered_map>`**: Implements a hash table-based associative container for storing key-value pairs.
+
+- `std::unordered_map<Key, T>`: A container that stores pairs of keys and values, allowing fast access by key.
+
+Offers average constant-time complexity for searching, inserting, and deleting elements.
+Useful when you need efficient lookups and don't care about the order of elements.
+
+8. **`<limits>`**: Provides information about the properties of arithmetic types (such as the maximum and minimum values).
+
+- **`std::numeric_limits<T>`**: Template class to access the limits of different types (e.g., maximum or minimum values for int, double).
+
+Commonly used for checking type boundaries and handling edge cases in computations.
+
+9. **`<chrono>`**: Provides utilities for working with time and durations.
+
+- `std::chrono::duration`: Represents time intervals (e.g., seconds, milliseconds).
+- `std::chrono::high_resolution_clock`: A clock with the highest available precision for measuring time intervals.
+
+Useful for performance measurements and time calculations.
+
+#### Specific libraries
+
+1. **`<nlohmann>`** is a C++ library used to handle JSON writing/reading. We'll use it to write the list of landmarks of the path in JSON format including `#include <nlohmann/json.hpp>`.
+
+With this library, we will be able to use:
+
+```c++
+// Convert path to JSON
+nlohmann::json jsonData = path;
+```
+
+It will actually convert the path data into JSON data, allowing us to write easily into JSON format.
+
+2. **`<tinyxml2>`** is a C++ library used to handle XML writing/reading. We'll use it to write the list of landmarks of the path in XML format including `#include <tinyxml2.h>`.
+
+With this library, we will be able to use:
+
+```c++
+// Create an XML document
+tinyxml2::XMLDocument xmlDoc;
+```
+
+It will actually create an XML document, allowing us to write easily into it in XML format.
+
+**Installation**
+
+*macOS*:
+
+```bash
+brew install nlohmann-json
+brew install tinyxml2
+```
+
+*Windows*:
+
+1. **Install MSYS2** (A Package Manager for Windows) *MSYS2* is a great way to install libraries and packages on Windows, similar to how Homebrew works on macOS.
+
+- [Download and install MSYS2](https://www.msys2.org/).
+- After installing MSYS2, open the MSYS2 terminal and update the system:
+
+```sh
+pacman -Syu  # Updates the MSYS2 system
+pacman -Su   # Ensures everything is up-to-date
+```
+
+2. **Install the libraries** with MSYS2: MSYS2 provides a package for `nlohmann-json` and `tinyxml2` via the mingw-w64-x86_64 repository.
+
+- Run this command in the MSYS2 terminal to install `nlohmann-json`:
+
+```sh
+pacman -S mingw-w64-x86_64-nlohmann-json
+```
+
+- Run this command in the MSYS2 terminal to install `tinyxml2`:
+
+```sh
+pacman -S mingw-w64-x86_64-tinyxml2
+```
+
+This will install both `nlohmann-json` and `tinyxml2` headers in your MSYS2 environment. It also ensures the libraries and headers are available for compilation.
 
 ### C++ conventions
 
@@ -269,14 +388,17 @@ This is achieved by caching frequent queries and reusing partial results for ove
 **Route Formatting**:
 
 Once the optimal path is determined, it is formatted as an ordered list of landmarks.
-Users can select between XML and JSON for their preferred data representation.
+The list is converted into both XML and JSON data, in dedicated files.
+
+To handle writing into the appropriate file formats, we'd need the `nlohmann-json` and `tinyxml2` libraries. 
+Refer to the [libraries part](#specific-libraries) for more information.
 
 **Performance Metrics**:
 
 Along with the route, PathQuick provides:
 
 - *Travel Time*: The estimated time for the journey.
-- *Landmark Highlights*: A summary of key locations along the path.
+- *Landmark Highlights*: A summary of key locations along the path (in the JSON and XML files).
 
 #### Advanced Features
 
@@ -292,6 +414,7 @@ Robust mechanisms ensure graceful handling of invalid or incomplete queries, pro
 
 | Term | Link |
 | -- | -- |
+| **Standard Template Library** (STL) is a software library that provides a set of common classes for C++, such as containers and associative arrays. | [Wikipedia](https://en.wikipedia.org/wiki/Standard_Template_Library) |
 | **Encapsulation** is a mechanism that brings data and methods together within a structure by hiding the object's implementation, i.e. preventing access to the data by any means other than the proposed services. | [Wikipedia](https://en.wikipedia.org/wiki/Encapsulation_(computer_programming)) |
 | **Constructor** is a special type of function called to create an object. It prepares the new object for use, often accepting arguments that the constructor uses to set required member variables. | [Wikipedia](https://en.wikipedia.org/wiki/Constructor_(object-oriented_programming)) |
 | **REST (Representational State Transfer)** is a software architectural style that was created to guide the design and development of the architecture for the World Wide Web. | [Wikipedia](https://en.wikipedia.org/wiki/REST) |
