@@ -87,7 +87,7 @@ void findMyWayMenu()
     while(validation != 2 && validation != 1 && validation != 0 || inputException)
     {
         clearScreen();
-        cout << "+----------------------_--------------------------------------------------+\n"
+        cout << "+----------------------_-------------------_-----------------------------+\n"
              << "|                     |_ o ._   _| m \\/\\/ (_| \\/              |/ \\|       |\n"
              << "|  |\\ /|              |  | | | (_| y          /                           |\n"
              << "+-------------------------------------------------------------------------+\n"
@@ -143,8 +143,10 @@ void findMyWayMenu()
              << "|                     |_ o ._   _| m \\/\\/ (_| \\/              |/ \\|       |\n"
              << "|  |\\ /|              |  | | | (_| y          /                           |\n"
              << "+-------------------------------------------------------------------------+\n";
-        cout << "Departure: " << departurePoint << endl;
-        cout << "Destination: " << destinationPoint << "\n" << endl;
+        cout << "| Departure: " << departurePoint << "\n"
+             << "|     \\/\n"
+             << "| Destination: " << destinationPoint << "\n" 
+             << "+----------\n" << endl;
         int travelTime = algorithm(departurePoint, destinationPoint);
         cout << endl << "Travel time: " << travelTime << endl;
         while(input != 0 || inputException)
