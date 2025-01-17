@@ -1,15 +1,15 @@
-# Weekly report 1
+# Weekly Report 1
 
 ## Overview
 
-This first week has been dedicated to analyze the requirements and start the project.
+This first week has been dedicated to analyzing the requirements and starting the project.
 
 ## Accomplishment
 
 - **Specifications documents:**
-    - The team did a great first progress to define the project
+    - The team made a great first progress to define the project
 - **Code started:**
-    - Our software engineer started to work on the algorithm
+    - Our software engineers started to work on the algorithm
 
 ## Challenges
 
@@ -18,11 +18,11 @@ This first week has been dedicated to analyze the requirements and start the pro
 - **New technologies:**
     - Because we have to use technologies that we are not familiar with, we have to go through the learning process, thus taking us time other than progressing on the code
 
-## Plan for next week
+## Plan For Next Week
 
 - Finish the functional specifications
-- Most documents are almost finished
-- Put some effort on the progress of the code by other team members than the software engineers
+- Most documents will have to be almost finished
+- Put some effort into the progress of the code by other team members than the software engineers
 
 ## Conclusion
 
