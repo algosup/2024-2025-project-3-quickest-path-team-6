@@ -38,7 +38,7 @@ Legend:
 | --- | --- | --- | --- |
 | A team member is absent | The progression of the project is slowed | High | Split the work evenly so if someone cannot work, other team members can work on it without problem |
 | Faulty data in the USA-roads.csv file | The input dataset may have errors or inconsistencies | High | Develop a robust data validation tool to check for graph integrity before processing. |
-| Memory inefficiency or suboptimal data structures. | The solution may not handle the scale of 24 million nodes efficiently. | High | Use memory-efficient data structure an streamline data parsing to load only necessary parts of the graph |
+| Memory inefficiency or suboptimal data structures. | The solution may not handle the scale of 24 million nodes efficiently. | High | Use memory-efficient data structure and streamline data parsing to load only necessary parts of the graph |
 
 ## Key Performance Indicators
 
