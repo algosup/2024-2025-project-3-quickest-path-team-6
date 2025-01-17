@@ -2,11 +2,12 @@
 #include <unordered_map>
 #include <limits>
 #include "loadData.cpp"
-#include "../Headers/Formatting/json.hpp"
-#include "../Headers/Formatting/xml.hpp"
+#include "../Headers/Formatting/convertionJson.hpp"
+#include "../Headers/Formatting/convertionXml.hpp"
 #include <chrono>
 
 using namespace std::chrono;
+unordered_map<int, vector<Edge>> graph; // get the entire graph (need to be handled by the server)
 
 vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int start, int end, double* time) {
 
@@ -64,9 +65,6 @@ vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int 
 }
 
 double algorithm(int start, int end) {
-
-    unordered_map<int, vector<Edge>> graph = loadDataset(); // get the entire graph (need to be handled by the server)
-
     cout << "Calculating shortest path..." << endl;
     double pathTime;
     auto timeStart = high_resolution_clock::now(); // get time
