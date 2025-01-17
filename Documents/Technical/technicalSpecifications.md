@@ -259,6 +259,10 @@ It will actually create an XML document, allowing us to write easily into it in 
 
 **Installation**
 
+For some reasons, those libraries create some OS related issues. For ease to use, we moved the libraries into the project directory.
+
+Eventhough, here are the steps to install properly the libraries:
+
 *macOS*:
 
 ```bash
