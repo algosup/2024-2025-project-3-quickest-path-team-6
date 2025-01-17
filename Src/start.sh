@@ -1,2 +1,3 @@
-g++ -std=c++17 -I/opt/homebrew/include -L/opt/homebrew/lib -ltinyxml2 main.cpp -o Bin/pathQuick
+clear
+g++ -std=c++17 main.cpp Libraries/Tinyxml2/tinyxml2.cpp -o Bin/pathQuick
 ./Bin/pathQuick
