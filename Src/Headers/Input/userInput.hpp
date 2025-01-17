@@ -2,6 +2,9 @@
 
 using namespace std;
 
+int input = 0;
+bool inputException = false;
+
 int userInputInt(bool* exception)
 {
     int num;
@@ -23,4 +26,15 @@ int userInputInt(bool* exception)
     }
 
     return num;
+}
+
+void handleException()
+{
+    if (inputException)
+    {
+        cout << "Invalid input! Expected a number from the list." << endl;
+        inputException = false;
+    }
+    else
+        cout << endl;
 }

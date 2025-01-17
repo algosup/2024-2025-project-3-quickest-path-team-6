@@ -11,14 +11,9 @@ void creditsMenu();
 const int LOWEST_ID = 1;
 const int HIGHEST_ID = 23947347;
 
-int departurePoint = 0;
-int destinationPoint = 0;
+int page = 1;
 
-int input = 1;
-bool inputException = false;
-
-void clearScreen()
-{
+void clearScreen(){
     // clears the console depending on your architecture
     #if defined _WIN32
         system("cls");
@@ -27,26 +22,28 @@ void clearScreen()
     #endif
 }
 
-void handleException()
-{
-    if (inputException)
-    {
-        cout << "Invalid input! Expected a number from the list." << endl;
-        inputException = false;
+void display(){
+    while(page != 0){
+        switch(page){
+            case 1:
+                mainMenu();
+                break;
+            case 2:
+                findMyWayMenu();
+                break;
+            case 3:
+                creditsMenu();
+                break;
+            default:
+                page = 0;
+                break;
+        }
     }
-    else
-        cout << endl;
+    cout << "\nBye! See you later!\n" << endl;
 }
 
-void display()
-{
-    mainMenu();
-}
-
-void mainMenu()
-{
-    while (input != 0 || inputException)
-    {
+void mainMenu(){
+    while (page == 1 || inputException){
         clearScreen();
         cout << "+-------------------------------------------_--------------_--------------+\n"
              << "| \\    / _  |  _  _  ._ _   _    _|_  _    |_) _. _|_ |_  / \\     o  _ |  |\n"
@@ -59,110 +56,108 @@ void mainMenu()
              << "0| Exit        |\n" 
              << "-+-------------+" << endl;
         handleException();
-
         cout << "Your choice -> ";
         input = userInputInt(&inputException);
-
-        if(input == 1)
-        {
-            findMyWayMenu();
-            input = 1;
-        } else if (input == 2)
-        {
-            creditsMenu();
-            input = 1;
-        } else if (input != 0)
-        {
-            inputException = true;
+        switch(input){
+            case 0:
+                page = 0;
+                break;
+            case 1:
+                page = 2;
+                break;
+            case 2:
+                page = 3;
+                break;
+            default:
+                inputException = true;
+                break;
         }
     }
-    cout << "\nBye! See you later!" << endl;
+    input = 0;
 }
 
-void findMyWayMenu()
-{
-    departurePoint = 0;
-    destinationPoint = 0;
-    int validation = 3;
-    while(validation != 2 && validation != 1 && validation != 0 || inputException)
-    {
-        clearScreen();
-        cout << "+----------------------_-------------------_-----------------------------+\n"
-             << "|                     |_ o ._   _| m \\/\\/ (_| \\/              |/ \\|       |\n"
-             << "|  |\\ /|              |  | | | (_| y          /                           |\n"
-             << "+-------------------------------------------------------------------------+\n"
-             << "Available points between " << LOWEST_ID << " and " << HIGHEST_ID << "\n" << endl;
-        if(departurePoint <= 0 || departurePoint > HIGHEST_ID)
-        {
-            handleException();
-            cout << "Choose a departure -> ";
-            departurePoint = userInputInt(&inputException);
-        }
-        else if(destinationPoint <= 0 || destinationPoint > HIGHEST_ID)
-        {
-            cout << "+----------\n"
-                 << "| Departure: " << departurePoint << "\n"
-                 << "+----------" << endl;
-            handleException();
-            cout << "Choose a destination -> ";
-            destinationPoint = userInputInt(&inputException);
-        }
-        else if(validation != 2 && validation != 1 && validation != 0 || inputException)
-        {
-            cout << "+----------\n"
-                 << "| Departure: " << departurePoint << "\n"
-                 << "|     \\/\n"
-                 << "| Destination: " << destinationPoint << "\n"
-                 << "+----------\n" << endl;
-            cout << "-+-----------------------+\n"
-                 << "1| Everything is correct |\n"
-                 << "-+-----------------------+\n"
-                 << "2| Redefine my path      |\n"
-                 << "-+-----------------------+\n"
-                 << "0| Go back to main menu  |\n" 
-                 << "-+-----------------------+\n" << endl;
-            handleException();
-            cout << "Your choice -> ";
-            validation = userInputInt(&inputException);
-            if(validation != 0 && validation != 1 && validation != 2)
-                inputException = true;
-        }
-        else if(validation == 0 && departurePoint != 0 && destinationPoint != 0 && !inputException)
-            break;
-        if(validation == 2)
-        {
-            departurePoint = 0;
-            destinationPoint = 0;
-            validation = 3;
-        }
-    }
-    if(validation == 1)
-    {
+void findMyWayMenu(){
+    int travelTime = 0;
+    int departurePoint = 0;
+    int destinationPoint = 0;
+    bool isAlgorithmDone = false;
+    while(page == 2 || inputException){
         clearScreen();
         cout << "+----------------------_-------------------_-----------------------------+\n"
              << "|                     |_ o ._   _| m \\/\\/ (_| \\/              |/ \\|       |\n"
              << "|  |\\ /|              |  | | | (_| y          /                           |\n"
              << "+-------------------------------------------------------------------------+\n";
-        cout << "| Departure: " << departurePoint << "\n"
-             << "|     \\/\n"
-             << "| Destination: " << destinationPoint << "\n" 
-             << "+----------\n" << endl;
-        int travelTime = algorithm(departurePoint, destinationPoint);
-        cout << endl << "Travel time: " << travelTime << endl;
-        while(input != 0 || inputException)
-        {
+        if(input != 1 && !isAlgorithmDone){
+            cout << "Available points between " << LOWEST_ID << " and " << HIGHEST_ID << "\n" << endl;
+            if(departurePoint <= 0 || departurePoint > HIGHEST_ID){
+                handleException();
+                cout << "Choose a departure -> ";
+                departurePoint = userInputInt(&inputException);
+            }
+            else if(destinationPoint <= 0 || destinationPoint > HIGHEST_ID){
+                cout << "+----------\n"
+                     << "| Departure: " << departurePoint << "\n"
+                     << "+----------" << endl;
+                handleException();
+                cout << "Choose a destination -> ";
+                destinationPoint = userInputInt(&inputException);
+            }
+            else if(departurePoint != 0 && destinationPoint != 0 || inputException){
+                cout << "+----------\n"
+                     << "| Departure: " << departurePoint << "\n"
+                     << "|     \\/\n"
+                     << "| Destination: " << destinationPoint << "\n"
+                     << "+----------\n" << endl;
+                cout << "-+-----------------------+\n"
+                     << "1| Everything is correct |\n"
+                     << "-+-----------------------+\n"
+                     << "2| Redefine my path      |\n"
+                     << "-+-----------------------+\n"
+                     << "0| Go back to main menu  |\n" 
+                     << "-+-----------------------+\n" << endl;
+                handleException();
+                cout << "Your choice -> ";
+                input = userInputInt(&inputException);
+                switch(input){
+                    case 0:
+                        page = 1;
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        departurePoint = 0;
+                        destinationPoint = 0;
+                        break;
+                    default:
+                        inputException = true;
+                        break;
+                }
+            }
+        }
+        else if(input == 1 || inputException){
+            cout << "| Departure: " << departurePoint << "\n"
+                 << "|     \\/\n"
+                 << "| Destination: " << destinationPoint << "\n" 
+                 << "+----------\n" << endl;
+            if(!isAlgorithmDone){
+                travelTime = algorithm(departurePoint, destinationPoint);
+                isAlgorithmDone = true;
+            }
+            cout << endl << "Travel time: " << travelTime << "\n" << endl;
             handleException();
-            cout << "\n0| Go to main menu? -> ";
+            cout << "0| Go to main menu? -> ";
             input = userInputInt(&inputException);
             if(input != 0)
                 inputException = true;
+            else
+                page = 1;
         }
     }
 }
 
 void creditsMenu()
 {
-    while(input != 0 || inputException)
+    while(page == 3 || inputException)
     {
         clearScreen();
         cout << "+--------------------------_----------------------------------------------+\n"
@@ -196,8 +191,7 @@ void creditsMenu()
         input = userInputInt(&inputException);
         if(input != 0)
             inputException = true;
+        else
+            page = 1;
     }
 }
-
-
-
