@@ -1,6 +1,4 @@
 #include "api.h"
-#include "JsonXml/jsonParser.h"
-#include "JsonXml/xmlParser.h"
 #include <iostream>
 #include <sstream>
 #include <thread>
@@ -122,17 +120,9 @@ std::string Api::processRequest(const std::string &request) {
     int travel_time = 15; // Placeholder value
     std::vector<std::string> path = {"LandmarkA", "LandmarkB", "LandmarkC"};
 
-    // Format response based on "Accept" header
-    if (request.find("Accept: application/xml") != std::string::npos) {
-    return "HTTP/1.1 200 OK\r\n"
-           "Content-Type: application/xml\r\n"
-           "Cache-Control: no-cache, no-store, must-revalidate\r\n"
-           "Pragma: no-cache\r\n"
-           "Expires: 0\r\n\r\n" +
-           XmlParser::formatResponse(travel_time, path);
 }
 
-}
+
 
 std::string Api::generateErrorResponse(const std::string &error_message, int status_code) {
     std::ostringstream response;

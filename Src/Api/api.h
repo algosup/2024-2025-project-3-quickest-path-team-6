@@ -17,15 +17,15 @@
 
 class Api {
 public:
-    // Constructor initializes the server with a specific port
+    // initializes the server with a specific port
     Api(int port);
 
     // Starts the server
     void start();
 
 private:
-    int port;                  // Server port
-    int server_socket;         // Server socket descriptor
+    int port;                  
+    int server_socket;
 
     // Handles client connections
     void handleClient(int client_socket);
@@ -37,7 +37,7 @@ private:
     std::string generateErrorResponse(const std::string &error_message, int status_code);
 
 
-    void closeSocket(int socket); // Declaration of closeSocket function
+    void closeSocket(int socket); 
 };
 
-#endif // API_H
+#endif

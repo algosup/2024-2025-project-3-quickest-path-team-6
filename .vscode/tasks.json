@@ -10,13 +10,8 @@
         "/I", "Src",
         "/I", "Src/Api",
         "/I", "Src/Api/JsonXml",
-        "/I", "Headers",
-        "/I", "Headers/Input",
-        "/I", "Headers/Display",
         "Src/main.cpp",
         "Src/Api/api.cpp",
-        "Src/Api/JsonXml/jsonParser.cpp",
-        "Src/Api/JsonXml/xmlParser.cpp",
         "/Fe:output.exe"
       ],
       "group": {
