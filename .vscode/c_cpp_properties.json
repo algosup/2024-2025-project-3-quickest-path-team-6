@@ -4,11 +4,7 @@
         "name": "Win32",
         "includePath": [
           "${workspaceFolder}/Src",
-          "${workspaceFolder}/Src/Api",
-          "${workspaceFolder}/Src/Api/JsonXml",
-          "${workspaceFolder}/Src/Headers",
-          "${workspaceFolder}/Src/Headers/Input",
-          "${workspaceFolder}/Src/Headers/Display"
+          "${workspaceFolder}/Src/Api"
         ],
         "defines": ["_WIN32"],
         "compilerPath": "cl.exe",
@@ -21,10 +17,7 @@
         "includePath": [
           "${workspaceFolder}/Src",
           "${workspaceFolder}/Src/Api",
-          "${workspaceFolder}/Src/Api/JsonXml",
-          "${workspaceFolder}/Headers",
-          "${workspaceFolder}/Headers/Input",
-          "${workspaceFolder}/Headers/Display"
+          "${workspaceFolder}/Src/Api/JsonXml"
         ],
         "defines": ["__APPLE__"],
         "compilerPath": "/usr/bin/clang",

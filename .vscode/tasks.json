@@ -1,24 +1,30 @@
 {
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "label": "Build with MSVC",
-      "type": "shell",
-      "command": "cl",
-      "args": [
-        "/EHsc",
-        "/I", "Src",
-        "/I", "Src/Api",
-        "/I", "Src/Api/JsonXml",
-        "Src/main.cpp",
-        "Src/Api/api.cpp",
-        "/Fe:output.exe"
-      ],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "problemMatcher": ["$msCompile"]
-    }
-  ]
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build with MSYS2 MinGW64",
+            "type": "shell",
+            "command": "C:/msys64/usr/bin/bash.exe",
+            "args": [
+                "-c",
+                "g++ -std=c++17 \\",
+                "-IC:/msys64/mingw64/include \\",
+                "-IC:/Users/PavloPRENDI/Documents/GitHub/2024-2025-project-3-quickest-path-team-6/Src \\",
+                "-IC:/Users/PavloPRENDI/Documents/GitHub/2024-2025-project-3-quickest-path-team-6/Src/Api \\",
+                "-o C:/Users/PavloPRENDI/Documents/GitHub/2024-2025-project-3-quickest-path-team-6/build/main.exe \\",
+                "C:/Users/PavloPRENDI/Documents/GitHub/2024-2025-project-3-quickest-path-team-6/Src/main.cpp \\",
+                "C:/Users/PavloPRENDI/Documents/GitHub/2024-2025-project-3-quickest-path-team-6/Src/Api/api.cpp \\",
+                "-lws2_32 -lmswsock"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Build the project using MinGW64 via MSYS2"
+        }
+    ]
 }

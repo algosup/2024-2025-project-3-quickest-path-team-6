@@ -1,7 +1,8 @@
-#include "api.h"
+#include "api.hpp"
 #include <iostream>
 #include <sstream>
 #include <thread>
+#include <vector>
 
 void Api::closeSocket(int socket) {
 #ifdef _WIN32
@@ -10,7 +11,6 @@ void Api::closeSocket(int socket) {
     close(socket);       // Use POSIX's close on Linux/macOS
 #endif
 }
-
 
 // Constructor to initialize the API with a specific port
 Api::Api(int port) : port(port), server_socket(-1) {}
@@ -84,12 +84,11 @@ void Api::handleClient(int client_socket) {
     closeSocket(client_socket);
 }
 
-
 std::string Api::processRequest(const std::string &request) {
     // Parse the request for "source" and "dest" parameters
     size_t source_pos = request.find("source=");
     size_t dest_pos = request.find("&dest=");
-    
+
     // Check if "source=" and "&dest=" are present
     if (source_pos == std::string::npos || dest_pos == std::string::npos) {
         return generateErrorResponse("Missing source or destination parameters", 400);
@@ -118,11 +117,23 @@ std::string Api::processRequest(const std::string &request) {
 
     // Mock backend logic (to be replaced)
     int travel_time = 15; // Placeholder value
-    std::vector<std::string> path = {"LandmarkA", "LandmarkB", "LandmarkC"};
+    std::vector<std::string> path = {source_id, "Intermediate", destination_id};
 
+    // Generate the response
+    std::ostringstream response;
+    response << "HTTP/1.1 200 OK\r\n"
+             << "Content-Type: text/plain\r\n"
+             << "Content-Length: " << 40 + path.size() * 10 << "\r\n"
+             << "Connection: close\r\n"
+             << "\r\n"
+             << "Travel Time: " << travel_time << " minutes\n"
+             << "Path: ";
+    for (const auto &landmark : path) {
+        response << landmark << " ";
+    }
+
+    return response.str();
 }
-
-
 
 std::string Api::generateErrorResponse(const std::string &error_message, int status_code) {
     std::ostringstream response;
