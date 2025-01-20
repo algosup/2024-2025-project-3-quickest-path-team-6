@@ -275,7 +275,7 @@ Finally, this section will list suggestions to improve the document. It could be
 
 Here is a picture of the template:
 
-<img width="901" alt="Screenshot 2025-01-08 at 16 59 15" src="https://github.com/user-attachments/assets/ababddc0-8d18-4076-952b-befcb2cedeb4" />
+<img width="901" alt="Document review" src="https://github.com/user-attachments/assets/ababddc0-8d18-4076-952b-befcb2cedeb4" />
 
 The template is also reachable on our GitHub repository or by following this [link](https://github.com/algosup/2024-2025-project-3-quickest-path-team-6/blob/main/.github/ISSUE_TEMPLATE/document-review.md).
 
@@ -302,7 +302,7 @@ The only difference with the previously stated template is in the Improvement(s)
 
 The development review template is shown below:
 
-<!-- Put the screenshot -->
+<img width="914" alt="Dev review" src="https://github.com/user-attachments/assets/1c058aa2-e55a-4b8f-bedd-c0fa3e606986" />
 
 Like the previous template, it is reachable on our GitHub repository or by following [this link](https://github.com/algosup/2024-2025-project-3-quickest-path-team-6/blob/main/.github/ISSUE_TEMPLATE/dev-review.md).
 
