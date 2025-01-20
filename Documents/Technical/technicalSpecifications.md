@@ -10,16 +10,16 @@
       - [Performance Goals](#performance-goals)
       - [Data Integrity Verification](#data-integrity-verification)
     - [Expected Deliverables](#expected-deliverables)
-  - [File tree and documents](#file-tree-and-documents)
+  - [File Tree And Documents](#file-tree-and-documents)
   - [Hardware](#hardware)
   - [Main Program](#main-program)
     - [File Structure](#file-structure)
-    - [C++ libraries](#c-libraries)
-      - [Standard libraries](#standard-libraries)
-      - [Specific libraries](#specific-libraries)
-    - [C++ conventions](#c-conventions)
+    - [C++ Libraries](#c-libraries)
+      - [Standard Libraries](#standard-libraries)
+      - [Specific Libraries](#specific-libraries)
+    - [C++ Conventions](#c-conventions)
       - [Classes](#classes)
-    - [REST API](#rest-api)
+    - [Rest Api](#rest-api)
     - [Algorithm](#algorithm)
       - [Input Processing](#input-processing)
       - [Core Algorithm](#core-algorithm)
@@ -83,7 +83,7 @@ These checks are infrequent, allowing the use of a simpler and potentially less 
 
 **Data Validation Tool**: A utility for verifying the integrity of the provided CSV file.
 
-## File tree and documents
+## File Tree And Documents
 
 As written in the [naming conventions](./conventions.md), folders are written in PascalCase and files are written in camelCase.
 
@@ -161,11 +161,11 @@ Src
         └─── (every necessary files to print data onto the console)
 ```
 
-### C++ libraries
+### C++ Libraries
 
 Some libraries will be needed to perform the project.
 
-#### Standard libraries
+#### Standard Libraries
 
 A huge amount of these **STL libraries** needs the namespace `std`.
 A namespace is called like this:
@@ -233,7 +233,7 @@ Commonly used for checking type boundaries and handling edge cases in computatio
 
 Useful for performance measurements and time calculations.
 
-#### Specific libraries
+#### Specific Libraries
 
 1. **`<nlohmann>`** is a C++ library used to handle JSON writing/reading. We'll use it to write the list of landmarks of the path in JSON format including `#include <nlohmann/json.hpp>`.
 
@@ -298,7 +298,7 @@ pacman -S mingw-w64-x86_64-tinyxml2
 
 This will install both `nlohmann-json` and `tinyxml2` headers in your MSYS2 environment. It also ensures the libraries and headers are available for compilation.
 
-### C++ conventions
+### C++ Conventions
 
 #### Classes
 
@@ -341,7 +341,7 @@ class Connection {
 }
 ```
 
-### REST API
+### Rest Api
 
 The REST API is another huge part of the project, where the .csv file data will be extracted.
 
