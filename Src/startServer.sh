@@ -1,3 +1,3 @@
-g++ -std=c++17 Api/main.cpp Libraries/Tinyxml2/tinyxml2.cpp -o Bin/server -lcurl
+g++ -std=c++17 Api/main.cpp Libraries/Tinyxml2/tinyxml2.cpp -o Bin/server
 clear
 ./Bin/server

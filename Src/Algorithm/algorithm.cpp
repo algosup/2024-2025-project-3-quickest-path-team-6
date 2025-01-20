@@ -3,7 +3,7 @@
 #include <limits>
 #include "loadData.cpp"
 #include <chrono>
-#include <curl/curl.h>
+#include <cstdlib>
 
 using namespace std::chrono;
 
@@ -64,9 +64,16 @@ vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int 
     return path;
 }
 
-size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
-    ((string*)userp)->append((char*)contents, size * nmemb);
-    return size * nmemb;
+string urlEncode(const string& str) {
+    ostringstream encoded;
+    for (unsigned char c : str) {
+        if (isalnum(c) || c == '-' || c == '_' || c == '.' || c == '~') {
+            encoded << c;
+        } else {
+            encoded << '%' << setw(2) << setfill('0') << hex << (int)c;
+        }
+    }
+    return encoded.str();
 }
 
 void sendRequest(int start, int end, string fileFormat) {
@@ -78,37 +85,16 @@ void sendRequest(int start, int end, string fileFormat) {
     string destination = to_string(end);
     string format = fileFormat; // or you can set this based on user input
 
-    string api_url = "http://localhost:8080/route?source=" + source + "&destination=" + destination + "&format=" + format;
+    // URL-encode the source, destination, and format values
+    string encodedSource = urlEncode(source);
+    string encodedDestination = urlEncode(destination);
+    string encodedFormat = urlEncode(format);
+
+    // Construct the full curl command with quotes to handle spaces/special characters
+    string api_url = "curl \"http://localhost:8080/route?source=" + encodedSource + "&destination=" + encodedDestination + "&format=" + encodedFormat + "\"";
 
     // Make an HTTP GET request to the API
-    CURL* curl;
-    CURLcode res;
-    string response_string;
-    curl_global_init(CURL_GLOBAL_DEFAULT);
-    curl = curl_easy_init();
-
-    if (curl) {
-        curl_easy_setopt(curl, CURLOPT_URL, api_url.c_str());         // Set the URL for the request
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback); // Set the callback to capture the response
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response_string);  // Store the response in response_string
-        
-        res = curl_easy_perform(curl); // Execute the request
-        
-        if (res != CURLE_OK) {
-            cerr << "CURL request failed: " << curl_easy_strerror(res) << endl;
-        } else {
-            // Process the response from the API
-            cout << "API Response: " << endl << response_string << endl;
-            // Parse response to extract the path and time (you can use a JSON parser here)
-            // For example:
-            // if (response_string contains valid JSON, extract the travelTime and path)
-        }
-
-        curl_easy_cleanup(curl); // Clean up the curl object
-    }
-
-    curl_global_cleanup(); // Clean up global curl environment
-
+    int result = system(api_url.c_str());
 
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<milliseconds>(stop - timeStart); // get task duration
