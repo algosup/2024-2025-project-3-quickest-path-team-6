@@ -128,7 +128,7 @@ It would be used on every code, especially on the validation tool.
 
 #### Smoke Testing
 
-Smoke testing is really useful when testing small critical aspects and/or features of a project. We would use it mainly on the algorithm and rest API by following test cases<sup><a href="#1">[18]</a></sup>.
+Smoke testing is really useful when testing small critical aspects and/or features of a project. We would use it mainly on the algorithm and REST API by following test cases<sup><a href="#1">[18]</a></sup>.
 
 #### System Testing
 
@@ -157,9 +157,9 @@ Here is the template of a test case:
 | Test Case Priority        | Defines if a test is important or not. Using numbers: Low  3 / Medium 2 / High 1 |
 | Test Case Assigned To     | Name of the tester                                                         |
 
-All the test cases will be stored in the markdown file test_cases.md that is accessible [there](/Documents/TestPlan/testCases.md). They will also be visible in a [google spreadsheet](). <!-- TODO -->
+All the test cases will be stored in the markdown file testCases.md that is accessible [there](/Documents/TestPlan/testCases.md). They will also be visible in a [google spreadsheet](). <!-- TODO -->
 
-Moreover, all the test results would be accessible on the second sheet of the same Google spreadsheet under this form:
+Moreover, all the test results would be accessible on the second sheet of the same Google spreadsheet. They would be presented this way:
 
 <!-- To redefine -->
 | Category name      | Input                                     |
@@ -229,7 +229,7 @@ The exit criteria define the requirements for concluding the testing phase. Thes
 
 For this project, GitHub Actions have been made to handle the basic Unit tests at each pull request on the dev branch. This would ensure the functioning of the code and the automation would save a non-negligible amount of time.
 
-These Actions can be fin on our GitHub repository, following [this link](https://github.com/algosup/2024-2025-project-3-quickest-path-team-6/actions).
+These Actions can be find on our GitHub repository, following [this link](https://github.com/algosup/2024-2025-project-3-quickest-path-team-6/actions).
 
 ## GitHub Issues Report
 
@@ -325,6 +325,7 @@ It would also help the team to know who is assigned to a dedicated issue.
 | <img src="https://github.com/user-attachments/assets/c4ccab0d-6871-4d43-991d-6af59c623f5d" alt="management_label" height="50">    | Management related                         |
 | <img src="https://github.com/user-attachments/assets/317e223d-ece9-4349-9e00-af5cdc5d6579" alt="medium_label" height="50">        | Medium priority level                      |
 | <img src="https://github.com/user-attachments/assets/ce610b9f-a366-487c-822b-9a30d08fa6d0" alt="technical_label" height="50">     | Technical specifications related           |
+|      | Test plan or test cases related            |
 | <img src="https://github.com/user-attachments/assets/072bda87-7fdd-4e48-862a-8693376edc7d" alt="user_manual_label" height="50">   | User manual related                        |
 | <img src="https://github.com/user-attachments/assets/13206089-ea16-48f8-a160-385eec349c42" alt="wontfix_label" height="50">       | This will not be worked on                 |
 
