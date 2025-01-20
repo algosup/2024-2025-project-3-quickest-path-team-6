@@ -325,7 +325,7 @@ It would also help the team to know who is assigned to a dedicated issue.
 | <img src="https://github.com/user-attachments/assets/c4ccab0d-6871-4d43-991d-6af59c623f5d" alt="management_label" height="50">    | Management related                         |
 | <img src="https://github.com/user-attachments/assets/317e223d-ece9-4349-9e00-af5cdc5d6579" alt="medium_label" height="50">        | Medium priority level                      |
 | <img src="https://github.com/user-attachments/assets/ce610b9f-a366-487c-822b-9a30d08fa6d0" alt="technical_label" height="50">     | Technical specifications related           |
-|      | Test plan or test cases related            |
+| <img src="https://github.com/user-attachments/assets/9251106f-df7b-4ef7-8fed-68496e4a4748" alt="technical_label" height="50">     | Test plan or test cases related            |
 | <img src="https://github.com/user-attachments/assets/072bda87-7fdd-4e48-862a-8693376edc7d" alt="user_manual_label" height="50">   | User manual related                        |
 | <img src="https://github.com/user-attachments/assets/13206089-ea16-48f8-a160-385eec349c42" alt="wontfix_label" height="50">       | This will not be worked on                 |
 
