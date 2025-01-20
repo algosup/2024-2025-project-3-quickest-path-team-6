@@ -120,7 +120,7 @@ To have a better understanding of C++, data structures, algorithms, and REST API
 
 ## **Personas**
 
-![Karen Lee](persona1.png)
+<img src="FirstPersona.png" alt="Description" width="300" height="200">
 
 
 <!-- thats one example, if yall like them i'll do two more -->
