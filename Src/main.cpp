@@ -1,4 +1,4 @@
-#include "api.hpp"
+/* #include "api.hpp"
 
 int main() {
     const int PORT = 8080;
@@ -7,6 +7,6 @@ int main() {
     apiServer.start();
 
     return 0;
-}
+} */
 
 
