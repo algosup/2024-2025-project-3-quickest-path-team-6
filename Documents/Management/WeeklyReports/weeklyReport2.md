@@ -7,14 +7,14 @@ This second week, we achieved to get a working REST API and an algorithm. The in
 ## Accomplishment
 
 - **Code progress:**
-    - We have a reassuring progress on the program
+    - We have a reassuring progress on the program.
 
 ## Challenges
 
 - **Absence of team members**
-    - Some team members were absent, which slowed the progress of some documents
+    - Some team members were absent, which slowed the progress of some documents.
 - **Including needed libraries**
-    - We needed to include libraries to our program, which were difficult to make them work on different OS. But we succeed by doing some modifications on those libraries.
+    - We needed to include libraries in our program, which were difficult to make them work on different OS. But we succeed by doing some modifications to those libraries.
 
 ## Plan For Next Week
 
@@ -24,4 +24,4 @@ This second week, we achieved to get a working REST API and an algorithm. The in
 
 ## Conclusion
 
-The progress on our program is going faster than expected, while the progress on some documents has been slowed because of some team members being absent. But still the team members are reassured of what we have done already.
+The progress on our program is going faster than expected, while the progress on some documents has been slowed because of some team members being absent. But still, the team members are reassured of what we have done already.
