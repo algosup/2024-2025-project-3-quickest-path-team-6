@@ -1,3 +1,3 @@
 @echo off
-g++ -std=c++17 Api/main.cpp Api/api.cpp -o Bin/server.exe
+g++ -std=c++17 Api/main.cpp Libraries/Tinyxml2/tinyxml2.cpp -o Bin/server.exe -lcurl
 Bin\server.exe

@@ -3,7 +3,6 @@
 
 int main()
 {
-    graph = loadDataset();
     display();
     return 0;
 }

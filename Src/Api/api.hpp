@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include "../Algorithm/algorithm.cpp"
 
 #ifdef _WIN32
 #include <winsock2.h>
@@ -14,6 +15,7 @@
 #include <unistd.h>
 #endif
 
+using namespace std;
 
 class Api {
 public:
@@ -36,6 +38,7 @@ private:
     // Helper function to send error responses
     std::string generateErrorResponse(const std::string &error_message, int status_code);
 
+    std::string createHttpResponse(const std::string &body, const std::string &contentType);
 
     void closeSocket(int socket); 
 };

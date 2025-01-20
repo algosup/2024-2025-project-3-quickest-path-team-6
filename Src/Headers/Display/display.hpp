@@ -80,6 +80,7 @@ void findMyWayMenu(){
     int travelTime = 0;
     int departurePoint = 0;
     int destinationPoint = 0;
+    bool chosenFormat = false; // false = json / true = xml
     bool isAlgorithmDone = false;
     while(page == 2 || inputException){
         clearScreen();
@@ -107,11 +108,14 @@ void findMyWayMenu(){
                      << "| Departure: " << departurePoint << "\n"
                      << "|     \\/\n"
                      << "| Destination: " << destinationPoint << "\n"
-                     << "+----------\n" << endl;
+                     << "+----------\n"
+                     << "Output file format: " << (chosenFormat == false ? "JSON\n" : "XML\n") << endl;
                 cout << "-+-----------------------+\n"
                      << "1| Everything is correct |\n"
                      << "-+-----------------------+\n"
-                     << "2| Redefine my path      |\n"
+                     << "2| Change file format    |\n"
+                     << "-+-----------------------+\n"
+                     << "3| Redefine my path      |\n"
                      << "-+-----------------------+\n"
                      << "0| Go back to main menu  |\n" 
                      << "-+-----------------------+\n" << endl;
@@ -125,6 +129,9 @@ void findMyWayMenu(){
                     case 1:
                         break;
                     case 2:
+                        chosenFormat = !chosenFormat;
+                        break;
+                    case 3:
                         departurePoint = 0;
                         destinationPoint = 0;
                         break;
@@ -140,10 +147,10 @@ void findMyWayMenu(){
                  << "| Destination: " << destinationPoint << "\n" 
                  << "+----------\n" << endl;
             if(!isAlgorithmDone){
-                travelTime = algorithm(departurePoint, destinationPoint);
+                string format = chosenFormat == false ? "json" : "xml";
+                sendRequest(departurePoint, destinationPoint, format);
                 isAlgorithmDone = true;
             }
-            cout << endl << "Travel time: " << travelTime << "\n" << endl;
             handleException();
             cout << "0| Go to main menu? -> ";
             input = userInputInt(&inputException);

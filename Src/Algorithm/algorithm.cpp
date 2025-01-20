@@ -2,11 +2,11 @@
 #include <unordered_map>
 #include <limits>
 #include "loadData.cpp"
-#include "../Headers/Formatting/convertionJson.hpp"
-#include "../Headers/Formatting/convertionXml.hpp"
 #include <chrono>
+#include <curl/curl.h>
 
 using namespace std::chrono;
+
 unordered_map<int, vector<Edge>> graph; // get the entire graph (need to be handled by the server)
 
 vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int start, int end, double* time) {
@@ -64,29 +64,58 @@ vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int 
     return path;
 }
 
-double algorithm(int start, int end) {
-    cout << "Calculating shortest path..." << endl;
-    double pathTime;
+size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp) {
+    ((string*)userp)->append((char*)contents, size * nmemb);
+    return size * nmemb;
+}
+
+void sendRequest(int start, int end, string fileFormat) {
+    cout << "Calculating shortest path..." << endl << endl;
     auto timeStart = high_resolution_clock::now(); // get time
-    vector<int> path = modifiedDijkstra(graph, start, end, &pathTime);
 
+    // Prepare the API request (building the URL)
+    string source = to_string(start);
+    string destination = to_string(end);
+    string format = fileFormat; // or you can set this based on user input
 
-    if (path.empty() || path.front() != start) {
-        cout << endl << "No path found between " << start << " and " << end << "!" << endl;
-    } else {
-        cout << endl << "Shortest path from " << start << " to " << end << ":" << endl;
-        convertIntoJson(path);
-        convertIntoXml(path);
+    string api_url = "http://localhost:8080/route?source=" + source + "&destination=" + destination + "&format=" + format;
 
-        auto stop = high_resolution_clock::now();
-        auto duration = duration_cast<milliseconds>(stop - timeStart); // get task duration
-        if (duration.count() > 2000) {
-            cout << endl << "Path calculated in " << duration.count()/1000 << " seconds." << endl;
-        } else {
-            cout << endl << "Path calculated in " << duration.count() << " milliseconds." << endl;
-        }
+    // Make an HTTP GET request to the API
+    CURL* curl;
+    CURLcode res;
+    string response_string;
+    curl_global_init(CURL_GLOBAL_DEFAULT);
+    curl = curl_easy_init();
+
+    if (curl) {
+        curl_easy_setopt(curl, CURLOPT_URL, api_url.c_str());         // Set the URL for the request
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback); // Set the callback to capture the response
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response_string);  // Store the response in response_string
         
+        res = curl_easy_perform(curl); // Execute the request
+        
+        if (res != CURLE_OK) {
+            cerr << "CURL request failed: " << curl_easy_strerror(res) << endl;
+        } else {
+            // Process the response from the API
+            cout << "API Response: " << endl << response_string << endl;
+            // Parse response to extract the path and time (you can use a JSON parser here)
+            // For example:
+            // if (response_string contains valid JSON, extract the travelTime and path)
+        }
+
+        curl_easy_cleanup(curl); // Clean up the curl object
     }
 
-    return pathTime;
+    curl_global_cleanup(); // Clean up global curl environment
+
+
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(stop - timeStart); // get task duration
+    if (duration.count() > 2000) {
+        cout << endl << "Path calculated in " << duration.count()/1000 << " seconds." << endl;
+    } else {
+        cout << endl << "Path calculated in " << duration.count() << " milliseconds." << endl;
+    }
+    
 }
