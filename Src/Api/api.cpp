@@ -3,8 +3,14 @@
 #include <sstream>
 #include <thread>
 #include <vector>
+#ifdef _WIN32
 #include <winsock2.h>
 #include <ws2tcpip.h>
+#else
+#include <unistd.h>
+#include <sys/socket.h>
+#include <Kernel/netinet/in.h>
+#endif
 #pragma comment(lib, "Ws2_32.lib")
 #include "../Algorithm/algorithm.cpp"
 #include "../Headers/Formatting/convertionJson.hpp"

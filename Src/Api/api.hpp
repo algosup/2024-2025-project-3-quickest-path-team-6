@@ -9,6 +9,7 @@
 #define NOGDI
 #define WIN32_LEAN_AND_MEAN
 
+#ifdef _WIN32
 #include <windows.h>
 #include <cstddef>
 namespace my_std = std;
@@ -18,6 +19,8 @@ namespace my_std = std;
 #define byte windows_byte
 #include <windows.h>
 #undef byte
+#endif
+
 #include <string>
 #include <vector>
 #include <iostream>
