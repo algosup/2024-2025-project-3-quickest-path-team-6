@@ -142,9 +142,7 @@ To have a better understanding of C++, data structures, algorithms, and REST API
 - [Building RESTful APIs with C++](https://medium.com/@AlexanderObregon/building-restful-apis-with-c-4c8ac63fe8a7)  
   Step-by-step guide to implementing REST APIs in C++.  
 
-## Personas
 
-<img src="FirstPersona.png" alt="Description" width="300">
 
 
 <!-- MUST ADD: 
@@ -161,7 +159,10 @@ Use cases Analysis
 | Therm Used | Definition |
 | ---------- | ---------- |
 | ddd        | dddd       |
-![alt text](image.png)
+
+
+
+## Personas
 
 <img width="978" alt="ArthurPersona" src="https://github.com/user-attachments/assets/eee9c64f-bdcd-4530-8235-4404dec0f509" />
 <img width="978" alt="LucasPersona" src="https://github.com/user-attachments/assets/09242ba5-1360-4191-b8b0-db9383535562" />
