@@ -364,10 +364,12 @@ The API's base URL is: `http://localhost:8080`
 As responses will be available in both JSON and XML formats, the response structure should fit the format.
 
 JSON:
-<!-- json structure image -->
+
+<img src="https://github.com/user-attachments/assets/bf960afa-61c8-459a-9d84-950a810e9e9c" width=250>
 
 XML:
-<!-- xml structure image -->
+
+<img src="https://github.com/user-attachments/assets/02773b24-5621-4d9e-88de-63333a37304a" width=250>
 
 **Error Handling**:
 *Invalid Parameters*: Returns a `400` Bad Request.
@@ -376,7 +378,7 @@ XML:
 
 Here's how the server interacts with the other components:
 
-<!-- api connectivity diagram -->
+<img src="https://github.com/user-attachments/assets/d1c40d6f-4710-4eae-9dae-d5ed9d7a95d1" width=500>
 
 ### Algorithm
 
