@@ -4,7 +4,6 @@
 #include "../../Libraries/Nlohmann/json.hpp"
 #include <iomanip>
 
-
 using namespace std;
 
 void convertIntoJson(vector<int> path, int taskDuration) {

@@ -32,10 +32,18 @@ void Api::start() {
 
     server_socket = socket(AF_INET, SOCK_STREAM, 0);
     if (server_socket < 0) {
-        std::cerr << "Socket creation failed\n";
+        perror("Socket creation failed");
 #ifdef _WIN32
         WSACleanup();
 #endif
+        exit(EXIT_FAILURE);
+    }
+
+    // Set SO_REUSEADDR to avoid "address already in use" errors
+    int opt = 1;
+    if (setsockopt(server_socket, SOL_SOCKET, SO_REUSEADDR, (char*)&opt, sizeof(opt)) < 0) {
+        perror("setsockopt failed");
+        closeSocket(server_socket);
         exit(EXIT_FAILURE);
     }
 
@@ -44,15 +52,22 @@ void Api::start() {
     serverAddr.sin_addr.s_addr = INADDR_ANY;
     serverAddr.sin_port = htons(port);
 
-    if (bind(server_socket, (sockaddr*)&serverAddr, sizeof(serverAddr)) < 0) {
-        std::cerr << "Bind failed\n";
-        closeSocket(server_socket);
-        exit(EXIT_FAILURE);
-    }
+    int bind_result = ::bind(server_socket, (sockaddr*)&serverAddr, sizeof(serverAddr));
+if (bind_result < 0) {
+    perror("Bind failed");
+    closeSocket(server_socket);
+#ifdef _WIN32
+    WSACleanup();
+#endif
+    exit(EXIT_FAILURE);
+}
 
     if (listen(server_socket, SOMAXCONN) < 0) {
-        std::cerr << "Listen failed\n";
+        perror("Listen failed");
         closeSocket(server_socket);
+#ifdef _WIN32
+        WSACleanup();
+#endif
         exit(EXIT_FAILURE);
     }
 
@@ -61,7 +76,7 @@ void Api::start() {
     while (true) {
         int client_socket = accept(server_socket, nullptr, nullptr);
         if (client_socket < 0) {
-            std::cerr << "Accept failed\n";
+            perror("Accept failed");
             continue;
         }
 
@@ -90,55 +105,78 @@ void Api::handleClient(int client_socket) {
     closeSocket(client_socket);
 }
 
-std::string Api::processRequest(const std::string &request) {
-    // Parse the request for "source" and "dest" parameters
-    size_t source_pos = request.find("source=");
-    size_t dest_pos = request.find("&dest=");
+std::string Api::createHttpResponse(const std::string &body, const std::string &contentType) {
+    std::ostringstream response;
+    response << "HTTP/1.1 200 OK\r\n"
+             << "Content-Type: " << contentType << "\r\n"
+             << "Content-Length: " << body.size() << "\r\n"
+             << "Connection: close\r\n"
+             << "\r\n"
+             << body;
+    return response.str();
+}
 
-    // Check if "source=" and "&dest=" are present
-    if (source_pos == std::string::npos || dest_pos == std::string::npos) {
-        return generateErrorResponse("Missing source or destination parameters", 400);
+std::string Api::processRequest(const std::string &request) {
+    // Find the starting position of the query string
+    size_t query_pos = request.find("/route?");
+    if (query_pos == std::string::npos) {
+        return generateErrorResponse("Invalid request path", 400);
     }
 
-    // Extract source and destination
-    source_pos += 7; // Skip "source="
-    std::string source_id = request.substr(source_pos, dest_pos - source_pos);
+    // Extract the query string
+    query_pos += 7; // Skip "/route?"
+    size_t end_pos = request.find(" ", query_pos); // End of the query
+    std::string query_string = request.substr(query_pos, end_pos - query_pos);
 
-    dest_pos += 6; // Skip "&dest="
-    size_t end_pos = request.find(" ", dest_pos);
-    std::string destination_id = request.substr(dest_pos, end_pos - dest_pos);
+    // Parse the query string for parameters
+    std::string source, destination, format;
+    std::istringstream query_stream(query_string);
+    std::string param;
 
-    // Validate if the source or destination is empty
-    if (source_id.empty() || destination_id.empty()) {
+    while (std::getline(query_stream, param, '&')) {
+        size_t eq_pos = param.find('=');
+        if (eq_pos == std::string::npos) continue;
+
+        std::string key = param.substr(0, eq_pos);
+        std::string value = param.substr(eq_pos + 1);
+
+        if (key == "source") {
+            source = value;
+        } else if (key == "destination") {
+            destination = value;
+        } else if (key == "format") {
+            format = value;
+        }
+    }
+
+    // Validate parameters
+    if (source.empty() || destination.empty()) {
         return generateErrorResponse("Source or destination cannot be empty", 400);
     }
 
-    // Validate landmarks (replace this mock with actual graph checks)
-    if (source_id != "LandmarkA" && source_id != "LandmarkB" && source_id != "LandmarkC") {
-        return generateErrorResponse("Landmark not found: " + source_id, 404);
-    }
-    if (destination_id != "LandmarkA" && destination_id != "LandmarkB" && destination_id != "LandmarkC") {
-        return generateErrorResponse("Landmark not found: " + destination_id, 404);
-    }
+    // Perform your graph traversal using the parsed parameters
+    int start = std::stoi(source);
+    int end = std::stoi(destination);
+    double pathTime;
 
-    // Mock backend logic (to be replaced)
-    int travel_time = 15; // Placeholder value
-    std::vector<std::string> path = {source_id, "Intermediate", destination_id};
+    std::vector<int> path = modifiedDijkstra(graph, start, end, &pathTime);
 
-    // Generate the response
-    std::ostringstream response;
-    response << "HTTP/1.1 200 OK\r\n"
-             << "Content-Type: text/plain\r\n"
-             << "Content-Length: " << 40 + path.size() * 10 << "\r\n"
-             << "Connection: close\r\n"
-             << "\r\n"
-             << "Travel Time: " << travel_time << " minutes\n"
-             << "Path: ";
-    for (const auto &landmark : path) {
-        response << landmark << " ";
+    // Generate JSON, XML or plain text response based on the format
+    if (format == "json") {
+        convertIntoJson(path, pathTime);
+        return createHttpResponse("Data converted into JSON.", "application/json");
+    } if (format == "xml") {
+        convertIntoXml(path, pathTime);
+        return createHttpResponse("Data converted into XML.", "application/xml");
+    } else {
+        // Default to plain text response
+        std::ostringstream response;
+        response << "Travel Time: " << pathTime << "\nPath: ";
+        for (const auto &landmark : path) {
+            response << landmark << " ";
+        }
+        return createHttpResponse(response.str(), "text/plain");
     }
-
-    return response.str();
 }
 
 std::string Api::generateErrorResponse(const std::string &error_message, int status_code) {
@@ -156,10 +194,3 @@ std::string Api::generateErrorResponse(const std::string &error_message, int sta
     response << "\r\nContent-Type: text/plain\r\n\r\n" << error_message;
     return response.str();
 }
-
-
-
-
-
-
-
