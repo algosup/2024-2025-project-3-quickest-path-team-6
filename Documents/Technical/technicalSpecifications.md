@@ -343,15 +343,40 @@ class Connection {
 
 ### Rest Api
 
-The REST API is another huge part of the project, where the .csv file data will be extracted.
+The REST API serves as a critical program for the software, enabling efficient extraction and interaction with data stored in the .csv file. The API operates on a **localhost server**, restricting access to the host machine for enhanced security and development simplicity.
 
-The program will be able to **send requests** to this API.
+**Base URL**:
+The API's base URL is: `http://localhost:8080`
 
-For example:
-The program would need the connection between *landmark 3* and *landmark 9*.
-It will send a request with arguments (*landmark 3 and landmark 9 ids*) and the API will provide data, such as the time of the specific connection and the ordered list of landmarks in the path.
+**Route Calculation Endpoint**:
 
-Responses would be in both JSON and XML formats.
+- URL Format: `/route`
+- Description: Calculates the quickest path between two landmarks based on their IDs.
+- Request Method: `GET`
+- Parameters:
+  - `source` (*Required*): Landmark ID of the starting point.
+  - `destination` (*Required*): Landmark ID of the endpoint.
+  - `format` (*Required*): Specifies the response format. Accepts xml or json.
+- Example Request:
+  `curl "http://localhost:8080/route?source=1&destination=2&format=json"`
+
+**Response Structure**:
+As responses will be available in both JSON and XML formats, the response structure should fit the format.
+
+JSON:
+<!-- json structure image -->
+
+XML:
+<!-- xml structure image -->
+
+**Error Handling**:
+*Invalid Parameters*: Returns a `400` Bad Request.
+*Resource Not Found*: Returns a `404` Not Found.
+*Server Error*: Returns a `500` Internal Server Error.
+
+Here's how the server interacts with the other components:
+
+<!-- api connectivity diagram -->
 
 ### Algorithm
 
