@@ -96,11 +96,27 @@
  **Performances**
    - Query responses must be generated in less than 1 second.
    - Approximation of the result shouldn't exceed 10% deviation from the shortest possible duration.
+  
+ **User Data**
+   - The program should not require user data.
+ 
+## Non-Functional Requirements
 
+  **User Interface**
+
+   - The program should include a user interface, in which users could navigate and use features included in the latest release.
+   - The interface should be minimal and usable through a computer's terminal.
+   - The interface should be understandable enough so that the user do not need external help while using the program.
+
+  **User Interaction**
+
+   - The server should not take longer than a minute to setup itself.
+   - Between each human and machine interaction there should be a visual indicator that shows the program is still running, the user should not wait for more than 5 seconds to see a visual response.
+
+  **Portability**
+   - The program should work on MacOS and on Windows.
 
 ## Available Resources
-
-
 
 - **Total Hours:** 264 hours available to complete the project (from January 6 to February 7).
 - **Team Members:** One computer per team member.
