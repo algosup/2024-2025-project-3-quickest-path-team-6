@@ -1,21 +1,29 @@
-#ifndef API_H
-#define API_H
+#ifndef API_HPP
+#define API_HPP
 
-#include <string>
-#include <vector>
-#include "../Algorithm/algorithm.cpp"
+#ifndef NOMINMAX
+#define NOMINMAX  // Prevent redefinition warning
+#endif
+
+#define NOCRYPT
+#define NOGDI
+#define WIN32_LEAN_AND_MEAN
 
 #ifdef _WIN32
+#include <windows.h>
+#include <cstddef>
+namespace my_std = std;
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #pragma comment(lib, "Ws2_32.lib")
-#else
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <unistd.h>
+#define byte windows_byte
+#include <windows.h>
+#undef byte
 #endif
 
-using namespace std;
+#include <string>
+#include <vector>
+#include <iostream>
 
 class Api {
 public:

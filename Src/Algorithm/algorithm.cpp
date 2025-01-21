@@ -4,6 +4,8 @@
 #include "loadData.cpp"
 #include <chrono>
 #include <cstdlib>
+#include <iomanip>
+#include <algorithm>
 
 using namespace std::chrono;
 
