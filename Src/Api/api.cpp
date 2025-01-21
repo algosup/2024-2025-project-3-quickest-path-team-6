@@ -3,15 +3,12 @@
 #include <sstream>
 #include <thread>
 #include <vector>
-<<<<<<< Updated upstream
-=======
 #include <winsock2.h>
 #include <ws2tcpip.h>
 #pragma comment(lib, "Ws2_32.lib")
 #include "../Algorithm/algorithm.cpp"
 #include "../Headers/Formatting/convertionJson.hpp"
 #include "../Headers/Formatting/convertionXml.hpp"
->>>>>>> Stashed changes
 
 void Api::closeSocket(int socket) {
 #ifdef _WIN32
