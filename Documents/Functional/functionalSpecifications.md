@@ -21,7 +21,7 @@
 ## Project Overview
 
 ### Project Definition
-Our task is to create an efficient tool that delivers precise results while addressing the challenges of processing large datasets and ensuring smooth API integration. Its purpose is to provide a reliable backend solution personalized to transportation analysis and optimization needs.
+Our task is to create an efficient tool that delivers precise results with the challenges of processing large datasets and ensuring smooth API integration. Its purpose is to provide a reliable backend solution personalized to transportation analysis and optimization needs.
 #### Objectives
 - Develop a software solution to calculate the quickest path between two landmarks in the United States.
 - Show functionality via a REST API supporting both JSON and XML response formats.
@@ -118,7 +118,7 @@ Our task is to create an efficient tool that delivers precise results while addr
 ## Available Resources
 
 - **Total Hours:** 264 hours available to complete the project (from January 6 to February 7).
-- **Team Members:** One computer per team member, as well as 
+- **Team Members:** One computer per team member, as well as another one that will be used as a server. 
 - **Mentorship:** Support from [Georgios Tsatiris](https://www.linkedin.com/in/georgios-tsatiris/), our computer science teacher.
 ---
 
@@ -164,7 +164,9 @@ Complete glossary
 ## Personas
 
 <img width="978" alt="persona1" src="https://github.com/user-attachments/assets/a93bfaa6-399f-43f6-ba20-425a093c1ee9" />
+
 <img width="978" alt="persona2" src="https://github.com/user-attachments/assets/a8c051a2-f38d-4e5e-8116-9f7fa23913e3" />
+
 <img width="978" alt="persona3" src="https://github.com/user-attachments/assets/fd50f3e2-fed6-4801-a3e6-01543b346e5b" />
 
 
