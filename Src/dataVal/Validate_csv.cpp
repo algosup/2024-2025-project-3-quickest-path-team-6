@@ -4,7 +4,8 @@
 #include <vector>
 #include <unordered_map>
 #include <unordered_set>
-
+#include <filesystem>
+namespace fs = std::filesystem;
 using namespace std;
 
 // Function to add an edge to the adjacency list
@@ -60,7 +61,10 @@ int main() {
 
     unordered_map<int, vector<int>> graph;
     string line;
-
+    if (!fs::exists("USA-roads.csv")) {
+    cerr << "Error: USA-roads.csv not found!" << endl;
+    return 1;
+    }
     // Parse the CSV file
     while (getline(inputFile, line)) {
         stringstream ss(line);
