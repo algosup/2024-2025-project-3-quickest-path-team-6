@@ -140,7 +140,7 @@ void findMyWayMenu(){
                  << "| Destination: " << destinationPoint << "\n" 
                  << "+----------\n" << endl;
             if(!isAlgorithmDone){
-                travelTime = algorithm(departurePoint, destinationPoint);
+                travelTime = algorithm(departurePoint, destinationPoint, HIGHEST_ID);
                 isAlgorithmDone = true;
             }
             cout << endl << "Travel time: " << travelTime << "\n" << endl;

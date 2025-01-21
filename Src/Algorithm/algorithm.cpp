@@ -9,7 +9,7 @@
 using namespace std::chrono;
 unordered_map<int, vector<Edge>> graph; // get the entire graph (need to be handled by the server)
 
-vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int start, int end, double* time) {
+vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int start, int end, double* time, int maxNode) {
 
     vector<int> path;
 
@@ -22,13 +22,9 @@ vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int 
     // Min-heap: (total time, landmark ID)
     priority_queue<pair<double, int>, vector<pair<double, int>>, greater<>> pq;
 
-    // Distance map to store the shortest path time to each landmark
-    unordered_map<int, double> distances;
-    unordered_map<int, int> previous; // To reconstruct the path
-
-    for (const auto& node : graph) {
-        distances[node.first] = numeric_limits<double>::infinity();
-    }
+    // Distance vector to store the shortest path time to each landmark
+    vector<double> distances(maxNode + 1, numeric_limits<double>::infinity());
+    vector<int> previous(maxNode + 1, -1); // To reconstruct the path
 
     distances[start] = 0;
     pq.push({0, start});
@@ -40,6 +36,10 @@ vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int 
         if (current_node == end) {
             *time = current_time;
             break; // Early exit if we reach the destination
+        }
+
+        if (graph.find(current_node) == graph.end()) {
+            continue; // Skip nodes with no outgoing edges
         }
 
         for (const auto& edge : graph.at(current_node)) {
@@ -54,8 +54,7 @@ vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int 
     }
 
     // Reconstruct the path
-    for (int at = end; at != 0; at = previous[at]) {
-        
+    for (int at = end; at != -1; at = previous[at]) {
         path.push_back(at);
         if (at == start) break; // Reached the start point
     }
@@ -64,11 +63,11 @@ vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int 
     return path;
 }
 
-double algorithm(int start, int end) {
+double algorithm(int start, int end, int maxNode) {
     cout << "Calculating shortest path..." << endl;
     double pathTime;
     auto timeStart = high_resolution_clock::now(); // get time
-    vector<int> path = modifiedDijkstra(graph, start, end, &pathTime);
+    vector<int> path = modifiedDijkstra(graph, start, end, &pathTime, maxNode);
 
 
     if (path.empty() || path.front() != start) {
