@@ -1,6 +1,7 @@
 # Functional Specifications
 
-## Project Roles
+## Stakeholders
+### Project Roles
 | Picture                                                                     | Full name          | Role              | Description                                                                                                                           | Links                                                                                                                |
 | --------------------------------------------------------------------------- | ------------------ | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
 | <img src="https://avatars.githubusercontent.com/u/146000775?v=4" width=150> | Evan UHRING        | Project Manager   | Monitors the project's timeline and goals. Main coordinator between stakeholders and the team.                                         | [LinkedIn](https://www.linkedin.com/in/evan-uhring-72911b293/) [GitHub](https://github.com/Evan-UHRING)              |
@@ -11,23 +12,21 @@
 | <img src="https://avatars.githubusercontent.com/u/145995586?v=4" width=150> | Maxime THIZEAU     | Quality Assurance | Tests the product to identify and document bugs and issues. Creates test plans and verifies that fixes are implemented correctly.     | [LinkedIn](https://www.linkedin.com/in/maxime-thizeau-0b311a293/) [GitHub](https://github.com/MaximeTAlgosup)        |
 | <img src="https://avatars.githubusercontent.com/u/71769656?v=4" width=150>  | Aurélien FERNANDEZ | Technical Writer  | Creates the user manual. Ensures all materials are clear and easy to understand for end users.                                        | [LinkedIn](https://www.linkedin.com/in/aurélien-fernandez-4971201b8/) [GitHub](https://github.com/aurelienfernandez) |
 
+### Other Stakeholders
+
+| Name           | Role                        | Links                          |
+| -------------- | --------------------------- | ------------------------------ |
+| Franck JEANNIN | Client (ALGOSUP's director) | [Website](https://algosup.com/en.html) |
 
 ## Project Overview
 
 ### Project Definition
-
+Our task is to create an efficient tool that delivers precise results while addressing the challenges of processing large datasets and ensuring smooth API integration. Its purpose is to provide a reliable backend solution personalized to transportation analysis and optimization needs.
 #### Objectives
 - Develop a software solution to calculate the quickest path between two landmarks in the United States.
 - Show functionality via a REST API supporting both JSON and XML response formats.
 - Ensure the solution is optimized for a large-scale dataset (24 million nodes) and meets performance goals. 
 
-
-#### Stakeholders
-
-| Stakeholder | Representative |
-| ----------- | -------------- |
-| ALGOSUP     | Franck Jeannin |
-| Team 6      | Evan  UHRING   |
 
 #### Project scopes
 | In Scope                                                                      |
@@ -95,7 +94,7 @@
 
  **Performances**
    - Query responses must be generated in less than 1 second.
-   - Approximation of the result shouldn't exceed 10% deviation from the shortest possible duration.
+   - Approximation of the result must not exceed 10% deviation from the shortest possible duration.
   
  **User Data**
    - The program should not require user data.
@@ -119,14 +118,14 @@
 ## Available Resources
 
 - **Total Hours:** 264 hours available to complete the project (from January 6 to February 7).
-- **Team Members:** One computer per team member.
+- **Team Members:** One computer per team member, as well as 
 - **Mentorship:** Support from [Georgios Tsatiris](https://www.linkedin.com/in/georgios-tsatiris/), our computer science teacher.
 ---
 
 ### Learning Resources
 To have a better understanding of C++, data structures, algorithms, and REST API development, the following resources were given to the students:
 
-#### **Videos**  
+#### Videos  
 - [C++ Full Course - Beginner to Advanced](https://youtu.be/1v_4dL8l8pQ?si=CV35wdEOx1KCl-E3)  
   A comprehensive guide to learning C++ from scratch.  
 - [Introduction to Data Structures](https://youtu.be/wN0x9eZLix4?si=rBOmrNonypEmn5Kx)  
@@ -134,7 +133,7 @@ To have a better understanding of C++, data structures, algorithms, and REST API
 - [Data Structures and Algorithms in C++](https://youtu.be/8hly31xKli0?si=xUAj3fC6d9h0oKAm)  
   Focused on practical implementations in C++.  
 
-#### **Articles**  
+#### Articles 
 - [An Open Guide to Data Structures and Algorithms](https://open.umn.edu/opentextbooks/textbooks/an-open-guide-to-data-structures-and-algorithms)  
   A free textbook for learning and reference.  
 - [REST API Introduction - GeeksforGeeks](https://www.geeksforgeeks.org/rest-api-introduction/)  
@@ -146,12 +145,12 @@ To have a better understanding of C++, data structures, algorithms, and REST API
 
 
 <!-- MUST ADD: 
-More personas with a better rendering
-Stakeholders
-Non-functional requirements
 insert  project role pictures via github (?)
 Functional Analysis
 Use cases Analysis 
++ use cases?
+
+Complete glossary
 
  -->
 
