@@ -163,8 +163,9 @@ Complete glossary
 
 ## Personas
 
-<img width="978" alt="ArthurPersona" src="https://github.com/user-attachments/assets/eee9c64f-bdcd-4530-8235-4404dec0f509" />
-<img width="978" alt="LucasPersona" src="https://github.com/user-attachments/assets/09242ba5-1360-4191-b8b0-db9383535562" />
-<img width="978" alt="LauraPersona" src="https://github.com/user-attachments/assets/7bd0fb1e-8f5d-460c-9f88-c1e28ffef7ac" />
+<img width="978" alt="persona1" src="https://github.com/user-attachments/assets/a93bfaa6-399f-43f6-ba20-425a093c1ee9" />
+<img width="978" alt="persona2" src="https://github.com/user-attachments/assets/a8c051a2-f38d-4e5e-8116-9f7fa23913e3" />
+<img width="978" alt="persona3" src="https://github.com/user-attachments/assets/fd50f3e2-fed6-4801-a3e6-01543b346e5b" />
+
 
 
