@@ -162,3 +162,9 @@ Use cases Analysis
 | ---------- | ---------- |
 | ddd        | dddd       |
 ![alt text](image.png)
+
+<img width="978" alt="ArthurPersona" src="https://github.com/user-attachments/assets/eee9c64f-bdcd-4530-8235-4404dec0f509" />
+<img width="978" alt="LucasPersona" src="https://github.com/user-attachments/assets/09242ba5-1360-4191-b8b0-db9383535562" />
+<img width="978" alt="LauraPersona" src="https://github.com/user-attachments/assets/7bd0fb1e-8f5d-460c-9f88-c1e28ffef7ac" />
+
+
