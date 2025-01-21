@@ -1,10 +1,12 @@
 # Functional Specifications
 
 ## Stakeholders
+
 ### Project Roles
+
 | Picture                                                                     | Full name          | Role              | Description                                                                                                                           | Links                                                                                                                |
 | --------------------------------------------------------------------------- | ------------------ | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| <img src="https://avatars.githubusercontent.com/u/146000775?v=4" width=150> | Evan UHRING        | Project Manager   | Monitors the project's timeline and goals. Main coordinator between stakeholders and the team.                                         | [LinkedIn](https://www.linkedin.com/in/evan-uhring-72911b293/) [GitHub](https://github.com/Evan-UHRING)              |
+| <img src="https://avatars.githubusercontent.com/u/146000775?v=4" width=150> | Evan UHRING        | Project Manager   | Monitors the project's timeline and goals. Main coordinator between stakeholders and the team.                                        | [LinkedIn](https://www.linkedin.com/in/evan-uhring-72911b293/) [GitHub](https://github.com/Evan-UHRING)              |
 | <img src="https://avatars.githubusercontent.com/u/146005062?v=4" width=150> | Manech LAGUENS     | Program Manager   | Makes sure the project meets expectation. Is responsible for writing the Functional Specifications                                    | [LinkedIn](https://www.linkedin.com/in/manech-laguens-020127293/) [GitHub](https://github.com/Manech-Laguens)        |
 | <img src="https://avatars.githubusercontent.com/u/145991192?v=4" width=150> | Enzo GUILLOUCHE    | Technical Leader  | Makes the technical decision in the project. Translates the Functional Specification into Technical Specifications. Does code review. | [LinkedIn](https://www.linkedin.com/in/enzoguillouche/) [GitHub](https://github.com/EnzoGuillouche)                  |
 | <img src="https://avatars.githubusercontent.com/u/169643790?v=4" width=150> | Pavlo PRENDI       | Software Engineer | Writes and tests code to implement project features. Participates in documentation and technical design discussions.                  | [LinkedIn](https://www.linkedin.com/in/pavlo-prendi-674777309/) [GitHub](https://github.com/PavloPrendi)             |
@@ -14,26 +16,29 @@
 
 ### Other Stakeholders
 
-| Name           | Role                        | Links                          |
-| -------------- | --------------------------- | ------------------------------ |
+| Name           | Role                        | Links                                  |
+| -------------- | --------------------------- | -------------------------------------- |
 | Franck JEANNIN | Client (ALGOSUP's director) | [Website](https://algosup.com/en.html) |
 
 ## Project Overview
 
 ### Project Definition
+
 Our task is to create an efficient tool that delivers precise results with the challenges of processing large datasets and ensuring smooth API integration. Its purpose is to provide a reliable backend solution personalized to transportation analysis and optimization needs.
+
 #### Objectives
+
 - Develop a software solution to calculate the quickest path between two landmarks in the United States.
 - Show functionality via a REST API supporting both JSON and XML response formats.
-- Ensure the solution is optimized for a large-scale dataset (24 million nodes) and meets performance goals. 
-
+- Ensure the solution is optimized for a large-scale dataset (24 million nodes) and meets performance goals.
 
 #### Project scopes
-| In Scope                                                                      |
-| ----------------------------------------------------------------------------- |
-| Implementing shortest-path calculation using efficient algorithms (e.g., A*). |
-| Creating a REST API with endpoints to look for the shortest paths.            |
-| Dataset validation to ensure graph integrity and connectivity.                |
+
+| In Scope                                                                       |
+| ------------------------------------------------------------------------------ |
+| Implementing shortest-path calculation using efficient algorithms (e.g., A\*). |
+| Creating a REST API with endpoints to look for the shortest paths.             |
+| Dataset validation to ensure graph integrity and connectivity.                 |
 
 | Out of Scope                                                   |
 | -------------------------------------------------------------- |
@@ -42,6 +47,7 @@ Our task is to create an efficient tool that delivers precise results with the c
 | Advanced visualization tools or external database integration. |
 
 #### Deliverables
+
 | Name                      | Type                              | Deadline           |
 | ------------------------- | --------------------------------- | ------------------ |
 | Functional Specifications | Documentation                     | February 7th 2025  |
@@ -57,109 +63,121 @@ Our task is to create an efficient tool that delivers precise results with the c
 
 ## Functional Requirements
 
- **Shortest Path Calculation**
-   - Input: IDs of source and destination landmarks.
-   - Output:
-     - Total travel time as an integer.
-     - Ordered list of landmarks in the computed path.
+**Shortest Path Calculation**
 
- **REST API**
-   - **Endpoint:** `GET /path`
-   - **Parameters:**
-     - `source_id`: Starting landmark ID.
-     - `destination_id`: Destination landmark ID.
-   - **Response Formats:**
-     - JSON:
-       ```json
-       {
-         "time": 35,
-         "path": ["101", "205", "303"]
-       }
-       ```
-     - XML:
-       ```xml
-       <response>
-         <time>35</time>
-         <path>
-           <landmark>101</landmark>
-           <landmark>205</landmark>
-           <landmark>303</landmark>
-         </path>
-       </response>
-       ```
+- Input: IDs of source and destination landmarks.
+- Output:
+  - Total travel time as an integer.
+  - Ordered list of landmarks in the computed path.
 
- **Dataset Validation**
-   - Ensure the graph forms a Directed Acyclic Graph (DAG).
-   - Verify that the graph is fully connected (all nodes are reachable).
+**REST API**
 
- **Performances**
-   - Query responses must be generated in less than 1 second.
-   - Approximation of the result must not exceed 10% deviation from the shortest possible duration.
-  
- **User Data**
-   - The program should not require user data.
- 
+- **Endpoint:** `GET /path`
+- **Parameters:**
+  - `source_id`: Starting landmark ID.
+  - `destination_id`: Destination landmark ID.
+- **Response Formats:**
+  - JSON:
+    ```json
+    {
+      "time": 35,
+      "path": ["101", "205", "303"]
+    }
+    ```
+  - XML:
+    ```xml
+    <response>
+      <time>35</time>
+      <path>
+        <landmark>101</landmark>
+        <landmark>205</landmark>
+        <landmark>303</landmark>
+      </path>
+    </response>
+    ```
+
+**Dataset Validation**
+
+- Ensure the graph forms a Directed Acyclic Graph (DAG).
+- Verify that the graph is fully connected (all nodes are reachable).
+
+**Performances**
+
+- Query responses must be generated in less than 1 second.
+- Approximation of the result must not exceed 10% deviation from the shortest possible duration.
+
+**User Data**
+
+- The program should not require user data.
+
 ## Non-Functional Requirements
 
-  **User Interface**
+**User Interface**
 
-   - The program should include a user interface, in which users could navigate and use features included in the latest release.
-   - The interface should be minimal and usable through a computer's terminal.
-   - The interface should be understandable enough so that the user do not need external help while using the program.
+- The program should include a user interface, in which users could navigate and use features included in the latest release.
+- The interface should be minimal and usable through a computer's terminal.
+- The interface should be understandable enough so that the user do not need external help while using the program.
 
-  **User Interaction**
+**User Interaction**
 
-   - The server should not take longer than a minute to setup itself.
-   - Between each human and machine interaction there should be a visual indicator that shows the program is still running, the user should not wait for more than 5 seconds to see a visual response.
+- The server should not take longer than a minute to setup itself.
+- Between each human and machine interaction there should be a visual indicator that shows the program is still running, the user should not wait for more than 5 seconds to see a visual response.
 
-  **Portability**
-   - The program should work on MacOS and on Windows.
+**Portability**
+
+- The program should work on MacOS and on Windows.
 
 ## Available Resources
 
 - **Total Hours:** 264 hours available to complete the project (from January 6 to February 7).
-- **Team Members:** One computer per team member, as well as another one that will be used as a server. 
+- **Team Members:** One computer per team member, as well as another one that will be used as a server.
 - **Mentorship:** Support from [Georgios Tsatiris](https://www.linkedin.com/in/georgios-tsatiris/), our computer science teacher.
+
 ---
 
 ### Learning Resources
+
 To have a better understanding of C++, data structures, algorithms, and REST API development, the following resources were given to the students:
 
-#### Videos  
+#### Videos
+
 - [C++ Full Course - Beginner to Advanced](https://youtu.be/1v_4dL8l8pQ?si=CV35wdEOx1KCl-E3)  
-  A comprehensive guide to learning C++ from scratch.  
+  A comprehensive guide to learning C++ from scratch.
 - [Introduction to Data Structures](https://youtu.be/wN0x9eZLix4?si=rBOmrNonypEmn5Kx)  
-  A beginner-friendly overview of data structures.  
+  A beginner-friendly overview of data structures.
 - [Data Structures and Algorithms in C++](https://youtu.be/8hly31xKli0?si=xUAj3fC6d9h0oKAm)  
-  Focused on practical implementations in C++.  
+  Focused on practical implementations in C++.
 
-#### Articles 
+#### Articles
+
 - [An Open Guide to Data Structures and Algorithms](https://open.umn.edu/opentextbooks/textbooks/an-open-guide-to-data-structures-and-algorithms)  
-  A free textbook for learning and reference.  
+  A free textbook for learning and reference.
 - [REST API Introduction - GeeksforGeeks](https://www.geeksforgeeks.org/rest-api-introduction/)  
-  Explains the basics of REST API and its use cases.  
+  Explains the basics of REST API and its use cases.
 - [Building RESTful APIs with C++](https://medium.com/@AlexanderObregon/building-restful-apis-with-c-4c8ac63fe8a7)  
-  Step-by-step guide to implementing REST APIs in C++.  
+  Step-by-step guide to implementing REST APIs in C++.
 
-
-
-
-<!-- MUST ADD: 
+<!-- MUST ADD:
 insert  project role pictures via github (?)
-Functional Analysis
-Use cases Analysis 
-+ use cases?
-
+Futur improvements
 Complete glossary
-
  -->
 
 ## Glossary
+
 | Therm Used | Definition |
 | ---------- | ---------- |
 | ddd        | dddd       |
 
 
+## Use Cases
+| Use case number | Name                    | Description                                                                   | Pre-conditions                                       | Flow of events                                                                                                                                                                                                                     | Exit criteria                                                            | Note                                             |
+| --------------- | ----------------------- | ----------------------------------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------ |
+| 1               | PathQuick menu          | The user wants to enter the PathQuick menu.                                   | Having the latest version downloaded and unzipped.   | - mac: execute start.sh<br>- windows: execute start.cmd                                                                                                                                                                            | You've entered the menu and can select an option.                        |                                                  |
+| 2               | Calculate Shortest Path | Input numbers to see the travel time between them.                            | Being in the menu.                                   | Type 1, then choose a departure and a destination number. Validate with 1 if your choice is correct to have the result.                                                                                                     | Have access to the travel time, and calculation time.                    |      |
+| 3               | Credits                 | The user wants to view the credits for the application.                       | The program is running, and the user is in the menu. | 1. User selects option 2 from the menu.<br>2. The system shows the contributors and tools used.                                                                              | The user views the credits and can return to the main menu by pressing 0.              |                                                  |
+| 4               | Exit to Console         | The user wants to leave the menu and return to the console.                   | The program is running, and the user is in the menu. | 1. User selects option 0 from the menu.<br>2. The system terminates and returns control to the console.                                                                                                                            | The program closes, and the terminal is ready for new commands.          | Ensure all processes are terminated          |
+| 5               | Validate Bin Output     | The user wants to check if JSON and XML files were created in the bin folder. | The program is running, and the user is in the menu. | The user goes in the Bin folder and check if the files are here.| The user knows whether the JSON and XML files were successfully created. | |
 
 ## Personas
 
@@ -168,6 +186,3 @@ Complete glossary
 <img width="978" alt="persona2" src="https://github.com/user-attachments/assets/a8c051a2-f38d-4e5e-8116-9f7fa23913e3" />
 
 <img width="978" alt="persona3" src="https://github.com/user-attachments/assets/fd50f3e2-fed6-4801-a3e6-01543b346e5b" />
-
-
-
