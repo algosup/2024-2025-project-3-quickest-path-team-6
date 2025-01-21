@@ -1,8 +1,9 @@
 #ifndef API_HPP
 #define API_HPP
 
-#include <string>
-#include <vector>
+#ifndef NOMINMAX
+#define NOMINMAX  // Prevent redefinition warning
+#endif
 
 #define NOCRYPT
 #define NOGDI
