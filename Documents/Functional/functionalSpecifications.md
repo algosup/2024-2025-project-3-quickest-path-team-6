@@ -1,4 +1,5 @@
 # Functional Specifications
+
 ## Project Overview
 
 ### Project Definition
@@ -15,7 +16,7 @@ Our task is to create a tool that delivers precise results with the challenges o
 
 | In Scope                                                                       |
 | ------------------------------------------------------------------------------ |
-| Implementing shortest-path calculation using efficient algorithms (e.g., A*). |
+| Implementing shortest-path calculation using efficient algorithms (e.g., A\*). |
 | Creating a REST API with endpoints to look for the shortest paths.             |
 | Dataset validation to ensure graph integrity and connectivity.                 |
 
@@ -35,7 +36,7 @@ Our task is to create a tool that delivers precise results with the challenges o
 | C++ Source Code           | Fully commented code              | February 7th 2025  |
 | REST API Implementation   | API supporting JSON/XML           | February 7th 2025  |
 | Dataset Validation Tool   | Standalone utility                | February 7th 2025  |
-| Test Suite                | Comprehensive tests and test plan | February 7th 2025  |
+| Test Suite                | Detailed tests and testing strategy| February 7th 2025  |
 | Oral Presentation         | Presentation                      | February 14th 2025 |
 
 ---
@@ -50,7 +51,7 @@ Our task is to create a tool that delivers precise results with the challenges o
 | <img src="https://avatars.githubusercontent.com/u/146005062?v=4" width=150> | Manech LAGUENS     | Program Manager   | Makes sure the project meets expectation. Is responsible for writing the Functional Specifications                                    | [LinkedIn](https://www.linkedin.com/in/manech-laguens-020127293/) [GitHub](https://github.com/Manech-Laguens)        |
 | <img src="https://avatars.githubusercontent.com/u/145991192?v=4" width=150> | Enzo GUILLOUCHE    | Technical Leader  | Makes the technical decision in the project. Translates the Functional Specification into Technical Specifications. Does code review. | [LinkedIn](https://www.linkedin.com/in/enzoguillouche/) [GitHub](https://github.com/EnzoGuillouche)                  |
 | <img src="https://avatars.githubusercontent.com/u/169643790?v=4" width=150> | Pavlo PRENDI       | Software Engineer | Writes and tests code to implement project features. Participates in documentation and technical design discussions.                  | [LinkedIn](https://www.linkedin.com/in/pavlo-prendi-674777309/) [GitHub](https://github.com/PavloPrendi)             |
-| <img src="https://avatars.githubusercontent.com/u/159240038?v=4" width=150> | Mariem ZAIANE      | Software Engineer |   Writes and tests code to implement project features. Participates in documentation and technical design discussions.    | [LinkedIn](https://www.linkedin.com/in/mariem-zaiane-2b2165225/) [GitHub](https://github.com/Mariem-Zaiane)          |
+| <img src="https://avatars.githubusercontent.com/u/159240038?v=4" width=150> | Mariem ZAIANE      | Software Engineer | Writes and tests code to implement project features. Participates in documentation and technical design discussions.                  | [LinkedIn](https://www.linkedin.com/in/mariem-zaiane-2b2165225/) [GitHub](https://github.com/Mariem-Zaiane)          |
 | <img src="https://avatars.githubusercontent.com/u/145995586?v=4" width=150> | Maxime THIZEAU     | Quality Assurance | Tests the product to identify and document bugs and issues. Creates test plans and verifies that fixes are implemented correctly.     | [LinkedIn](https://www.linkedin.com/in/maxime-thizeau-0b311a293/) [GitHub](https://github.com/MaximeTAlgosup)        |
 | <img src="https://avatars.githubusercontent.com/u/71769656?v=4" width=150>  | Aurélien FERNANDEZ | Technical Writer  | Creates the user manual. Ensures all materials are clear and easy to understand for end users.                                        | [LinkedIn](https://www.linkedin.com/in/aurélien-fernandez-4971201b8/) [GitHub](https://github.com/aurelienfernandez) |
 
@@ -79,19 +80,18 @@ Our task is to create a tool that delivers precise results with the challenges o
   - JSON:
     ```json
     {
-      "time": 35,
-      "path": ["101", "205", "303"]
+      "path": ["101", "303"],
+      "time": 35
     }
     ```
   - XML:
     ```xml
     <response>
-      <time>35</time>
       <path>
         <landmark>101</landmark>
-        <landmark>205</landmark>
         <landmark>303</landmark>
       </path>
+      <time>35</time>
     </response>
     ```
 
@@ -109,18 +109,43 @@ Our task is to create a tool that delivers precise results with the challenges o
 
 - The program should not require user data.
 
-## User Interface
+## UI Snapshots
 
 ### Main Menu
+
+The main menu serves as the starting point for all user interactions. From here, users can:
+
+- Calculate the quickest path between two landmarks.
+- View the contributors of the project in the credits section.
+- Exit the program and return to the console.
+
 ![image](https://github.com/user-attachments/assets/be797d97-b57e-4d65-9df0-a550f43d92cd)
 
-
 ### Find My Way
+
+This section allows users to input their desired departure and destination points to calculate the shortest path. Users must select values between 1 and 23,947,347.
+
+- Step 1: Enter the departure number.
+- Step 2: Enter the destination number.
+
+Once both inputs are validated, the system processes the request to calculate the shortest path.
+
 ![image](https://github.com/user-attachments/assets/9dda8114-5318-4c9d-ac90-4985f30793ad)
+
 ![image](https://github.com/user-attachments/assets/efc353aa-f3e4-4566-891b-71c36fd96f52)
 
-
 ### Loading Screens
+
+After submitting the departure and destination numbers, the system calculates the shortest path and provides real-time feedback to the user with a simple loading screen.
+
+Key details displayed during this process include:
+
+- Confirmation of selected departure and destination points.
+- Final results, including:
+  - Total travel time.
+  - Time taken for the calculation.
+  - Confirmation that the data has been converted to both JSON and XML formats and saved.
+
 ![image](https://github.com/user-attachments/assets/676a34d5-f7ca-49b0-a8e3-20686539a5b0)
 ![image](https://github.com/user-attachments/assets/393eb4ff-1010-4ced-ae8e-4c30a2897619)
 
@@ -172,33 +197,34 @@ To have a better understanding of C++, data structures, algorithms, and REST API
   Step-by-step guide to implementing REST APIs in C++.
 
 <!-- MUST ADD:
-insert  project role pictures via github (?)
 Futur improvements
 Complete glossary
  -->
 
 ## Glossary
 
-| Term Used  | Definition |
-| ---------- | ---------- |
-| PathQuick       | The name of the tool designed to calculate the shortest path between two landmarks.       |
-| JSON | A lightweight data-interchange format used to represent structured data in a readable format.|
-| XML | A markup language used for encoding documents in a format that is both human-readable and machine-readable. |
-| Dataset | A collection of data points, here representing landmarks and their connections.|
-| DAG (Directed Acyclic Graph) | A graph with directed edges where no cycles are present, used for shortest-path calculations. |
-| REST API |  An architectural style for designing networked applications that uses standard HTTP methods. |
-| Landmark | A node or point in the dataset representing a location within the transportation network.| 
-| A* | A graph traversal and pathfinding algorithm that is widely used for shortest-path calculations.| 
-| 
+| Term Used                    | Definition                                                                                                  |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| PathQuick                    | The name of the tool designed to calculate the shortest path between two landmarks.                         |
+| JSON                         | A lightweight data-interchange format used to represent structured data in a readable format.               |
+| XML                          | A markup language used for encoding documents in a format that is both human-readable and machine-readable. |
+| Dataset                      | A collection of data points, here representing landmarks and their connections.                             |
+| DAG (Directed Acyclic Graph) | A graph with directed edges where no cycles are present, used for shortest-path calculations.               |
+| REST API                     | An architectural style for designing networked applications that uses standard HTTP methods.                |
+| Landmark                     | A node or point in the dataset representing a location within the transportation network.                   |
+| A*                          | A graph traversal and pathfinding algorithm that is widely used for shortest-path calculations.             |
+
+|
 
 ## Use Cases
-| Use case number | Name                    | Description                                                                   | Pre-conditions                                       | Flow of events                                                                                                                                                                                                                     | Exit criteria                                                            | Note                                             |
-| --------------- | ----------------------- | ----------------------------------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------ |
-| 1               | PathQuick Menu          | The user wants to enter the PathQuick menu.                                   | Having the latest version downloaded and unzipped.   | - mac: execute start.sh<br>- windows: execute start.cmd                                                                                                                                                                            | You've entered the menu and can select an option.                        |                                                  |
-| 2               | Calculate Shortest Path | Input numbers to see the travel time between them.                            | Being in the menu.                                   | Type 1, then choose a departure and a destination number. Validate with 1 if your choice is correct to have the result.                                                                                                     | Have access to the travel time, and calculation time.                    |      |
-| 3               | Credits                 | The user wants to view the credits for the application.                       | The program is running, and the user is in the menu. | 1. User selects option 2 from the menu.<br>2. The system shows the contributors and tools used.                                                                              | The user views the credits and can return to the main menu by pressing 0.              |                                                  |
-| 4               | Exit to Console         | The user wants to leave the menu and return to the console.                   | The program is running, and the user is in the menu. | 1. User selects option 0 from the menu.<br>2. The system terminates and returns control to the console.                                                                                                                            | The program closes, and the terminal is ready for new commands.          | Ensure all processes are terminated          |
-| 5               | Validate Bin Output     | The user wants to check if JSON and XML files were created in the bin folder. | The program is running, and the user is in the menu. | The user goes in the Bin folder and check if the files are here.| The user knows whether the JSON and XML files were successfully created. | |
+
+| Use case number | Name                    | Description                                                                   | Pre-conditions                                       | Flow of events                                                                                                          | Exit criteria                                                             | Note                                |
+| --------------- | ----------------------- | ----------------------------------------------------------------------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ----------------------------------- |
+| 1               | PathQuick Menu          | The user wants to enter the PathQuick menu.                                   | Having the latest version downloaded and unzipped.   | - mac: execute start.sh<br>- windows: execute start.cmd                                                                 | You've entered the menu and can select an option.                         |                                     |
+| 2               | Calculate Shortest Path | Input numbers to see the travel time between them.                            | Being in the menu.                                   | Type 1, then choose a departure and a destination number. Validate with 1 if your choice is correct to have the result. | Have access to the travel time, and calculation time.                     |                                     |
+| 3               | Credits                 | The user wants to view the credits for the application.                       | The program is running, and the user is in the menu. | 1. User selects option 2 from the menu.<br>2. The system shows the contributors and tools used.                         | The user views the credits and can return to the main menu by pressing 0. |                                     |
+| 4               | Exit to Console         | The user wants to leave the menu and return to the console.                   | The program is running, and the user is in the menu. | 1. User selects option 0 from the menu.<br>2. The system terminates and returns control to the console.                 | The program closes, and the terminal is ready for new commands.           | Ensure all processes are terminated |
+| 5               | Validate Bin Output     | The user wants to check if JSON and XML files were created in the bin folder. | The program is running, and the user is in the menu. | The user goes in the Bin folder and check if the files are here.                                                        | The user knows whether the JSON and XML files were successfully created.  |                                     |
 
 ## Personas
 
