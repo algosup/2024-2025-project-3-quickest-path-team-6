@@ -57,7 +57,7 @@ Connections are bidirectional, implying if a connection exists from A to B, it a
 
 #### Performance Goals
 
-**Response Time**: API queries must complete within 1 second on a typical laptop.
+**Response Time**: API queries must be completed within 1 second on a typical laptop.
 
 **Approximation Heuristics**: Solutions may use heuristics to achieve speed, with the returned path being no more than 10% longer in duration than the shortest possible path.
 
@@ -85,7 +85,7 @@ These checks are infrequent, allowing the use of a simpler and potentially less 
 
 ## File Tree And Documents
 
-As written in the [naming conventions](./conventions.md), folders are written in PascalCase and files are written in camelCase.
+As written in the [naming conventions](./conventions.md), folders are written in PascalCase, and files are written in camelCase.
 
 ```md
 2023-2024-project-2-serious-game-team-6
@@ -143,22 +143,38 @@ The naming conventions are available [here](./conventions.md).
 
 ```md
 Src
-├─── main.cpp
-├─── Api
-│   ├─── Algorithm 
-│   │   └─── (every necessary files to find the quickest path)
-│   ├─── api.cpp
-│   ├─── Bin 
-│   │   └─── server
-│   └─── JsonXml 
-│       └─── (every necessary files to parse JSON & XML)
 ├─── Bin
-│   └─── quickPath
-└─── Headers
-    ├─── Input
-    │   └─── (every necessary files to get user input)
-    └─── Display
-        └─── (every necessary files to print data onto the console)
+│   ├─── pathQuick (server's binary file)
+│   ├─── pathQuick.exe (server's executable file)
+│   ├─── pathQuick.json (JSON file to store outputs)
+│   ├─── pathQuick.xml (XML file to store outputs)
+│   └─── server (server's binary file)
+│   └─── server.exe (server's executable file)
+├─── Client
+│   ├─── Display
+│   │   └─── display.hpp (prints data onto the console)
+│   ├─── Input
+│   │   └─── userInput.hpp (gets user inputs)
+│   └─── main.cpp (main program)
+├─── Libraries
+│   ├─── Nlohmann (JSON library)
+│   └─── Tinyxml2 (XML library)
+├─── start.cmd (main program's build file for Windows)
+├─── start.sh (main program's build file for macOS)
+├─── startServer.cmd (server's build file for Windows)
+├─── startServer.sh (server's build file for macOS)
+├─── Server 
+│   ├─── Algorithm
+│   │   ├─── algorithm.hpp (processes the path finding)
+│   │   └─── loadData.hpp (loads .csv file's data)
+│   ├─── Api
+│   │   ├─── api.cpp (sets the API's functionalities)
+│   │   ├─── api.hpp (computes the API functionalities)
+│   │   └─── server.cpp (server's main program)
+│   └─── Formatting 
+│       ├─── conversionJson.hpp (converts data into appropriate format)
+│       └─── conversionXml.hpp (converts data into appropriate format)
+└─── USA-roads.csv (.csv file where the data is)
 ```
 
 ### C++ Libraries
@@ -167,7 +183,7 @@ Some libraries will be needed to perform the project.
 
 #### Standard Libraries
 
-A huge amount of these **STL libraries** needs the namespace `std`.
+A huge amount of these **STL libraries** need the namespace `std`.
 A namespace is called like this:
 
 ```c++
@@ -176,9 +192,9 @@ using namespace std;
 
 1. **`<iostream>`**: Part of the input/output library, enabling console input and output operations.
 
-- `cout`, prints strings and variables to the console.
-- `endl`, inserts a newline character and flushes the output buffer.
-- `cin`, retrieves user input from the console and stores it into variables.
+- `std::cout`, prints strings and variables to the console.
+- `std::endl`, inserts a newline character and flushes the output buffer.
+- `std::cin`, retrieves user input from the console and stores it into variables.
 
 2. **`<string>`**: This library provides the string class, which allows the handling of dynamic text sequences.
 
@@ -259,9 +275,9 @@ It will actually create an XML document, allowing us to write easily into it in 
 
 **Installation**
 
-For some reasons, those libraries create some OS related issues. For ease to use, we moved the libraries into the project directory.
+For some reason, those libraries create some OS-related issues. For ease of use, we moved the libraries into the project directory.
 
-Eventhough, here are the steps to install properly the libraries:
+Even though, here are the steps to install properly the libraries:
 
 *macOS*:
 
@@ -305,14 +321,14 @@ This will install both `nlohmann-json` and `tinyxml2` headers in your MSYS2 envi
 Classes must be declared in a dedicated header file, named with their class name.
 
 Defining classes, Software Engineers must **encapsulate** data. Every variable of a class will be declared as *private*, and some methods will be declared as *public*. The public methods of a class can manipulate private data.
-This prevents clients from directly accessing those information.
+This prevents clients from directly accessing that information.
 
-Creating an object of a class, a **constructor** must be called. It is named with its class name, and allocate data as soon as the object is created.
+In creating an object of a class, a **constructor** must be called. It is named with its class name, and allocates data as soon as the object is created.
 
 ---
 
 **Connections** will be the main point of the program. Every connection has a list of *identifiers* and a *time representation*.
-Those data are provided in the .csv file and will be needed to be extracted.
+Those data are provided in the .csv file and will need to be extracted.
 
 ./connection.hpp
 
@@ -411,11 +427,11 @@ struct Edge {
 **Shortest Path Calculation**:
 
 PathQuick employs **Dijkstra's Algorithm** for precise and efficient route calculation.
-When speed is critical for large datasets, a **Bidirectional Dijkstra** approach is utilized, reducing computational time by simultaneously searching from the start and end points.
+When speed is critical for large datasets, a **Bidirectional Dijkstra** approach is utilized, reducing the computational time by simultaneously searching from the start and end points.
 
 **Heuristic Optimization**:
 
-For near-instant results, A* (A-star) algorithm is leveraged with heuristic functions based on geographical distance.
+For near-instant results, the A* (A-star) algorithm is leveraged with heuristic functions based on geographical distance.
 This ensures routes are within 10% of the optimal shortest path while significantly reducing processing time.
 
 **Dynamic Query Handling**:
@@ -458,5 +474,5 @@ Robust mechanisms ensure graceful handling of invalid or incomplete queries, pro
 | **Encapsulation** is a mechanism that brings data and methods together within a structure by hiding the object's implementation, i.e. preventing access to the data by any means other than the proposed services. | [Wikipedia](https://en.wikipedia.org/wiki/Encapsulation_(computer_programming)) |
 | **Constructor** is a special type of function called to create an object. It prepares the new object for use, often accepting arguments that the constructor uses to set required member variables. | [Wikipedia](https://en.wikipedia.org/wiki/Constructor_(object-oriented_programming)) |
 | **REST (Representational State Transfer)** is a software architectural style that was created to guide the design and development of the architecture for the World Wide Web. | [Wikipedia](https://en.wikipedia.org/wiki/REST) |
-| An **Application Programming Interface (API)** is a connection between computers or between computer programs. It is a type of software interface, offering a service to other pieces of software. | [Wikipedia](https://en.wikipedia.org/wiki/API) |
+| An **Application Programming Interface (API)** is a connection between computers or between computer programs. It is a type of software interface, that offers a service to other pieces of software. | [Wikipedia](https://en.wikipedia.org/wiki/API) |
 | **Dijkstra's Algorithm**  is an algorithm for finding the shortest paths between nodes in a weighted graph, which may represent, for example, a road network. | [Wikipedia](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm) |
