@@ -3,11 +3,15 @@
 #include <vector>
 #include <string>
 #include <unordered_map>
-#include <unistd.h>
 #include <thread>
+#include <chrono>
+#ifdef _WIN32
+#include <Windows.h>
+#else
+#include <unistd.h>
+#endif
 
 using namespace std;
-#include <chrono>
 using namespace std::chrono;
 
 bool ended = false;
@@ -18,6 +22,15 @@ struct Edge {
     int to;
     double time;
 };
+
+void wait(int time)
+{
+    #ifdef _WIN32
+    Sleep(time/1000);
+    #else
+    usleep(time);
+    #endif
+}
 
 ifstream file;
 unordered_map<int, vector<Edge>> dataGraph;
@@ -69,9 +82,9 @@ void loadingCat()
     cout << "                   /\\_/\\\n" << flush;
     while(!ended){
         cout << "Loading dataset.. / o.o \\" << "\r" << flush;
-        usleep(1000000);
+        wait(1000000);
         cout << "Loading dataset.. / -.- \\" << "\r" << flush;
-        usleep(150000);
+        wait(150000);
     }
     cout << "Dataset loaded!   / ^.^ \\" << flush;
 }

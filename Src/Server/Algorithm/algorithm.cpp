@@ -1,3 +1,5 @@
+#include <queue>
+#include <algorithm>
 #include "loadData.cpp"
 
 using namespace std::chrono;
