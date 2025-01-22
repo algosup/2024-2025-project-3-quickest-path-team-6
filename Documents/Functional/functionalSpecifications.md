@@ -109,6 +109,14 @@ Our task is to create an efficient tool that delivers precise results with the c
 
 - The program should not require user data.
 
+## User Interface
+
+### Main Menu
+
+### Find My Way
+
+### Loading Screens
+
 ## Non-Functional Requirements
 
 **User Interface**
