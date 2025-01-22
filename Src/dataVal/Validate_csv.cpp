@@ -5,13 +5,77 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <string>
-#include <functional> // For hash
+#include <functional>
 
 using namespace std;
+
+// Custom hash function for pair<int, int>
+struct PairHash {
+    template <typename T1, typename T2>
+    size_t operator()(const pair<T1, T2>& p) const {
+        return hash<T1>{}(p.first) ^ (hash<T2>{}(p.second) << 1);
+    }
+};
+
+// Function to create an ordered pair for edge uniqueness
+pair<int, int> createEdgePair(int a, int b) {
+    return (a < b) ? make_pair(a, b) : make_pair(b, a);
+}
 
 // Function to add an edge to the adjacency list
 void addEdge(unordered_map<int, vector<int>>& graph, int u, int v) {
     graph[u].push_back(v);
+}
+
+// Function to check for duplicates and build the graph simultaneously
+bool processFile(const string& filename, unordered_map<int, vector<int>>& graph) {
+    ifstream inputFile(filename);
+    if (!inputFile.is_open()) {
+        cerr << "Error: Could not open file." << endl;
+        return false;
+    }
+
+    unordered_set<pair<int, int>, PairHash> edges; // Store unique edges
+    string line;
+    size_t lineCount = 0;
+    size_t duplicateCount = 0;
+
+    while (getline(inputFile, line)) {
+        lineCount++;
+
+        // Parse the line and build the graph
+        stringstream ss(line);
+        string token;
+        vector<int> edge;
+
+        while (getline(ss, token, ',')) {
+            edge.push_back(stoi(token));
+        }
+
+        if (edge.size() == 3) { // Ensure each line has exactly 3 values
+            auto road = createEdgePair(edge[0], edge[1]);
+
+            if (edges.find(road) != edges.end()) {
+                duplicateCount++;
+            } else {
+                edges.insert(road);
+                addEdge(graph, edge[0], edge[1]);
+            }
+        } else {
+            cerr << "Error: Invalid line format at line " << lineCount << ": " << line << endl;
+        }
+
+        // Periodic progress display
+        if (lineCount % 100000 == 0) {
+            cout << "Processed " << lineCount << " lines..." << endl;
+        }
+    }
+
+    inputFile.close();
+
+    cout << "Total lines processed: " << lineCount << endl;
+    cout << "Duplicate connections detected: " << duplicateCount << endl;
+    return true;
 }
 
 // Function to perform DFS and check for cycles
@@ -43,57 +107,6 @@ bool isAcyclic(unordered_map<int, vector<int>>& graph) {
             return false;
         }
     }
-
-    return true;
-}
-
-// Optimized function to check for duplicate lines and build the graph simultaneously
-bool processFile(const string& filename, unordered_map<int, vector<int>>& graph) {
-    ifstream inputFile(filename);
-    if (!inputFile.is_open()) {
-        cerr << "Error: Could not open file." << endl;
-        return false;
-    }
-
-    unordered_set<size_t> hashes; // To store hashes of lines
-    string line;
-    size_t lineCount = 0;
-    size_t duplicateCount = 0;
-
-    while (getline(inputFile, line)) {
-        lineCount++;
-        // Compute a hash of the line for duplicate detection
-        size_t hashValue = hash<string>{}(line);
-        if (hashes.count(hashValue)) {
-            duplicateCount++;
-        } else {
-            hashes.insert(hashValue);
-            // Parse the line and build the graph
-            stringstream ss(line);
-            string token;
-            vector<int> edge;
-
-            while (getline(ss, token, ',')) {
-                edge.push_back(stoi(token));
-            }
-
-            if (edge.size() == 3) { // Ensure each line has exactly 3 values
-                addEdge(graph, edge[0], edge[1]);
-            } else {
-                cerr << "Error: Invalid line format: " << line << endl;
-            }
-        }
-
-        // Periodic progress display
-        if (lineCount % 100000 == 0) {
-            cout << "Processed " << lineCount << " lines..." << endl;
-        }
-    }
-
-    inputFile.close();
-
-    cout << "Total lines processed: " << lineCount << endl;
-    cout << "Duplicate lines detected: " << duplicateCount << endl;
     return true;
 }
 
