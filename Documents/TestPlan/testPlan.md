@@ -157,19 +157,18 @@ Here is the template of a test case:
 | Test Case Priority        | Defines if a test is important or not. Using numbers: Low  3 / Medium 2 / High 1 |
 | Test Case Assigned To     | Name of the tester                                                         |
 
-All the test cases will be stored in the markdown file testCases.md that is accessible [there](/Documents/TestPlan/testCases.md). They will also be visible in a [google spreadsheet](). <!-- TODO -->
+All the test cases will be stored in the markdown file testCases.md that is accessible [there](/Documents/TestPlan/testCases.md). They will also be visible in a [google spreadsheet](https://docs.google.com/spreadsheets/d/1w3GkvyACPfrN6t2wp6ESf5VsZAYqkQ7p-10jfRc_C9k/edit?usp=sharing).
 
 Moreover, all the test results would be accessible on the second sheet of the same Google spreadsheet. They would be presented this way:
 
-<!-- To redefine -->
-| Category name      | Input                                     |
-| ------------------ | ----------------------------------------- |
-| ID                 | The test case ID                          |
-| Name               | Name of the test case                     |
-| Description        | A short description of the test case      |
-| Date               | When the test was done                    |
-| Result state       | Did the test pass?                        |
-| Result description | The description of the result if it fails |
+| Category name   | Input                                     |
+| --------------- | ----------------------------------------- |
+| ID              | The test case ID                          |
+| Name            | Name of the test case                     |
+| Description     | A short description of the test case      |
+| Result state    | Did the test pass?                        |
+| Expected result | The expected result                       |  
+| Actual result   | The description of the result if it fails |
 
 ## Testing Tools
 
