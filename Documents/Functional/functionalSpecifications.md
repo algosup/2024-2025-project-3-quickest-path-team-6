@@ -112,14 +112,21 @@ Our task is to create a tool that delivers precise results with the challenges o
 ## User Interface
 
 ### Main Menu
+![image](https://github.com/user-attachments/assets/be797d97-b57e-4d65-9df0-a550f43d92cd)
+
 
 ### Find My Way
+![image](https://github.com/user-attachments/assets/9dda8114-5318-4c9d-ac90-4985f30793ad)
+![image](https://github.com/user-attachments/assets/efc353aa-f3e4-4566-891b-71c36fd96f52)
+
 
 ### Loading Screens
+![image](https://github.com/user-attachments/assets/676a34d5-f7ca-49b0-a8e3-20686539a5b0)
+![image](https://github.com/user-attachments/assets/393eb4ff-1010-4ced-ae8e-4c30a2897619)
 
 ## Non-Functional Requirements
 
-**User Interface**
+**User Experience**
 
 - The program should include a user interface, in which users could navigate and use features included in the latest release.
 - The interface should be minimal and usable through a computer's terminal.
