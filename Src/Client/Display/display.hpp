@@ -1,6 +1,9 @@
 #include <iostream>
+#include <chrono>
+#include <fstream>
+#include <sstream>
 #include "../Input/userInput.hpp"
-#include "../../Algorithm/algorithm.cpp"
+#include "../request.hpp"
 
 using namespace std;
 
@@ -9,6 +12,7 @@ void findMyWayMenu();
 void creditsMenu();
 
 const int LOWEST_ID = 1;
+const int HIGHEST_ID = 23947347;
 
 int page = 1;
 

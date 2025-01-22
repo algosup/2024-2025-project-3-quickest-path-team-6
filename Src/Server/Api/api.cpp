@@ -12,9 +12,9 @@
 #include <Kernel/netinet/in.h>
 #endif
 #pragma comment(lib, "Ws2_32.lib")
-#include "../Algorithm/algorithm.cpp"
-#include "../Headers/Formatting/convertionJson.hpp"
-#include "../Headers/Formatting/convertionXml.hpp"
+#include "Algorithm/algorithm.cpp"
+#include "Formatting/conversionJson.hpp"
+#include "Formatting/conversionXml.hpp"
 
 void Api::closeSocket(int socket) {
 #ifdef _WIN32

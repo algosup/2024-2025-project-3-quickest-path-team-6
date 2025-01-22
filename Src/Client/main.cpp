@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Headers/Display/display.hpp"
+#include "Display/display.hpp"
 
 int main()
 {

@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-#include <sstream>
 #include <vector>
 #include <string>
 #include <unordered_map>
@@ -10,8 +9,6 @@
 using namespace std;
 #include <chrono>
 using namespace std::chrono;
-
-const int HIGHEST_ID = 23947347;
 
 bool ended = false;
 void getData();
@@ -26,7 +23,7 @@ ifstream file;
 unordered_map<int, vector<Edge>> dataGraph;
 
 unordered_map<int, vector<Edge>> loadDataset() {
-    string filename = "USA-roads.csv";
+    string filename = "../USA-roads.csv";
 
     file.open(filename);
 

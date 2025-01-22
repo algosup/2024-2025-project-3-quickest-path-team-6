@@ -14,7 +14,7 @@ void convertIntoJson(vector<int> path, int taskDuration) {
     jsonData["time"] = taskDuration;
 
     // Write JSON to file
-    ofstream outFile("Bin/pathQuick.json");
+    ofstream outFile("../Client/Bin/pathQuick.json");
     if (outFile.is_open()) {
         outFile << setw(4) << jsonData.dump(4); // Pretty print with 4 spaces
         outFile.close();
