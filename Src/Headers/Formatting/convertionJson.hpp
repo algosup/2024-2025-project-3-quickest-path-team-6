@@ -2,20 +2,23 @@
 #include <vector>
 #include <fstream>
 #include "../../Libraries/Nlohmann/json.hpp"
+#include <iomanip>
 
 using namespace std;
 
-void convertIntoJson(vector<int> path) {
+void convertIntoJson(vector<int> path, int taskDuration) {
 
     // Convert vector to JSON
-    nlohmann::json jsonData = path;
+    nlohmann::json jsonData;
+    jsonData["path"] = path;
+    jsonData["time"] = taskDuration;
 
     // Write JSON to file
     ofstream outFile("Bin/pathQuick.json");
     if (outFile.is_open()) {
-        outFile << jsonData.dump(4); // Pretty print with 4 spaces
+        outFile << setw(4) << jsonData.dump(4); // Pretty print with 4 spaces
         outFile.close();
-        cout << endl << "Path converted into JSON, data written to pathQuick.json" << endl;
+        cout << endl << "Path converted into JSON, data written to pathQuick.json\n" << endl;
     } else {
         cerr << endl << "Error opening JSON file for writing" << endl;
     }

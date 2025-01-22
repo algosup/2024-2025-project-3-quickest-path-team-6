@@ -4,7 +4,6 @@
 int main()
 {
     cout << "\e[1;37m";
-    graph = loadDataset();
     display();
     return 0;
 }

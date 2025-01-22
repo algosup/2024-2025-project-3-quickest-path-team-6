@@ -2,11 +2,13 @@
 #include <unordered_map>
 #include <limits>
 #include "loadData.cpp"
-#include "../Headers/Formatting/convertionJson.hpp"
-#include "../Headers/Formatting/convertionXml.hpp"
 #include <chrono>
+#include <cstdlib>
+#include <iomanip>
+#include <algorithm>
 
 using namespace std::chrono;
+
 unordered_map<int, vector<Edge>> graph; // get the entire graph (need to be handled by the server)
 
 vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int start, int end, double* time, int maxNode) {
@@ -63,29 +65,44 @@ vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int 
     return path;
 }
 
-double algorithm(int start, int end, int maxNode) {
-    cout << "Calculating shortest path..." << endl;
-    double pathTime;
-    auto timeStart = high_resolution_clock::now(); // get time
-    vector<int> path = modifiedDijkstra(graph, start, end, &pathTime, maxNode);
-
-
-    if (path.empty() || path.front() != start) {
-        cout << endl << "No path found between " << start << " and " << end << "!" << endl;
-    } else {
-        cout << endl << "Shortest path from " << start << " to " << end << ":" << endl;
-        convertIntoJson(path);
-        convertIntoXml(path);
-
-        auto stop = high_resolution_clock::now();
-        auto duration = duration_cast<milliseconds>(stop - timeStart); // get task duration
-        if (duration.count() > 2000) {
-            cout << endl << "Path calculated in " << duration.count()/1000 << " seconds." << endl;
+string urlEncode(const string& str) {
+    ostringstream encoded;
+    for (unsigned char c : str) {
+        if (isalnum(c) || c == '-' || c == '_' || c == '.' || c == '~') {
+            encoded << c;
         } else {
-            cout << endl << "Path calculated in " << duration.count() << " milliseconds." << endl;
+            encoded << '%' << setw(2) << setfill('0') << hex << (int)c;
         }
-        
     }
+    return encoded.str();
+}
 
-    return pathTime;
+void sendRequest(int start, int end, string fileFormat) {
+    cout << "Calculating shortest path..." << endl << endl;
+    auto timeStart = high_resolution_clock::now(); // get time
+
+    // Prepare the API request (building the URL)
+    string source = to_string(start);
+    string destination = to_string(end);
+    string format = fileFormat; // or you can set this based on user input
+
+    // URL-encode the source, destination, and format values
+    string encodedSource = urlEncode(source);
+    string encodedDestination = urlEncode(destination);
+    string encodedFormat = urlEncode(format);
+
+    // Construct the full curl command with quotes to handle spaces/special characters
+    string api_url = "curl \"http://localhost:8080/route?source=" + encodedSource + "&destination=" + encodedDestination + "&format=" + encodedFormat + "\"";
+
+    // Make an HTTP GET request to the API
+    int result = system(api_url.c_str());
+
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(stop - timeStart); // get task duration
+    if (duration.count() > 2000) {
+        cout << endl << "Path calculated in " << duration.count()/1000 << " seconds." << endl;
+    } else {
+        cout << endl << "Path calculated in " << duration.count() << " milliseconds." << endl;
+    }
+    
 }
