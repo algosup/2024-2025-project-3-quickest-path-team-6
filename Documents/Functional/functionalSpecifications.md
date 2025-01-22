@@ -1,25 +1,4 @@
 # Functional Specifications
-
-## Stakeholders
-
-### Project Roles
-
-| Picture                                                                     | Full name          | Role              | Description                                                                                                                           | Links                                                                                                                |
-| --------------------------------------------------------------------------- | ------------------ | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| <img src="https://avatars.githubusercontent.com/u/146000775?v=4" width=150> | Evan UHRING        | Project Manager   | Monitors the project's timeline and goals. Main coordinator between stakeholders and the team.                                        | [LinkedIn](https://www.linkedin.com/in/evan-uhring-72911b293/) [GitHub](https://github.com/Evan-UHRING)              |
-| <img src="https://avatars.githubusercontent.com/u/146005062?v=4" width=150> | Manech LAGUENS     | Program Manager   | Makes sure the project meets expectation. Is responsible for writing the Functional Specifications                                    | [LinkedIn](https://www.linkedin.com/in/manech-laguens-020127293/) [GitHub](https://github.com/Manech-Laguens)        |
-| <img src="https://avatars.githubusercontent.com/u/145991192?v=4" width=150> | Enzo GUILLOUCHE    | Technical Leader  | Makes the technical decision in the project. Translates the Functional Specification into Technical Specifications. Does code review. | [LinkedIn](https://www.linkedin.com/in/enzoguillouche/) [GitHub](https://github.com/EnzoGuillouche)                  |
-| <img src="https://avatars.githubusercontent.com/u/169643790?v=4" width=150> | Pavlo PRENDI       | Software Engineer | Writes and tests code to implement project features. Participates in documentation and technical design discussions.                  | [LinkedIn](https://www.linkedin.com/in/pavlo-prendi-674777309/) [GitHub](https://github.com/PavloPrendi)             |
-| <img src="https://avatars.githubusercontent.com/u/159240038?v=4" width=150> | Mariem ZAIANE      | Software Engineer |                                                                                                                                       | [LinkedIn](https://www.linkedin.com/in/mariem-zaiane-2b2165225/) [GitHub](https://github.com/Mariem-Zaiane)          |
-| <img src="https://avatars.githubusercontent.com/u/145995586?v=4" width=150> | Maxime THIZEAU     | Quality Assurance | Tests the product to identify and document bugs and issues. Creates test plans and verifies that fixes are implemented correctly.     | [LinkedIn](https://www.linkedin.com/in/maxime-thizeau-0b311a293/) [GitHub](https://github.com/MaximeTAlgosup)        |
-| <img src="https://avatars.githubusercontent.com/u/71769656?v=4" width=150>  | Aurélien FERNANDEZ | Technical Writer  | Creates the user manual. Ensures all materials are clear and easy to understand for end users.                                        | [LinkedIn](https://www.linkedin.com/in/aurélien-fernandez-4971201b8/) [GitHub](https://github.com/aurelienfernandez) |
-
-### Other Stakeholders
-
-| Name           | Role                        | Links                                  |
-| -------------- | --------------------------- | -------------------------------------- |
-| Franck JEANNIN | Client (ALGOSUP's director) | [Website](https://algosup.com/en.html) |
-
 ## Project Overview
 
 ### Project Definition
@@ -60,6 +39,26 @@ Our task is to create an efficient tool that delivers precise results with the c
 | Oral Presentation         | Presentation                      | February 14th 2025 |
 
 ---
+
+### Stakeholders
+
+#### Project Roles
+
+| Picture                                                                     | Full name          | Role              | Description                                                                                                                           | Links                                                                                                                |
+| --------------------------------------------------------------------------- | ------------------ | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| <img src="https://avatars.githubusercontent.com/u/146000775?v=4" width=150> | Evan UHRING        | Project Manager   | Monitors the project's timeline and goals. Main coordinator between stakeholders and the team.                                        | [LinkedIn](https://www.linkedin.com/in/evan-uhring-72911b293/) [GitHub](https://github.com/Evan-UHRING)              |
+| <img src="https://avatars.githubusercontent.com/u/146005062?v=4" width=150> | Manech LAGUENS     | Program Manager   | Makes sure the project meets expectation. Is responsible for writing the Functional Specifications                                    | [LinkedIn](https://www.linkedin.com/in/manech-laguens-020127293/) [GitHub](https://github.com/Manech-Laguens)        |
+| <img src="https://avatars.githubusercontent.com/u/145991192?v=4" width=150> | Enzo GUILLOUCHE    | Technical Leader  | Makes the technical decision in the project. Translates the Functional Specification into Technical Specifications. Does code review. | [LinkedIn](https://www.linkedin.com/in/enzoguillouche/) [GitHub](https://github.com/EnzoGuillouche)                  |
+| <img src="https://avatars.githubusercontent.com/u/169643790?v=4" width=150> | Pavlo PRENDI       | Software Engineer | Writes and tests code to implement project features. Participates in documentation and technical design discussions.                  | [LinkedIn](https://www.linkedin.com/in/pavlo-prendi-674777309/) [GitHub](https://github.com/PavloPrendi)             |
+| <img src="https://avatars.githubusercontent.com/u/159240038?v=4" width=150> | Mariem ZAIANE      | Software Engineer |                                                                                                                                       | [LinkedIn](https://www.linkedin.com/in/mariem-zaiane-2b2165225/) [GitHub](https://github.com/Mariem-Zaiane)          |
+| <img src="https://avatars.githubusercontent.com/u/145995586?v=4" width=150> | Maxime THIZEAU     | Quality Assurance | Tests the product to identify and document bugs and issues. Creates test plans and verifies that fixes are implemented correctly.     | [LinkedIn](https://www.linkedin.com/in/maxime-thizeau-0b311a293/) [GitHub](https://github.com/MaximeTAlgosup)        |
+| <img src="https://avatars.githubusercontent.com/u/71769656?v=4" width=150>  | Aurélien FERNANDEZ | Technical Writer  | Creates the user manual. Ensures all materials are clear and easy to understand for end users.                                        | [LinkedIn](https://www.linkedin.com/in/aurélien-fernandez-4971201b8/) [GitHub](https://github.com/aurelienfernandez) |
+
+#### Other Stakeholders
+
+| Name           | Role                        | Links                                  |
+| -------------- | --------------------------- | -------------------------------------- |
+| Franck JEANNIN | Client (ALGOSUP's director) | [Website](https://algosup.com/en.html) |
 
 ## Functional Requirements
 
