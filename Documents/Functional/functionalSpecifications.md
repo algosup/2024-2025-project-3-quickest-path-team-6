@@ -3,7 +3,7 @@
 
 ### Project Definition
 
-Our task is to create an efficient tool that delivers precise results with the challenges of processing large datasets and ensuring smooth API integration. Its purpose is to provide a reliable backend solution personalized to transportation analysis and optimization needs.
+Our task is to create a tool that delivers precise results with the challenges of processing large datasets and ensuring smooth API integration. Its purpose is to provide a reliable solution tailored to transportation analysis and optimization needs.
 
 #### Objectives
 
@@ -50,7 +50,7 @@ Our task is to create an efficient tool that delivers precise results with the c
 | <img src="https://avatars.githubusercontent.com/u/146005062?v=4" width=150> | Manech LAGUENS     | Program Manager   | Makes sure the project meets expectation. Is responsible for writing the Functional Specifications                                    | [LinkedIn](https://www.linkedin.com/in/manech-laguens-020127293/) [GitHub](https://github.com/Manech-Laguens)        |
 | <img src="https://avatars.githubusercontent.com/u/145991192?v=4" width=150> | Enzo GUILLOUCHE    | Technical Leader  | Makes the technical decision in the project. Translates the Functional Specification into Technical Specifications. Does code review. | [LinkedIn](https://www.linkedin.com/in/enzoguillouche/) [GitHub](https://github.com/EnzoGuillouche)                  |
 | <img src="https://avatars.githubusercontent.com/u/169643790?v=4" width=150> | Pavlo PRENDI       | Software Engineer | Writes and tests code to implement project features. Participates in documentation and technical design discussions.                  | [LinkedIn](https://www.linkedin.com/in/pavlo-prendi-674777309/) [GitHub](https://github.com/PavloPrendi)             |
-| <img src="https://avatars.githubusercontent.com/u/159240038?v=4" width=150> | Mariem ZAIANE      | Software Engineer |                                                                                                                                       | [LinkedIn](https://www.linkedin.com/in/mariem-zaiane-2b2165225/) [GitHub](https://github.com/Mariem-Zaiane)          |
+| <img src="https://avatars.githubusercontent.com/u/159240038?v=4" width=150> | Mariem ZAIANE      | Software Engineer |   Writes and tests code to implement project features. Participates in documentation and technical design discussions.    | [LinkedIn](https://www.linkedin.com/in/mariem-zaiane-2b2165225/) [GitHub](https://github.com/Mariem-Zaiane)          |
 | <img src="https://avatars.githubusercontent.com/u/145995586?v=4" width=150> | Maxime THIZEAU     | Quality Assurance | Tests the product to identify and document bugs and issues. Creates test plans and verifies that fixes are implemented correctly.     | [LinkedIn](https://www.linkedin.com/in/maxime-thizeau-0b311a293/) [GitHub](https://github.com/MaximeTAlgosup)        |
 | <img src="https://avatars.githubusercontent.com/u/71769656?v=4" width=150>  | Aurélien FERNANDEZ | Technical Writer  | Creates the user manual. Ensures all materials are clear and easy to understand for end users.                                        | [LinkedIn](https://www.linkedin.com/in/aurélien-fernandez-4971201b8/) [GitHub](https://github.com/aurelienfernandez) |
 
@@ -164,10 +164,12 @@ Complete glossary
 
 ## Glossary
 
-| Therm Used | Definition |
+| Term Used  | Definition |
 | ---------- | ---------- |
-| ddd        | dddd       |
-
+| PathQuick       | The name of the tool designed to calculate the shortest path between two landmarks.       |
+| JSON | A lightweight data-interchange format used to represent structured data in a readable format.|
+| XML | A markup language used for encoding documents in a format that is both human-readable and machine-readable. |
+| | |
 
 ## Use Cases
 | Use case number | Name                    | Description                                                                   | Pre-conditions                                       | Flow of events                                                                                                                                                                                                                     | Exit criteria                                                            | Note                                             |
