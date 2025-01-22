@@ -11,6 +11,8 @@ using namespace std;
 #include <chrono>
 using namespace std::chrono;
 
+const int HIGHEST_ID = 23947347;
+
 bool ended = false;
 void getData();
 void loadingCat();

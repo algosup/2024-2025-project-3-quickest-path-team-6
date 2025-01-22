@@ -9,7 +9,6 @@ void findMyWayMenu();
 void creditsMenu();
 
 const int LOWEST_ID = 1;
-const int HIGHEST_ID = 23947347;
 
 int page = 1;
 

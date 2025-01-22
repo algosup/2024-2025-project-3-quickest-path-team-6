@@ -9,7 +9,6 @@
 
 using namespace std::chrono;
 
-const int HIGHEST_ID = 23947347;
 
 unordered_map<int, vector<Edge>> graph; // get the entire graph (need to be handled by the server)
 
