@@ -83,9 +83,9 @@ void findMyWayMenu(){
     bool isAlgorithmDone = false;
     while(page == 2 || inputException){
         clearScreen();
-        cout << "+----------------------_-------------------_-----------------------------+\n"
-             << "|                     |_ o ._   _| m \\/\\/ (_| \\/              |/ \\|       |\n"
-             << "|  |\\ /|              |  | | | (_| y          /                           |\n"
+        cout << "+----------------------_-------------------_------------------------------+\n"
+             << "|                     |_ o ._   _| M \\/\\/ (_| \\/              |/ \\|       |\n"
+             << "|  |\\ /|              |  | | | (_| Y          /                           |\n"
              << "+-------------------------------------------------------------------------+\n";
         if(input != 1 && !isAlgorithmDone){
             cout << "Available points between " << LOWEST_ID << " and " << HIGHEST_ID << "\n" << endl;
@@ -181,7 +181,7 @@ void creditsMenu()
              << "|_  O|                      Manech LAGUENS                                |\n"
              << "|_]__\\                                                                    |\n"
              << "|                      -> the Technical Writer:                           |\n"
-             << "|                         Aurélien FERNANDEZ                              |\n"
+             << "|                         Aurelien FERNANDEZ                              |\n"
              << "|                                                                         |\n"
              << "|                       -> the Project Manager:                           |\n"
              << "|                             Evan UHRING                                 |\n"
