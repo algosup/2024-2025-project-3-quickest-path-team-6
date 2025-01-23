@@ -47,7 +47,7 @@ void display(){
 }
 
 void mainMenu(){
-    while (page == 1 || inputException){
+    while (page == 1 || input_exception){
         clearScreen();
         cout << "+-------------------------------------------_--------------_--------------+\n"
              << "| \\    / _  |  _  _  ._ _   _    _|_  _    |_) _. _|_ |_  / \\     o  _ |  |\n"
@@ -61,7 +61,7 @@ void mainMenu(){
              << "-+-------------+" << endl;
         handleException();
         cout << "Your choice -> ";
-        input = userInputInt(&inputException);
+        input = userInputInt(&input_exception);
         switch(input){
             case 0:
                 page = 0;
@@ -73,7 +73,7 @@ void mainMenu(){
                 page = 3;
                 break;
             default:
-                inputException = true;
+                input_exception = true;
                 break;
         }
     }
@@ -81,39 +81,39 @@ void mainMenu(){
 }
 
 void findMyWayMenu(){
-    int travelTime = 0;
-    int departurePoint = 0;
-    int destinationPoint = 0;
-    bool chosenFormat = false; // false = json / true = xml
-    bool isAlgorithmDone = false;
-    while(page == 2 || inputException){
+    int travel_time = 0;
+    int departure_point = 0;
+    int destination_point = 0;
+    bool chosen_format = false; // false = json / true = xml
+    bool is_algorithm_done = false;
+    while(page == 2 || input_exception){
         clearScreen();
         cout << "+----------------------_-------------------_------------------------------+\n"
              << "|                     |_ o ._   _| M \\/\\/ (_| \\/              |/ \\|       |\n"
              << "|  |\\ /|              |  | | | (_| Y          /                           |\n"
              << "+-------------------------------------------------------------------------+\n";
-        if(input != 1 && !isAlgorithmDone){
-            cout << "Available points between " << LOWEST_ID << " and " << HIGHEST_ID << "\n" << endl;
-            if(departurePoint <= 0 || departurePoint > HIGHEST_ID){
+        if(input != 1 && !is_algorithm_done){
+            cout << "Available _points between " << LOWEST_ID << " and " << HIGHEST_ID << "\n" << endl;
+            if(departure_point <= 0 || departure_point > HIGHEST_ID){
                 handleException();
                 cout << "Choose a departure -> ";
-                departurePoint = userInputInt(&inputException);
+                departure_point = userInputInt(&input_exception);
             }
-            else if(destinationPoint <= 0 || destinationPoint > HIGHEST_ID){
+            else if(destination_point <= 0 || destination_point > HIGHEST_ID){
                 cout << "+----------\n"
-                     << "| Departure: " << departurePoint << "\n"
+                     << "| Departure: " << departure_point << "\n"
                      << "+----------" << endl;
                 handleException();
                 cout << "Choose a destination -> ";
-                destinationPoint = userInputInt(&inputException);
+                destination_point = userInputInt(&input_exception);
             }
-            else if(departurePoint != 0 && destinationPoint != 0 || inputException){
+            else if(departure_point != 0 && destination_point != 0 || input_exception){
                 cout << "+----------\n"
-                     << "| Departure: " << departurePoint << "\n"
+                     << "| Departure: " << departure_point << "\n"
                      << "|     \\/\n"
-                     << "| Destination: " << destinationPoint << "\n"
+                     << "| Destination: " << destination_point << "\n"
                      << "+----------\n"
-                     << "Output file format: " << (chosenFormat == false ? "JSON\n" : "XML\n") << endl;
+                     << "Output file format: " << (chosen_format == false ? "JSON\n" : "XML\n") << endl;
                 cout << "-+-----------------------+\n"
                      << "1| Everything is correct |\n"
                      << "-+-----------------------+\n"
@@ -125,7 +125,7 @@ void findMyWayMenu(){
                      << "-+-----------------------+\n" << endl;
                 handleException();
                 cout << "Your choice -> ";
-                input = userInputInt(&inputException);
+                input = userInputInt(&input_exception);
                 switch(input){
                     case 0:
                         page = 1;
@@ -133,33 +133,33 @@ void findMyWayMenu(){
                     case 1:
                         break;
                     case 2:
-                        chosenFormat = !chosenFormat;
+                        chosen_format = !chosen_format;
                         break;
                     case 3:
-                        departurePoint = 0;
-                        destinationPoint = 0;
+                        departure_point = 0;
+                        destination_point = 0;
                         break;
                     default:
-                        inputException = true;
+                        input_exception = true;
                         break;
                 }
             }
         }
-        else if(input == 1 || inputException){
-            cout << "| Departure: " << departurePoint << "\n"
+        else if(input == 1 || input_exception){
+            cout << "| Departure: " << departure_point << "\n"
                  << "|     \\/\n"
-                 << "| Destination: " << destinationPoint << "\n" 
+                 << "| Destination: " << destination_point << "\n" 
                  << "+----------\n" << endl;
-            if(!isAlgorithmDone){
-                string format = chosenFormat == false ? "json" : "xml";
-                sendRequest(departurePoint, destinationPoint, format);
-                isAlgorithmDone = true;
+            if(!is_algorithm_done){
+                string format = chosen_format == false ? "json" : "xml";
+                sendRequest(departure_point, destination_point, format);
+                is_algorithm_done = true;
             }
             handleException();
             cout << "0| Go to main menu? -> ";
-            input = userInputInt(&inputException);
+            input = userInputInt(&input_exception);
             if(input != 0)
-                inputException = true;
+                input_exception = true;
             else
                 page = 1;
         }
@@ -168,7 +168,7 @@ void findMyWayMenu(){
 
 void creditsMenu()
 {
-    while(page == 3 || inputException)
+    while(page == 3 || input_exception)
     {
         clearScreen();
         cout << "+--------------------------_----------------------------------------------+\n"
@@ -199,9 +199,9 @@ void creditsMenu()
              << "+-------------------------------------------------------------------------+\n";
         handleException();
         cout << "0| Go to main menu? -> ";
-        input = userInputInt(&inputException);
+        input = userInputInt(&input_exception);
         if(input != 0)
-            inputException = true;
+            input_exception = true;
         else
             page = 1;
     }

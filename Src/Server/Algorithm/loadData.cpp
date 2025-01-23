@@ -33,12 +33,12 @@ void wait(int time)
 }
 
 ifstream file;
-unordered_map<int, vector<Edge>> dataGraph;
+unordered_map<int, vector<Edge>> data_graph;
 
 unordered_map<int, vector<Edge>> loadDataset() {
-    string filename = "../USA-roads.csv";
+    string file_name = "../USA-roads.csv";
 
-    file.open(filename);
+    file.open(file_name);
 
     if (!file.is_open()) {
         cerr << "Error opening file!" << endl;
@@ -58,7 +58,7 @@ unordered_map<int, vector<Edge>> loadDataset() {
     auto duration = duration_cast<seconds>(stop - start); // get task duration
 
     cout << "\nLoaded in " << duration.count() << " seconds!\n" << endl;
-    return dataGraph;
+    return data_graph;
 }
 
 void getData()
@@ -71,8 +71,8 @@ void getData()
         char comma;
         ss >> from >> comma >> to >> comma >> time;
 
-        dataGraph[from].push_back({to, time});
-        dataGraph[to].push_back({from, time}); // Bidirectional connection
+        data_graph[from].push_back({to, time});
+        data_graph[to].push_back({from, time}); // Bidirectional connection
     }
     ended = true;
 }
