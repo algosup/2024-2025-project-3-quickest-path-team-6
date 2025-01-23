@@ -1,12 +1,12 @@
-# PathQuick - Chart Your Fastest Adventure Across the USA! 🚀
+# PathQuick - Chart Your Fastest Adventure! 🚀
 
-Welcome to PathQuick, the ultimate guide to uncovering the quickest routes between landmarks in the vast and diverse United States! Whether you're a virtual road tripper or a logistical mastermind, PQ is here to deliver blazing-fast route calculations and seamless navigation.
+Welcome to PathQuick, the ultimate guide to uncovering the quickest routes between! Whether you're a virtual road tripper or a logistical mastermind, PQ is here to deliver blazing-fast route calculations and seamless navigation.
 
 ## What Is PathQuick?
 
-PathQuick is more than a piece of software—it's your trusty digital cartographer. With its cutting-edge algorithms, PQ scours the labyrinth of roads connecting the USA’s landmarks and delivers routes with precision and efficiency.
+PathQuick is more than a piece of software—it's your trusty digital cartographer. With its cutting-edge algorithms, PQ scours the labyrinth of roads connecting the landmarks and delivers routes with precision and efficiency.
 
-## Why PathQuick Stands Out ?
+## Why PathQuick Stands Out?
 
 PathQuick isn't just about getting you from Point A to Point B; it’s about doing so with flair and finesse. We've poured our love for problem-solving and optimization into this project to ensure:
 
@@ -29,11 +29,35 @@ Accuracy with Balance: Real-world problems often demand compromises, and PQ’s 
 
 ## Behind the Scenes Magic
 
-PathQuick is fueled by the raw computational power of C++, honed to perfection for speed and reliability. It wields algorithms that have been meticulously designed to navigate massive datasets, crunching through the colossal USA-roads.csv with ease.
+PathQuick is fueled by the raw computational power of C++, honed to perfection for speed and reliability. It wields algorithms that have been meticulously designed to navigate massive datasets, crunching through colossal .csv files with ease.
 
 But we didn’t stop there! PQ also includes a robust data validation tool to ensure every connection is rock-solid. Bidirectional roads? Fully connected graph? We’ve checked it all so you don’t have to.
 
 Go forth, chart your fastest adventure, and remember—all roads lead to PathQuick! 🌟
+
+## How to use PathQuick?
+
+PathQuick is available on both macOS and Windows.
+
+To benefit from PathQuick's algorithm and path finding, you just need to perform few steps.
+
+1. **Obtain the project source**
+
+- Open your terminal
+- Clone this repository by typing `git clone https://github.com/algosup/2024-2025-project-3-quickest-path-team-6`
+- Type `cd 2024-2025-project-3-quickest-path-team-6` to get into the project's directory
+
+2. **Assure everything is set-up**
+
+- Type `cd Src` to get into the source folder
+- Assure a .csv file locates in the Src folder
+
+1. **Run the program**
+
+You can run the program in various ways:
+
+- Run the `pathQuickLauncher` file, which will launch both the server and the application in dedicated terminal windows
+- Run separately both files, the `startServer` file in the Server folder and the `startClient` file in the Client folder
 
 ## Collaborators
 
