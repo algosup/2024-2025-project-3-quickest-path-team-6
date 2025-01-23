@@ -146,8 +146,8 @@ Key details displayed during this process include:
   - Time taken for the calculation.
   - Confirmation that the data has been converted to both JSON and XML formats and saved.
 
-![image](https://github.com/user-attachments/assets/676a34d5-f7ca-49b0-a8e3-20686539a5b0)
-![image](https://github.com/user-attachments/assets/393eb4ff-1010-4ced-ae8e-4c30a2897619)
+![image](https://github.com/user-attachments/assets/d3dc630e-c125-424c-a74d-0e7542d7b48a)
+
 
 ## Non-Functional Requirements
 
