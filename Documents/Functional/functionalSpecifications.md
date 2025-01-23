@@ -222,11 +222,11 @@ Futur improvements
 | Term Used                    | Definition                                                                                                  |
 | ---------------------------- | ----------------------------------------------------------------------------------------------------------- |
 | PathQuick                    | The name of the tool designed to calculate the shortest path between two landmarks.                         |
-| JSON                         | A lightweight data-interchange format used to represent structured data in a readable format.               |
-| XML                          | A markup language used for encoding documents in a format that is both human-readable and machine-readable. |
-| Dataset                      | A collection of data points, here representing landmarks and their connections.                             |
-| DAG (Directed Acyclic Graph) | A graph with directed edges where no cycles are present, used for shortest-path calculations.               |
-| REST API                     | An architectural style for designing networked applications that use standard HTTP methods.                 |
-| Landmark                     | A node or point in the dataset representing a location within the transportation network.                   |
-| A\*                          | A graph traversal and pathfinding algorithm that is widely used for shortest-path calculations.             |
+| JSON                         | Lightweight data-interchange format used to represent structured data in a readable format.               |
+| XML                          | Markup language used for encoding documents in a format that is both human-readable and machine-readable. |
+| Dataset                      | Collection of data points, here representing landmarks and their connections.                             |
+| DAG (Directed Acyclic Graph) | Graph with directed edges where no cycles are present, used for shortest-path calculations.               |
+| REST API                     | Architectural style for designing networked applications that use standard HTTP methods.                 |
+| Landmark                     | Node or point in the dataset representing a location within the transportation network.                   |
+| A\*                          | Graph traversal and pathfinding algorithm that is widely used for shortest-path calculations.             |
 | Bin Folder                   | Folder where the output files (e.g., JSON/XML results) are stored by the program.                           |
