@@ -12,7 +12,7 @@ Our task is to create a tool that delivers precise results with the challenges o
 - Show functionality via a REST API supporting both JSON and XML response formats.
 - Ensure the solution is optimized for a large-scale dataset (24 million nodes) and meets performance goals.
 
-#### Project scopes
+#### Project Scopes
 
 | In Scope                                                                       |
 | ------------------------------------------------------------------------------ |
@@ -85,7 +85,7 @@ Our task is to create a tool that delivers precise results with the challenges o
     }
     ```
   - XML:
-    ```xml
+    ```XML
     <response>
       <path>
         <landmark>101</landmark>
@@ -116,7 +116,7 @@ Our task is to create a tool that delivers precise results with the challenges o
 The main menu serves as the starting point for all user interactions. From here, users can:
 
 - Calculate the quickest path between two landmarks.
-- View the contributors of the project in the credits section.
+- View the project contributors in the credits section.
 - Exit the program and return to the console.
 
 ![image](https://github.com/user-attachments/assets/a19a7b4d-3885-4a48-ae41-45bd8b2fcc5e)
@@ -149,17 +149,28 @@ Key details displayed during this process include:
 ![image](https://github.com/user-attachments/assets/c2d45795-efab-4309-932e-3e2ede19e622)
 
 
+
+## Personas
+
+<img width="978" alt="persona1" src="https://github.com/user-attachments/assets/a93bfaa6-399f-43f6-ba20-425a093c1ee9" />
+
+<img width="978" alt="persona2" src="https://github.com/user-attachments/assets/a8c051a2-f38d-4e5e-8116-9f7fa23913e3" />
+
+<img width="978" alt="persona3" src="https://github.com/user-attachments/assets/fd50f3e2-fed6-4801-a3e6-01543b346e5b" />
+
+
+
 ## Non-Functional Requirements
 
 **User Experience**
 
-- The program should include a user interface, in which users could navigate and use features included in the latest release.
+- The program should include a user interface, in which users can navigate and use features included in the latest release.
 - The interface should be minimal and usable through a computer's terminal.
-- The interface should be understandable enough so that the user do not need external help while using the program.
+- The interface should be understandable enough so that the user does not need external help while using the program.
 
 **User Interaction**
 
-- The server should not take longer than a minute to setup itself.
+- The server should not take longer than a minute to set up itself.
 - Between each human and machine interaction there should be a visual indicator that shows the program is still running, the user should not wait for more than 5 seconds to see a visual response.
 
 **Portability**
@@ -201,6 +212,22 @@ Futur improvements
 Complete glossary
  -->
 
+
+## Use Cases
+
+| Use case number | Name                    | Description                                                                   | Pre-conditions                                       | Flow of events                                                                                                          | Exit criteria                                                             | Note                                |
+| --------------- | ----------------------- | ----------------------------------------------------------------------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ----------------------------------- |
+| 1               | PathQuick Menu          | The user wants to enter the PathQuick menu.                                   | Having the latest version downloaded and unzipped.   | - mac: execute start.sh<br>- windows: execute start.cmd                                                                 | You've entered the menu and can select an option.                         |                                     |
+| 2               | Calculate Shortest Path | Input numbers to see the travel time between them.                            | Being on the menu.                                   | Type 1, then choose a departure and a destination number. Validate with 1 if your choice is correct to have the result. | Have access to the travel time, and calculation time.                     |                                     |
+| 3               | Credits                 | The user wants to view the credits for the application.                       | The program is running, and the user is on the menu. | 1. User selects option 2 from the menu.<br>2. The system shows the contributors and tools used.                         | The user views the credits and can return to the main menu by pressing 0. |                                     |
+| 4               | Exit to Console         | The user wants to leave the menu and return to the console.                   | The program is running, and the user is in the menu. | 1. User selects option 0 from the menu.<br>2. The system terminates and returns control to the console.                 | The program closes, and the terminal is ready for new commands.           | Ensure all processes are terminated |
+| 5               | Validated Bin Output     | The user wants to check if JSON and XML files were created in the bin folder. | The program is running, and the user is in the menu. | The user goes into the Bin folder and checks if the files are here.                                                        | The user knows whether the JSON and XML files were successfully created.  |                                     |
+
+
+
+
+
+
 ## Glossary
 
 | Term Used                    | Definition                                                                                                  |
@@ -210,26 +237,7 @@ Complete glossary
 | XML                          | A markup language used for encoding documents in a format that is both human-readable and machine-readable. |
 | Dataset                      | A collection of data points, here representing landmarks and their connections.                             |
 | DAG (Directed Acyclic Graph) | A graph with directed edges where no cycles are present, used for shortest-path calculations.               |
-| REST API                     | An architectural style for designing networked applications that uses standard HTTP methods.                |
+| REST API                     | An architectural style for designing networked applications that use standard HTTP methods.                |
 | Landmark                     | A node or point in the dataset representing a location within the transportation network.                   |
 | A*                          | A graph traversal and pathfinding algorithm that is widely used for shortest-path calculations.             |
-
-|
-
-## Use Cases
-
-| Use case number | Name                    | Description                                                                   | Pre-conditions                                       | Flow of events                                                                                                          | Exit criteria                                                             | Note                                |
-| --------------- | ----------------------- | ----------------------------------------------------------------------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ----------------------------------- |
-| 1               | PathQuick Menu          | The user wants to enter the PathQuick menu.                                   | Having the latest version downloaded and unzipped.   | - mac: execute start.sh<br>- windows: execute start.cmd                                                                 | You've entered the menu and can select an option.                         |                                     |
-| 2               | Calculate Shortest Path | Input numbers to see the travel time between them.                            | Being in the menu.                                   | Type 1, then choose a departure and a destination number. Validate with 1 if your choice is correct to have the result. | Have access to the travel time, and calculation time.                     |                                     |
-| 3               | Credits                 | The user wants to view the credits for the application.                       | The program is running, and the user is in the menu. | 1. User selects option 2 from the menu.<br>2. The system shows the contributors and tools used.                         | The user views the credits and can return to the main menu by pressing 0. |                                     |
-| 4               | Exit to Console         | The user wants to leave the menu and return to the console.                   | The program is running, and the user is in the menu. | 1. User selects option 0 from the menu.<br>2. The system terminates and returns control to the console.                 | The program closes, and the terminal is ready for new commands.           | Ensure all processes are terminated |
-| 5               | Validate Bin Output     | The user wants to check if JSON and XML files were created in the bin folder. | The program is running, and the user is in the menu. | The user goes in the Bin folder and check if the files are here.                                                        | The user knows whether the JSON and XML files were successfully created.  |                                     |
-
-## Personas
-
-<img width="978" alt="persona1" src="https://github.com/user-attachments/assets/a93bfaa6-399f-43f6-ba20-425a093c1ee9" />
-
-<img width="978" alt="persona2" src="https://github.com/user-attachments/assets/a8c051a2-f38d-4e5e-8116-9f7fa23913e3" />
-
-<img width="978" alt="persona3" src="https://github.com/user-attachments/assets/fd50f3e2-fed6-4801-a3e6-01543b346e5b" />
+| Bin Folder | Folder where the output files (e.g., JSON/XML results) are stored by the program.
