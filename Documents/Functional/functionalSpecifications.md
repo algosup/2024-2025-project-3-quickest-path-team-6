@@ -1,5 +1,30 @@
 # Functional Specifications
 
+
+
+# Table of Contents
+
+- [Project Overview](#project-overview)  
+   - [Project Definition](#project-definition)  
+   - [Objectives](#objectives)  
+   - [Project Scopes](#project-scopes)  
+   - [Deliverables](#deliverables)  
+- [Stakeholders](#stakeholders)  
+   - [Project Roles](#project-roles)  
+   - [Other Stakeholders](#other-stakeholders)  
+- [Functional Requirements](#functional-requirements)  
+- [UI Snapshots](#ui-snapshots)  
+   - [Main Menu](#main-menu)  
+   - [Find My Way](#find-my-way)  
+   - [Loading Screens](#loading-screens)  
+- [Personas](#personas)  
+- [Use Cases](#use-cases)  
+- [Non-Functional Requirements](#non-functional-requirements)  
+- [Available Resources](#available-resources)  
+- [Learning Resources](#learning-resources)  
+- [Future Improvements](#future-improvements)  
+- [Glossary](#glossary)
+
 ## Project Overview
 
 ### Project Definition
@@ -216,6 +241,10 @@ To have a better understanding of C++, data structures, algorithms, and REST API
 <!-- MUST ADD:
 Futur improvements
  -->
+## Futur Improvements
+
+TBD
+
 
 ## Glossary
 
