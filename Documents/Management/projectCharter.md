@@ -1,6 +1,6 @@
 # Project Charter - PathQuick
 
-## Table of Content
+## Table Of Content
 
 - [Project Description](#project-description)
     - [Project Overview](#project-overview)
