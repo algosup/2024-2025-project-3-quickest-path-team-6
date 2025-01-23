@@ -150,11 +150,11 @@ Key details displayed during this process include:
 
 ## Personas
 
-<img width="978" alt="persona1" src="https://github.com/user-attachments/assets/a93bfaa6-399f-43f6-ba20-425a093c1ee9" />
+<img width="949" alt="personaPAGNAN" src="https://github.com/user-attachments/assets/cab0e867-d391-4787-896e-5db29e84e1f3" />
 
-<img width="978" alt="persona2" src="https://github.com/user-attachments/assets/a8c051a2-f38d-4e5e-8116-9f7fa23913e3" />
+<img width="949" alt="personaLEE" src="https://github.com/user-attachments/assets/0e37228a-7aa7-42cb-8d2b-cac49e2c3667" />
 
-<img width="978" alt="persona3" src="https://github.com/user-attachments/assets/fd50f3e2-fed6-4801-a3e6-01543b346e5b" />
+<img width="949" alt="personaBroussard" src="https://github.com/user-attachments/assets/62c989bc-c874-4e3d-a6a9-3e9534bbeae9" />
 
 ## Use Cases
 
