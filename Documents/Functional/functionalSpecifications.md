@@ -130,9 +130,9 @@ This section allows users to input their desired departure and destination point
 
 Once both inputs are validated, the system processes the request to calculate the shortest path.
 
-![image](https://github.com/user-attachments/assets/9dda8114-5318-4c9d-ac90-4985f30793ad)
+![image](https://github.com/user-attachments/assets/92539dc3-24ef-43b0-abda-81707ca8b876)
 
-![image](https://github.com/user-attachments/assets/efc353aa-f3e4-4566-891b-71c36fd96f52)
+![image](https://github.com/user-attachments/assets/0c15e08e-09a7-41ba-9262-d8e7b5d9fcac)
 
 ### Loading Screens
 
@@ -146,7 +146,7 @@ Key details displayed during this process include:
   - Time taken for the calculation.
   - Confirmation that the data has been converted to both JSON and XML formats and saved.
 
-![image](https://github.com/user-attachments/assets/d3dc630e-c125-424c-a74d-0e7542d7b48a)
+![image](https://github.com/user-attachments/assets/e9a249b5-eee6-450d-a233-f5de7ad439b7)
 
 
 ## Non-Functional Requirements
