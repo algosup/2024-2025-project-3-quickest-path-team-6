@@ -28,16 +28,16 @@ Our task is to create a tool that delivers precise results with the challenges o
 
 #### Deliverables
 
-| Name                      | Type                              | Deadline           |
-| ------------------------- | --------------------------------- | ------------------ |
-| Functional Specifications | Documentation                     | February 7th 2025  |
-| Technical Specification   | Documentation                     | February 7th 2025  |
-| Management Documents      | Documentation                     | February 7th 2025  |
-| C++ Source Code           | Fully commented code              | February 7th 2025  |
-| REST API Implementation   | API supporting JSON/XML           | February 7th 2025  |
-| Dataset Validation Tool   | Standalone utility                | February 7th 2025  |
-| Test Suite                | Detailed tests and testing strategy| February 7th 2025  |
-| Oral Presentation         | Presentation                      | February 14th 2025 |
+| Name                      | Type                                | Deadline           |
+| ------------------------- | ----------------------------------- | ------------------ |
+| Functional Specifications | Documentation                       | February 7th 2025  |
+| Technical Specification   | Documentation                       | February 7th 2025  |
+| Management Documents      | Documentation                       | February 7th 2025  |
+| C++ Source Code           | Fully commented code                | February 7th 2025  |
+| REST API Implementation   | API supporting JSON/XML             | February 7th 2025  |
+| Dataset Validation Tool   | Standalone utility                  | February 7th 2025  |
+| Test Suite                | Detailed tests and testing strategy | February 7th 2025  |
+| Oral Presentation         | Presentation                        | February 14th 2025 |
 
 ---
 
@@ -148,8 +148,6 @@ Key details displayed during this process include:
 
 ![image](https://github.com/user-attachments/assets/c2d45795-efab-4309-932e-3e2ede19e622)
 
-
-
 ## Personas
 
 <img width="978" alt="persona1" src="https://github.com/user-attachments/assets/a93bfaa6-399f-43f6-ba20-425a093c1ee9" />
@@ -158,7 +156,15 @@ Key details displayed during this process include:
 
 <img width="978" alt="persona3" src="https://github.com/user-attachments/assets/fd50f3e2-fed6-4801-a3e6-01543b346e5b" />
 
+## Use Cases
 
+| Use case number | Name                    | Description                                                                   | Pre-conditions                                       | Flow of events                                                                                                          | Exit criteria                                                             | Note                                |
+| --------------- | ----------------------- | ----------------------------------------------------------------------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ----------------------------------- |
+| 1               | PathQuick Menu          | The user wants to enter the PathQuick menu.                                   | Having the latest version downloaded and unzipped.   | - mac: execute start.sh<br>- windows: execute start.cmd                                                                 | You've entered the menu and can select an option.                         |                                     |
+| 2               | Calculate Shortest Path | Input numbers to see the travel time between them.                            | Being on the menu.                                   | Type 1, then choose a departure and a destination number. Validate with 1 if your choice is correct to have the result. | Have access to the travel time, and calculation time.                     |                                     |
+| 3               | Credits                 | The user wants to view the credits for the application.                       | The program is running, and the user is on the menu. | 1. User selects option 2 from the menu.<br>2. The system shows the contributors and tools used.                         | The user views the credits and can return to the main menu by pressing 0. |                                     |
+| 4               | Exit to Console         | The user wants to leave the menu and return to the console.                   | The program is running, and the user is in the menu. | 1. User selects option 0 from the menu.<br>2. The system terminates and returns control to the console.                 | The program closes, and the terminal is ready for new commands.           | Ensure all processes are terminated |
+| 5               | Validated Bin Output    | The user wants to check if JSON and XML files were created in the bin folder. | The program is running, and the user is in the menu. | The user goes into the Bin folder and checks if the files are here.                                                     | The user knows whether the JSON and XML files were successfully created.  |
 
 ## Non-Functional Requirements
 
@@ -209,24 +215,7 @@ To have a better understanding of C++, data structures, algorithms, and REST API
 
 <!-- MUST ADD:
 Futur improvements
-Complete glossary
  -->
-
-
-## Use Cases
-
-| Use case number | Name                    | Description                                                                   | Pre-conditions                                       | Flow of events                                                                                                          | Exit criteria                                                             | Note                                |
-| --------------- | ----------------------- | ----------------------------------------------------------------------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ----------------------------------- |
-| 1               | PathQuick Menu          | The user wants to enter the PathQuick menu.                                   | Having the latest version downloaded and unzipped.   | - mac: execute start.sh<br>- windows: execute start.cmd                                                                 | You've entered the menu and can select an option.                         |                                     |
-| 2               | Calculate Shortest Path | Input numbers to see the travel time between them.                            | Being on the menu.                                   | Type 1, then choose a departure and a destination number. Validate with 1 if your choice is correct to have the result. | Have access to the travel time, and calculation time.                     |                                     |
-| 3               | Credits                 | The user wants to view the credits for the application.                       | The program is running, and the user is on the menu. | 1. User selects option 2 from the menu.<br>2. The system shows the contributors and tools used.                         | The user views the credits and can return to the main menu by pressing 0. |                                     |
-| 4               | Exit to Console         | The user wants to leave the menu and return to the console.                   | The program is running, and the user is in the menu. | 1. User selects option 0 from the menu.<br>2. The system terminates and returns control to the console.                 | The program closes, and the terminal is ready for new commands.           | Ensure all processes are terminated |
-| 5               | Validated Bin Output     | The user wants to check if JSON and XML files were created in the bin folder. | The program is running, and the user is in the menu. | The user goes into the Bin folder and checks if the files are here.                                                        | The user knows whether the JSON and XML files were successfully created.  |                                     |
-
-
-
-
-
 
 ## Glossary
 
@@ -237,7 +226,7 @@ Complete glossary
 | XML                          | A markup language used for encoding documents in a format that is both human-readable and machine-readable. |
 | Dataset                      | A collection of data points, here representing landmarks and their connections.                             |
 | DAG (Directed Acyclic Graph) | A graph with directed edges where no cycles are present, used for shortest-path calculations.               |
-| REST API                     | An architectural style for designing networked applications that use standard HTTP methods.                |
+| REST API                     | An architectural style for designing networked applications that use standard HTTP methods.                 |
 | Landmark                     | A node or point in the dataset representing a location within the transportation network.                   |
-| A*                          | A graph traversal and pathfinding algorithm that is widely used for shortest-path calculations.             |
-| Bin Folder | Folder where the output files (e.g., JSON/XML results) are stored by the program.
+| A\*                          | A graph traversal and pathfinding algorithm that is widely used for shortest-path calculations.             |
+| Bin Folder                   | Folder where the output files (e.g., JSON/XML results) are stored by the program.                           |
