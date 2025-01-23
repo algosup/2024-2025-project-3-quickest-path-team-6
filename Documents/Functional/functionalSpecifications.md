@@ -119,7 +119,7 @@ The main menu serves as the starting point for all user interactions. From here,
 - View the contributors of the project in the credits section.
 - Exit the program and return to the console.
 
-![image](https://github.com/user-attachments/assets/be797d97-b57e-4d65-9df0-a550f43d92cd)
+![image](https://github.com/user-attachments/assets/a19a7b4d-3885-4a48-ae41-45bd8b2fcc5e)
 
 ### Find My Way
 
@@ -146,7 +146,7 @@ Key details displayed during this process include:
   - Time taken for the calculation.
   - Confirmation that the data has been converted to both JSON and XML formats and saved.
 
-![image](https://github.com/user-attachments/assets/e9a249b5-eee6-450d-a233-f5de7ad439b7)
+![image](https://github.com/user-attachments/assets/34d9bc57-a5ba-4664-8616-cdc79f20b92e)
 
 
 ## Non-Functional Requirements
