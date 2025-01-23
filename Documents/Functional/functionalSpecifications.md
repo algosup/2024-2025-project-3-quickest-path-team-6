@@ -2,7 +2,10 @@
 
 
 
-# Table of Contents
+## Table of Contents
+
+
+</summary>
 
 - [Project Overview](#project-overview)  
    - [Project Definition](#project-definition)  
@@ -24,6 +27,10 @@
 - [Learning Resources](#learning-resources)  
 - [Future Improvements](#future-improvements)  
 - [Glossary](#glossary)
+
+
+</details>
+
 
 ## Project Overview
 
