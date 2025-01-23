@@ -156,7 +156,7 @@ bool isFullyConnected(UnionFind& uf) {
 }
 
 int main() {
-    string filename = "../USA-roads.csv";
+    string filename = "./USA-roads.csv";
     unordered_map<int, vector<int>> graph;
     UnionFind uf;
     bool hasDuplicates = false;
