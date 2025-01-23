@@ -57,19 +57,19 @@ void addEdge(unordered_map<int, vector<int>>& graph, int u, int v) {
 }
 
 // Function to check for duplicates and build the graph
-bool processFile(const string& filename, unordered_map<int, vector<int>>& graph, UnionFind& uf, bool& hasDuplicates) {
-    ifstream inputFile(filename);
-    if (!inputFile.is_open()) {
+bool processFile(const string& filename, unordered_map<int, vector<int>>& graph, UnionFind& uf, bool& has_duplicates) {
+    ifstream input_file(filename);
+    if (!input_file.is_open()) {
         cerr << "Error: Could not open file." << endl;
         return false;
     }
 
     unordered_set<pair<int, int>, PairHash> edges;
     string line;
-    size_t lineCount = 0;
+    size_t line_count = 0;
 
-    while (getline(inputFile, line)) {
-        lineCount++;
+    while (getline(input_file, line)) {
+        line_count++;
         stringstream ss(line);
         vector<int> edge;
         string token;
@@ -84,7 +84,7 @@ bool processFile(const string& filename, unordered_map<int, vector<int>>& graph,
             // Check for duplicates
             if (edges.find(road) != edges.end()) {
                 cerr << "Duplicate found: " << edge[0] << "," << edge[1] << endl;
-                hasDuplicates = true;
+                has_duplicates = true;
             } else {
                 edges.insert(road);
             }
@@ -99,41 +99,41 @@ bool processFile(const string& filename, unordered_map<int, vector<int>>& graph,
             return false;
         }
 
-        if (lineCount % 100000 == 0) {
-            cout << "Processed " << lineCount << " lines..." << endl;
+        if (line_count % 100000 == 0) {
+            cout << "Processed " << line_count << " lines..." << endl;
         }
     }
 
-    inputFile.close();
+    input_file.close();
     return true;
 }
 
 // DFS function to check for cycles
-bool hasCycle(int node, unordered_map<int, vector<int>>& graph, unordered_set<int>& visited, unordered_set<int>& recursionStack) {
+bool hasCycle(int node, unordered_map<int, vector<int>>& graph, unordered_set<int>& visited, unordered_set<int>& recursion_stack) {
     visited.insert(node);
-    recursionStack.insert(node);
+    recursion_stack.insert(node);
 
     for (int neighbor : graph[node]) {
-        if (recursionStack.count(neighbor)) {
+        if (recursion_stack.count(neighbor)) {
             return true;
         }
-        if (!visited.count(neighbor) && hasCycle(neighbor, graph, visited, recursionStack)) {
+        if (!visited.count(neighbor) && hasCycle(neighbor, graph, visited, recursion_stack)) {
             return true;
         }
     }
 
-    recursionStack.erase(node);
+    recursion_stack.erase(node);
     return false;
 }
 
 // Function to check if the graph is acyclic
 bool isAcyclic(unordered_map<int, vector<int>>& graph) {
     unordered_set<int> visited;
-    unordered_set<int> recursionStack;
+    unordered_set<int> recursion_stack;
 
     for (const auto& entry : graph) {
         int node = entry.first;
-        if (!visited.count(node) && hasCycle(node, graph, visited, recursionStack)) {
+        if (!visited.count(node) && hasCycle(node, graph, visited, recursion_stack)) {
             return false;
         }
     }
@@ -159,7 +159,7 @@ int main() {
     string filename = "USA-roads.csv";
     unordered_map<int, vector<int>> graph;
     UnionFind uf;
-    bool hasDuplicates = false;
+    bool has_duplicates = false;
 
     cout << "Select an option:\n";
     cout << "1. Check for duplicates\n";
@@ -169,13 +169,13 @@ int main() {
     int choice;
     cin >> choice;
 
-    if (!processFile(filename, graph, uf, hasDuplicates)) {
+    if (!processFile(filename, graph, uf, has_duplicates)) {
         cerr << "Error while processing the file." << endl;
         return 1;
     }
 
     if (choice == 1) {
-        if (hasDuplicates) {
+        if (has_duplicates) {
             cout << "The file contains duplicate connections." << endl;
         } else {
             cout << "No duplicate connections found." << endl;
