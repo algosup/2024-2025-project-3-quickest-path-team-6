@@ -4,7 +4,7 @@
 using namespace std;
 
 int input = 0;
-bool inputException = false;
+bool input_exception = false;
 
 int userInputInt(bool* exception)
 {
@@ -31,10 +31,10 @@ int userInputInt(bool* exception)
 
 void handleException()
 {
-    if (inputException)
+    if (input_exception)
     {
         cout << "Invalid input! Expected a number from the list." << endl;
-        inputException = false;
+        input_exception = false;
     }
     else
         cout << endl;

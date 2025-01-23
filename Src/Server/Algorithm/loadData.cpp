@@ -1,14 +1,17 @@
 #include <iostream>
 #include <fstream>
-#include <sstream>
 #include <vector>
 #include <string>
 #include <unordered_map>
-#include <unistd.h>
 #include <thread>
+#include <chrono>
+#ifdef _WIN32
+#include <Windows.h>
+#else
+#include <unistd.h>
+#endif
 
 using namespace std;
-#include <chrono>
 using namespace std::chrono;
 
 bool ended = false;
@@ -20,13 +23,22 @@ struct Edge {
     double time;
 };
 
+void wait(int time)
+{
+    #ifdef _WIN32
+    Sleep(time/1000);
+    #else
+    usleep(time);
+    #endif
+}
+
 ifstream file;
-unordered_map<int, vector<Edge>> dataGraph;
+unordered_map<int, vector<Edge>> data_graph;
 
 unordered_map<int, vector<Edge>> loadDataset() {
-    string filename = "USA-roads.csv";
+    string file_name = "../USA-roads.csv";
 
-    file.open(filename);
+    file.open(file_name);
 
     if (!file.is_open()) {
         cerr << "Error opening file!" << endl;
@@ -46,7 +58,7 @@ unordered_map<int, vector<Edge>> loadDataset() {
     auto duration = duration_cast<seconds>(stop - start); // get task duration
 
     cout << "\nLoaded in " << duration.count() << " seconds!\n" << endl;
-    return dataGraph;
+    return data_graph;
 }
 
 void getData()
@@ -59,8 +71,8 @@ void getData()
         char comma;
         ss >> from >> comma >> to >> comma >> time;
 
-        dataGraph[from].push_back({to, time});
-        dataGraph[to].push_back({from, time}); // Bidirectional connection
+        data_graph[from].push_back({to, time});
+        data_graph[to].push_back({from, time}); // Bidirectional connection
     }
     ended = true;
 }
@@ -70,9 +82,9 @@ void loadingCat()
     cout << "                   /\\_/\\\n" << flush;
     while(!ended){
         cout << "Loading dataset.. / o.o \\" << "\r" << flush;
-        usleep(1000000);
+        wait(1000000);
         cout << "Loading dataset.. / -.- \\" << "\r" << flush;
-        usleep(150000);
+        wait(150000);
     }
     cout << "Dataset loaded!   / ^.^ \\" << flush;
 }

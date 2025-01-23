@@ -13,8 +13,8 @@
 #endif
 #pragma comment(lib, "Ws2_32.lib")
 #include "../Algorithm/algorithm.cpp"
-#include "../Headers/Formatting/convertionJson.hpp"
-#include "../Headers/Formatting/convertionXml.hpp"
+#include "../Formatting/conversionJson.hpp"
+#include "../Formatting/conversionXml.hpp"
 
 void Api::closeSocket(int socket) {
 #ifdef _WIN32
@@ -29,8 +29,8 @@ Api::Api(int port) : port(port), server_socket(-1) {}
 
 void Api::start() {
 #ifdef _WIN32
-    WSADATA wsaData;
-    if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
+    WSADATA wsa_data;
+    if (WSAStartup(MAKEWORD(2, 2), &wsa_data) != 0) {
         std::cerr << "WSAStartup failed\n";
         exit(EXIT_FAILURE);
     }
@@ -111,10 +111,10 @@ void Api::handleClient(int client_socket) {
     closeSocket(client_socket);
 }
 
-std::string Api::createHttpResponse(const std::string &body, const std::string &contentType) {
+std::string Api::createHttpResponse(const std::string &body, const std::string &content_type) {
     std::ostringstream response;
     response << "HTTP/1.1 200 OK\r\n"
-             << "Content-Type: " << contentType << "\r\n"
+             << "Content-Type: " << content_type << "\r\n"
              << "Content-Length: " << body.size() << "\r\n"
              << "Connection: close\r\n"
              << "\r\n"
@@ -163,21 +163,21 @@ std::string Api::processRequest(const std::string &request) {
     // Perform your graph traversal using the parsed parameters
     int start = std::stoi(source);
     int end = std::stoi(destination);
-    double pathTime;
+    double path_time;
 
-    std::vector<int> path = modifiedDijkstra(graph, start, end, &pathTime);
+    std::vector<int> path = modifiedDijkstra(graph, start, end, &path_time);
 
     // Generate JSON, XML or plain text response based on the format
     if (format == "json") {
-        convertIntoJson(path, pathTime);
+        convertIntoJson(path, path_time);
         return createHttpResponse("Data converted into JSON.", "application/json");
     } if (format == "xml") {
-        convertIntoXml(path, pathTime);
+        convertIntoXml(path, path_time);
         return createHttpResponse("Data converted into XML.", "application/xml");
     } else {
         // Default to plain text response
         std::ostringstream response;
-        response << "Travel Time: " << pathTime << "\nPath: ";
+        response << "Travel Time: " << path_time << "\nPath: ";
         for (const auto &landmark : path) {
             response << landmark << " ";
         }

@@ -46,7 +46,7 @@ private:
     // Helper function to send error responses
     std::string generateErrorResponse(const std::string &error_message, int status_code);
 
-    std::string createHttpResponse(const std::string &body, const std::string &contentType);
+    std::string createHttpResponse(const std::string &body, const std::string &content_type);
 
     void closeSocket(int socket); 
 };
