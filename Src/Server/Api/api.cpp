@@ -3,6 +3,7 @@
 #include <sstream>
 #include <thread>
 #include <vector>
+#include <chrono>
 #ifdef _WIN32
 #include <winsock2.h>
 #include <ws2tcpip.h>
@@ -10,38 +11,42 @@
 #include <unistd.h>
 #include <sys/socket.h>
 #include <Kernel/netinet/in.h>
+#include <termios.h>
 #endif
 #pragma comment(lib, "Ws2_32.lib")
 #include "../Algorithm/algorithm.cpp"
 #include "../Formatting/conversionJson.hpp"
 #include "../Formatting/conversionXml.hpp"
 
+bool sleeping = false;
+void sleepingAnimation();
+
 void Api::closeSocket(int socket) {
-#ifdef _WIN32
-    closesocket(socket); // Use Winsock's closesocket on Windows
-#else
-    close(socket);       // Use POSIX's close on Linux/macOS
-#endif
+    #ifdef _WIN32
+        closesocket(socket); // Use Winsock's closesocket on Windows
+    #else
+        close(socket);       // Use POSIX's close on Linux/macOS
+    #endif
 }
 
 // Constructor to initialize the API with a specific port
 Api::Api(int port) : port(port), server_socket(-1) {}
 
 void Api::start() {
-#ifdef _WIN32
-    WSADATA wsa_data;
-    if (WSAStartup(MAKEWORD(2, 2), &wsa_data) != 0) {
-        std::cerr << "WSAStartup failed\n";
-        exit(EXIT_FAILURE);
-    }
-#endif
+    #ifdef _WIN32
+        WSADATA wsa_data;
+        if (WSAStartup(MAKEWORD(2, 2), &wsa_data) != 0) {
+            std::cerr << "WSAStartup failed\n";
+            exit(EXIT_FAILURE);
+        }
+    #endif
 
     server_socket = socket(AF_INET, SOCK_STREAM, 0);
     if (server_socket < 0) {
         perror("Socket creation failed");
-#ifdef _WIN32
-        WSACleanup();
-#endif
+        #ifdef _WIN32
+            WSACleanup();
+        #endif
         exit(EXIT_FAILURE);
     }
 
@@ -59,34 +64,32 @@ void Api::start() {
     serverAddr.sin_port = htons(port);
 
     int bind_result = ::bind(server_socket, (sockaddr*)&serverAddr, sizeof(serverAddr));
-if (bind_result < 0) {
-    perror("Bind failed");
-    closeSocket(server_socket);
-#ifdef _WIN32
-    WSACleanup();
-#endif
-    exit(EXIT_FAILURE);
-}
+    if (bind_result < 0) {
+        perror("Bind failed");
+        closeSocket(server_socket);
+        #ifdef _WIN32
+            WSACleanup();
+        #endif
+        exit(EXIT_FAILURE);
+    }
 
     if (listen(server_socket, SOMAXCONN) < 0) {
         perror("Listen failed");
         closeSocket(server_socket);
-#ifdef _WIN32
-        WSACleanup();
-#endif
+        #ifdef _WIN32
+            WSACleanup();
+        #endif
         exit(EXIT_FAILURE);
     }
 
-    std::cout << "Server running on port " << port << "...\n";
+    cout << "Server running on port " << port << "...\n";
+    cout << "Press \'SPACE\' to shut down the server.\n" << endl;
 
-    while (true) {
-        int client_socket = accept(server_socket, nullptr, nullptr);
-        if (client_socket < 0) {
-            perror("Accept failed");
-            continue;
-        }
-
-        std::thread(&Api::handleClient, this, client_socket).detach();
+    thread(sleepingAnimation).detach();
+    thread(&Api::serverOnline, this, server_socket).detach();
+    char key;
+    while(!(key == ' ')){
+        std::cin.get(key);
     }
 }
 
@@ -109,6 +112,7 @@ void Api::handleClient(int client_socket) {
     }
 
     closeSocket(client_socket);
+    sleeping = false;
 }
 
 std::string Api::createHttpResponse(const std::string &body, const std::string &content_type) {
@@ -199,4 +203,39 @@ std::string Api::generateErrorResponse(const std::string &error_message, int sta
 
     response << "\r\nContent-Type: text/plain\r\n\r\n" << error_message;
     return response.str();
+}
+
+void Api::serverOnline(int server_socket){
+    while(true){
+        int client_socket = accept(server_socket, nullptr, nullptr);
+        if (client_socket < 0) {
+            perror("Accept failed");
+            continue;
+        }
+
+        thread(&Api::handleClient, this, client_socket).detach();
+    }
+}
+
+void sleepingAnimation()
+{
+    while(true){
+        auto start = high_resolution_clock::now();
+        while(!sleeping){
+            cout << "\\(^•w•^)                             " << "\r" << flush;
+            auto stop = high_resolution_clock::now();
+            auto duration = duration_cast<seconds>(stop - start);
+            if(duration.count() >= 10){
+                sleeping = true;
+            }
+            wait(1000);
+        }
+        while(sleeping){
+            cout << "_(^-w-^)z                            " << "\r" << flush;
+            wait(500000);
+            cout << "_(^-w-^) z                           " << "\r" << flush;
+            wait(500000);
+        }
+        sleeping = false;
+    }
 }

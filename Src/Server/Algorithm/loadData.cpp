@@ -48,11 +48,10 @@ unordered_map<int, vector<Edge>> loadDataset() {
     auto start = high_resolution_clock::now(); // get time
 
     thread getDataThread(getData);
-
     thread loadingCatThread(loadingCat);
 
-    loadingCatThread.join();
     getDataThread.join();
+    loadingCatThread.join();
 
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<seconds>(stop - start); // get task duration

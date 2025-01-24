@@ -20,6 +20,6 @@ void convertIntoJson(vector<int> path, int task_duration) {
         outFile.close();
         cout << endl << "Path converted into JSON, data written to pathQuick.json\n" << endl;
     } else {
-        cerr << endl << "Error opening JSON file for writing" << endl;
+        cerr << endl << "Error opening JSON file for writing\n" << endl;
     }
 }

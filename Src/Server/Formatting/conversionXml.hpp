@@ -27,6 +27,6 @@ void convertIntoXml(vector<int> path, int task_duration) {
     if (xml_doc.SaveFile("../Client/Bin/pathQuick.xml") == tinyxml2::XML_SUCCESS) {
         cout << "Path converted into XML, data written to pathQuick.xml\n" << endl;
     } else {
-        cerr << "Error writing XML data to file." << endl;
+        cerr << "Error writing XML data to file.\n" << endl;
     }
 }

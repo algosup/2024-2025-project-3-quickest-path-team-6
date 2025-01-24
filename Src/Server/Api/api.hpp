@@ -37,6 +37,7 @@ private:
     int port;                  
     int server_socket;
 
+    void serverOnline(int server_socket);
     // Handles client connections
     void handleClient(int client_socket);
 
