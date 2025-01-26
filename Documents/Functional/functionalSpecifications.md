@@ -1,11 +1,15 @@
 # Functional Specifications
 
 
+<details>
+<summary>
 
-## Table of Contents
 
+
+## Table of Contents 
 
 </summary>
+
 
 - [Project Overview](#project-overview)  
    - [Project Definition](#project-definition)  
@@ -36,7 +40,7 @@
 
 ### Project Definition
 
-Our task is to create a tool that delivers precise results with the challenges of processing large datasets and ensuring smooth API integration. Its purpose is to provide a reliable solution tailored to transportation analysis and optimization needs.
+This project aims to create a software tool that calculates the fastest route between two landmarks in the United States. It will handle large datasets and provide results through a user-friendly REST API supporting common data formats.
 
 #### Objectives
 
@@ -176,7 +180,7 @@ Key details displayed during this process include:
 - Final results, including:
   - Total travel time.
   - Time taken for the calculation.
-  - Confirmation that the data has been converted to both JSON and XML formats and saved.
+  - Confirmation that the data has been converted to JSON or XML formats and saved.
 
 ![image](https://github.com/user-attachments/assets/c2d45795-efab-4309-932e-3e2ede19e622)
 
@@ -219,7 +223,7 @@ Key details displayed during this process include:
 
 - **Total Hours:** 264 hours available to complete the project (from January 6 to February 7).
 - **Team Members:** One computer per team member, as well as another one that will be used as a server.
-- **Mentorship:** Support from [Georgios Tsatiris](https://www.linkedin.com/in/georgios-tsatiris/), our computer science teacher.
+- **Mentorship:** Support from [Georgios TSATIRIS](https://www.linkedin.com/in/georgios-tsatiris/), our computer science teacher.
 
 ---
 
