@@ -11,8 +11,11 @@
 #include <unistd.h>
 #endif
 
+#include <filesystem>
+
 using namespace std;
 using namespace std::chrono;
+namespace fs = std::filesystem;
 
 bool ended = false;
 void getData();
@@ -36,7 +39,19 @@ ifstream file;
 unordered_map<int, vector<Edge>> data_graph;
 
 unordered_map<int, vector<Edge>> loadDataset() {
-    string file_name = "../USA-roads.csv";
+
+    string file_name;
+
+    string constructed_path_str_dbg = "../../Src";
+    string ext(".csv");
+    for (auto& p : fs::recursive_directory_iterator(constructed_path_str_dbg))
+    {
+        if (p.path().extension() == ext){
+            cout << "Opening " << p << '\n' << endl;
+            file_name = p.path().string();
+            break;
+        }
+    }
 
     file.open(file_name);
 
