@@ -93,7 +93,7 @@ void findMyWayMenu(){
              << "|  |\\ /|              |  | | | (_| Y          /                           |\n"
              << "+-------------------------------------------------------------------------+\n";
         if(input != 1 && !is_algorithm_done){
-            cout << "Available _points between " << LOWEST_ID << " and " << HIGHEST_ID << "\n" << endl;
+            cout << "Available points between " << LOWEST_ID << " and " << HIGHEST_ID << "\n" << endl;
             if(departure_point <= 0 || departure_point > HIGHEST_ID){
                 handleException();
                 cout << "Choose a departure -> ";
