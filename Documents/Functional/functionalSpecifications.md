@@ -6,7 +6,7 @@
 
 
 
-## Table of Contents 
+## Table Of Contents 
 
 </summary>
 
@@ -259,10 +259,10 @@ To have a better understanding of C++, data structures, algorithms, and REST API
 
 
 
+<!-- 
+## Future Improvements
 
-## Futur Improvements
-
-TBD
+ -->
 
 
 ## Glossary
@@ -271,7 +271,7 @@ TBD
 | ---------------------------- | ----------------------------------------------------------------------------------------------------------- |
 | PathQuick                    | The name of the tool designed to calculate the shortest path between two landmarks.                         |
 | JSON                         | Lightweight data-interchange format used to represent structured data in a readable format.               |
-| XML                          | Markup language used for encoding documents in a format that is both human-readable and machine-readable. |
+| XML                          | Markup language used to encode documents in a format that is both human-readable and machine-readable. |
 | Dataset                      | Collection of data points, here representing landmarks and their connections.                             |
 | DAG (Directed Acyclic Graph) | Graph with directed edges where no cycles are present, used for shortest-path calculations.               |
 | REST API                     | Architectural style for designing networked applications that use standard HTTP methods.                 |
