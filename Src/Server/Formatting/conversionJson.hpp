@@ -18,8 +18,8 @@ void convertIntoJson(vector<int> path, int task_duration) {
     if (outFile.is_open()) {
         outFile << setw(4) << json_data.dump(4); // Pretty print with 4 spaces
         outFile.close();
-        cout << endl << "Path converted into JSON, data written to pathQuick.json\n" << endl;
+        cout << "Path converted into JSON, data written to pathQuick.json\n" << endl;
     } else {
-        cerr << endl << "Error opening JSON file for writing\n" << endl;
+        cerr << "Error opening JSON file for writing\n" << endl;
     }
 }
