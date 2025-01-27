@@ -28,7 +28,7 @@
 - [Use Cases](#use-cases)  
 - [Non-Functional Requirements](#non-functional-requirements)  
 - [Available Resources](#available-resources)  
-- [Learning Resources](#learning-resources)  
+   - [Learning Resources](#learning-resources)  
 - [Future Improvements](#future-improvements)  
 - [Glossary](#glossary)
 
@@ -217,7 +217,7 @@ Key details displayed during this process include:
 
 **Portability**
 
-- The program should work on MacOS and on Windows.
+- The program should work on MacOS, Windows and Linux.
 
 ## Available Resources
 
@@ -227,9 +227,14 @@ Key details displayed during this process include:
 
 ---
 
+
+
 ### Learning Resources
 
 To have a better understanding of C++, data structures, algorithms, and REST API development, the following resources were given to the students:
+
+
+
 
 #### Videos
 
@@ -240,6 +245,9 @@ To have a better understanding of C++, data structures, algorithms, and REST API
 - [Data Structures and Algorithms in C++](https://youtu.be/8hly31xKli0?si=xUAj3fC6d9h0oKAm)  
   Focused on practical implementations in C++.
 
+
+
+
 #### Articles
 
 - [An Open Guide to Data Structures and Algorithms](https://open.umn.edu/opentextbooks/textbooks/an-open-guide-to-data-structures-and-algorithms)  
@@ -249,9 +257,9 @@ To have a better understanding of C++, data structures, algorithms, and REST API
 - [Building RESTful APIs with C++](https://medium.com/@AlexanderObregon/building-restful-apis-with-c-4c8ac63fe8a7)  
   Step-by-step guide to implementing REST APIs in C++.
 
-<!-- MUST ADD:
-Futur improvements
- -->
+
+
+
 ## Futur Improvements
 
 TBD
