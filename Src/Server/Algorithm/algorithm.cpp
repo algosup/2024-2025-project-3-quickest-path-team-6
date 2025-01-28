@@ -8,7 +8,7 @@ const int HIGHEST_ID = 23947347;
 
 unordered_map<int, vector<Edge>> graph; // get the entire graph (need to be handled by the server)
 
-vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int start, int end, double* time) {
+vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int start, int end, int* time) {
 
     vector<int> path;
 
