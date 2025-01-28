@@ -83,13 +83,35 @@ void Api::start() {
     }
 
     cout << "Server running on port " << port << "...\n";
+    cout << "Press \'C\' to verify the target .csv file." << endl;
     cout << "Press \'SPACE\' to shut down the server.\n" << endl;
 
     thread(sleepingAnimation).detach();
     thread(&Api::serverOnline, this, server_socket).detach();
+    
     char key;
-    while(!(key == ' ')){
-        std::cin.get(key);
+    while(true){
+        cin.get(key);
+        if (key == 'c' || key == 'C')
+        {
+            string file_name;
+
+            string constructed_path_str_dbg = "../../Src";
+            string ext(".csv");
+            for (auto& p : recursive_directory_iterator(constructed_path_str_dbg))
+            {
+                if (p.path().extension() == ext){
+                    cout << "Verifying " << p << "\n" << endl;
+                    file_name = p.path().string();
+                    break;
+                }
+            }
+
+            thread(verifyData, file_name).detach();
+        }
+        else if (key == ' '){
+            break;
+        }
     }
 }
 

@@ -12,10 +12,8 @@ using namespace std::chrono;
 
 ifstream file;
 bool ended = false;
-bool verified = false;
 void getData(const string& file_name);
 void loadingCat(string s);
-void verifyData(const string& file_name);
 
 struct Edge {
     int to;
@@ -49,12 +47,10 @@ unordered_map<int, vector<Edge>> loadDataset() {
         }
     }
 
-    thread verifyDataThread(verifyData, file_name);
     thread getDataThread(getData, file_name);
     thread loadingCatThread(loadingCat, "Loading the file");
 
     getDataThread.join();
-    verifyDataThread.join();
     loadingCatThread.join();
 
     file.close();
@@ -96,12 +92,10 @@ void verifyData(const string& file_name)
         return;
     }
 
-    verified = true;
-
     if (isAcyclic(graph)) {
-        cout << "\nThe file is free of loops." << endl;
+        cout << "The file is free of loops." << endl;
     } else {
-        cout << "\nThe file contains loops." << endl;
+        cout << "The file contains loops." << endl;
     } if (isFullyConnected(uf)) {
         cout << "The graph is fully connected. Every node can reach every other node." << endl;
     } else {
@@ -124,7 +118,7 @@ void loadingCat(string s)
     }
     
     cout << "    /\\_/\\\n" << flush;
-    while(!ended || !verified){
+    while(!ended){
         cout << s << ".. / o.o \\" << "\r" << flush;
         wait(1000000);
         cout << s << ".. / -.- \\" << "\r" << flush;

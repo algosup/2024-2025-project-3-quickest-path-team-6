@@ -63,7 +63,7 @@ void addEdge(unordered_map<int, vector<int>>& graph, int u, int v) {
 bool processFile(const string& file_name, unordered_map<int, vector<int>>& graph, UnionFind& uf, bool& has_duplicates) {
     ifstream file(file_name);
     if (!file.is_open()) {
-        cerr << "Opening file to process" << "\r" << flush;
+        cerr << "Opening file to process" << endl;
         file.open(file_name);
     }
 
@@ -103,7 +103,7 @@ bool processFile(const string& file_name, unordered_map<int, vector<int>>& graph
         }
 
         if (line_count % 7000000 == 0) {
-            cout << "Processed " << line_count << " lines" << "\r" << flush;
+            cout << "Processed " << line_count << " lines" << endl << endl;
         }
     }
 
