@@ -1,7 +1,6 @@
 #include "api.hpp"
 #include <iostream>
 #include <sstream>
-#include <thread>
 #include <vector>
 #include <chrono>
 #ifdef _WIN32
@@ -168,7 +167,7 @@ std::string Api::processRequest(const std::string &request) {
     // Perform your graph traversal using the parsed parameters
     int start = std::stoi(source);
     int end = std::stoi(destination);
-    double path_time;
+    int path_time;
 
     std::vector<int> path = modifiedDijkstra(graph, start, end, &path_time);
 

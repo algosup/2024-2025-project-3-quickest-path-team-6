@@ -12,12 +12,6 @@ vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int 
 
     vector<int> path;
 
-    if (start == end){
-        path.push_back(end);
-        reverse(path.begin(), path.end());
-        return path;
-    }
-
     // Min-heap: (total time, landmark ID)
     priority_queue<pair<double, int>, vector<pair<double, int>>, greater<>> pq;
 
