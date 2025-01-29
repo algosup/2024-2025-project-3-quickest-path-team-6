@@ -1,5 +1,6 @@
 #include "unitTesting.hpp"
 #include "dijsktraTests.hpp"
+#include "serverTests.hpp"
 #include "display.hpp"
 
 int main()
@@ -37,6 +38,7 @@ int main()
         }
         else if (input == "2")
         {
+            serverTests();
             clearScreen();
         }
         else if (input == "3")
