@@ -9,6 +9,10 @@
 
 using namespace std;
 using namespace std::chrono;
+namespace fs = std::filesystem;
+
+
+int min_id = 1, max_id = 0;
 
 ifstream file;
 bool ended = false;
@@ -36,9 +40,9 @@ unordered_map<int, vector<Edge>> loadDataset() {
     auto start = high_resolution_clock::now(); // get time
     string file_name;
 
-    string constructed_path_str_dbg = "../../Src";
+    string path = "../../Src";
     string ext(".csv");
-    for (auto& p : recursive_directory_iterator(constructed_path_str_dbg))
+    for (auto& p : fs::recursive_directory_iterator(path))
     {
         if (p.path().extension() == ext){
             cout << "Opening " << p << '\n' << endl;
@@ -58,7 +62,8 @@ unordered_map<int, vector<Edge>> loadDataset() {
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<seconds>(stop - start); // get task duration
 
-    cout << "\nLoaded in " << duration.count() << " seconds!\n" << endl;
+    cout << "\nLoaded in " << duration.count() << " seconds!\n" 
+         << "Available landmarks from " << min_id << " to " << max_id << "\n" << endl;
     return data_graph;
 }
 
@@ -76,6 +81,12 @@ void getData(const string& file_name)
         char comma;
         ss >> from >> comma >> to >> comma >> time;
 
+        if(from > max_id){
+            max_id = from;
+        }
+        if(to > max_id){
+            max_id = to;
+        }
         data_graph[from].push_back({to, time});
         data_graph[to].push_back({from, time}); // Bidirectional connection
     }
