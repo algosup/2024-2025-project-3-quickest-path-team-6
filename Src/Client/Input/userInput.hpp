@@ -29,13 +29,13 @@ int userInputInt(bool* exception)
     return num;
 }
 
-void handleException()
+void handleException(bool server_is_online, int page)
 {
-    if (input_exception)
-    {
+    if (input_exception) {
         cout << "Invalid input! Expected a number from the list." << endl;
         input_exception = false;
-    }
-    else
+    } else if (!server_is_online && input == 1 && page == 1){
+        cout << "Server not connected. Wait until it is connected." << endl;
+    } else
         cout << endl;
 }

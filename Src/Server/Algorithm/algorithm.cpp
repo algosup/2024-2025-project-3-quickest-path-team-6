@@ -4,26 +4,18 @@
 
 using namespace std::chrono;
 
-const int HIGHEST_ID = 23947347;
-
 unordered_map<int, vector<Edge>> graph; // get the entire graph (need to be handled by the server)
 
-vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int start, int end, double* time) {
+vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int start, int end, int* time) {
 
     vector<int> path;
-
-    if (start == end){
-        path.push_back(end);
-        reverse(path.begin(), path.end());
-        return path;
-    }
 
     // Min-heap: (total time, landmark ID)
     priority_queue<pair<double, int>, vector<pair<double, int>>, greater<>> pq;
 
     // Distance vector to store the shortest path time to each landmark
-    vector<double> distances(HIGHEST_ID + 1, numeric_limits<double>::infinity());
-    vector<int> previous(HIGHEST_ID + 1, -1); // To reconstruct the path
+    vector<double> distances(max_id + 1, numeric_limits<double>::infinity());
+    vector<int> previous(max_id + 1, -1); // To reconstruct the path
 
     distances[start] = 0;
     pq.push({0, start});

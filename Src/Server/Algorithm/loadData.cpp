@@ -1,8 +1,3 @@
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <string>
-#include <unordered_map>
 #include <thread>
 #include <chrono>
 #ifdef _WIN32
@@ -10,20 +5,23 @@
 #else
 #include <unistd.h>
 #endif
-
-#include <filesystem>
+#include "../DataValidation/validateCsv.cpp"
 
 using namespace std;
 using namespace std::chrono;
 namespace fs = std::filesystem;
 
+
+int min_id = 1, max_id = 0;
+
+ifstream file;
 bool ended = false;
-void getData();
-void loadingCat();
+void getData(const string& file_name);
+void loadingCat(string s);
 
 struct Edge {
     int to;
-    double time;
+    int time;
 };
 
 void wait(int time)
@@ -35,16 +33,16 @@ void wait(int time)
     #endif
 }
 
-ifstream file;
 unordered_map<int, vector<Edge>> data_graph;
 
 unordered_map<int, vector<Edge>> loadDataset() {
 
+    auto start = high_resolution_clock::now(); // get time
     string file_name;
 
-    string constructed_path_str_dbg = "../../Src";
+    string path = "../../Src";
     string ext(".csv");
-    for (auto& p : fs::recursive_directory_iterator(constructed_path_str_dbg))
+    for (auto& p : fs::recursive_directory_iterator(path))
     {
         if (p.path().extension() == ext){
             cout << "Opening " << p << '\n' << endl;
@@ -53,52 +51,89 @@ unordered_map<int, vector<Edge>> loadDataset() {
         }
     }
 
-    file.open(file_name);
-
-    if (!file.is_open()) {
-        cerr << "Error opening file!" << endl;
-        exit(EXIT_FAILURE);
-    }
-    
-    auto start = high_resolution_clock::now(); // get time
-
-    thread getDataThread(getData);
-    thread loadingCatThread(loadingCat);
+    thread getDataThread(getData, file_name);
+    thread loadingCatThread(loadingCat, "Loading the file");
 
     getDataThread.join();
     loadingCatThread.join();
 
+    file.close();
+
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<seconds>(stop - start); // get task duration
 
-    cout << "\nLoaded in " << duration.count() << " seconds!\n" << endl;
+    cout << "\nLoaded in " << duration.count() << " seconds!\n" 
+         << "Available landmarks from " << min_id << " to " << max_id << "\n" << endl;
     return data_graph;
 }
 
-void getData()
+void getData(const string& file_name)
 {
+    if (!file.is_open()) {
+        cerr << "Opening file to get data" << "\r" << flush;
+        file.open(file_name);
+    }
     string line;
     while (getline(file, line)) {
         stringstream ss(line);
         int from, to;
-        double time;
+        int time;
         char comma;
         ss >> from >> comma >> to >> comma >> time;
 
+        if(from > max_id){
+            max_id = from;
+        }
+        if(to > max_id){
+            max_id = to;
+        }
         data_graph[from].push_back({to, time});
         data_graph[to].push_back({from, time}); // Bidirectional connection
     }
     ended = true;
 }
 
-void loadingCat()
+void verifyData(const string& file_name)
 {
-    cout << "                   /\\_/\\\n" << flush;
+    unordered_map<int, vector<int>> graph;
+    UnionFind uf;
+    bool has_duplicates = false;
+    if (!processFile(file_name, graph, uf, has_duplicates)) {
+        cerr << "Error while processing the file." << "\r" << flush;
+        return;
+    }
+
+    if (isAcyclic(graph)) {
+        cout << "The file is free of loops." << endl;
+    } else {
+        cout << "The file contains loops." << endl;
+    } if (isFullyConnected(uf)) {
+        cout << "The graph is fully connected. Every node can reach every other node." << endl;
+    } else {
+        cout << "The graph is NOT fully connected. Some nodes are unreachable." << endl;
+    }
+    if (has_duplicates) {
+        cout << "The file contains duplicate connections." << endl;
+    } else {
+        cout << "No duplicate connections found." << endl;
+    }
+
+    cout << endl << endl;
+}
+
+void loadingCat(string s)
+{
+    for (int i = 0; i < s.length(); i++)
+    {
+        cout << " ";
+    }
+    
+    cout << "    /\\_/\\\n" << flush;
     while(!ended){
-        cout << "Loading dataset.. / o.o \\" << "\r" << flush;
+        cout << s << ".. / o.o \\" << "\r" << flush;
         wait(1000000);
-        cout << "Loading dataset.. / -.- \\" << "\r" << flush;
+        cout << s << ".. / -.- \\" << "\r" << flush;
         wait(150000);
     }
-    cout << "Dataset loaded!   / ^.^ \\" << flush;
+    cout << "Dataset loaded!    / ^.^ \\" << "\r" << flush;
 }
