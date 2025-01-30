@@ -23,9 +23,9 @@
 #include <sys/socket.h>
 #include <termios.h>
 #include <netinet/in.h>
+#include <arpa/inet.h>
 #endif
 
-#include <arpa/inet.h>
 #include <limits>
 using namespace std;
 
