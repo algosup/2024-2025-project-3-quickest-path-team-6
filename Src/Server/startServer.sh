@@ -1,4 +1,4 @@
 cd "$(dirname "$0")"
-g++ -std=c++17 Api/server.cpp ../Libraries/Tinyxml2/tinyxml2.cpp -o Bin/server
+g++ -std=gnu++20 -O3 -o Bin/server Api/server.cpp ../Libraries/Tinyxml2/tinyxml2.cpp
 clear
 ./Bin/server

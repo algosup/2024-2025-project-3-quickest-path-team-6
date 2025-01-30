@@ -1,7 +1,6 @@
-#include <iostream>
-#include <limits>
-
-using namespace std;
+#ifndef USER_INPUT_HPP
+#define USER_INPUT_HPP
+#include "../Includes/includes.hpp"
 
 int input = 0;
 bool input_exception = false;
@@ -39,3 +38,4 @@ void handleException(bool server_is_online, int page)
     } else
         cout << endl;
 }
+#endif // !USER_INPUT_HPP

@@ -1,12 +1,8 @@
-#include <iostream>
-#include <chrono>
-#include <fstream>
-#include <sstream>
-#include <iomanip>
+#ifndef DISPLAY_HPP
+#define DISPLAY_HPP
+#include "../Includes/includes.hpp"
 #include "../Input/userInput.hpp"
 #include "../request.hpp"
-
-using namespace std;
 
 void mainMenu();
 void findMyWayMenu();
@@ -89,7 +85,7 @@ void findMyWayMenu(){
     int destination_point = 0;
     bool chosen_format = false; // false = json / true = xml
     bool is_algorithm_done = false;
-    while(page == 2 || input_exception){
+    while(page == 2 && server_is_online || input_exception){
         clearScreen();
         cout << "+----------------------_-------------------_------------------------------+\n"
              << "|                     |_ o ._   _| M \\/\\/ (_| \\/              |/ \\|       |\n"
@@ -134,15 +130,19 @@ void findMyWayMenu(){
                         page = 1;
                         break;
                     case 1:
+                        page = 2;
                         break;
                     case 2:
+                        page = 2;
                         chosen_format = !chosen_format;
                         break;
                     case 3:
+                        page = 2;
                         departure_point = 0;
                         destination_point = 0;
                         break;
                     default:
+                        page = 2;
                         input_exception = true;
                         break;
                 }
@@ -165,6 +165,10 @@ void findMyWayMenu(){
                 input_exception = true;
             else
                 page = 1;
+        }
+        if (!server_is_online){
+            input_exception = false;
+            page = 1;
         }
     }
 }
@@ -209,3 +213,4 @@ void creditsMenu()
             page = 1;
     }
 }
+#endif // !DISPLAY_HPP

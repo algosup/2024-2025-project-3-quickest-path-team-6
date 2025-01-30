@@ -1,3 +1,5 @@
 @echo off
-g++ -std=c++17 Api/server.cpp ../Libraries/Tinyxml2/tinyxml2.cpp -o Bin/server.exe -IInclude -Llib -lws2_32 
+g++ -std=gnu++20 -O3 -o Bin/server.exe Api/server.cpp ../Libraries/Tinyxml2/tinyxml2.cpp -IInclude -Llib -lws2_32
+cls
 Bin\server.exe
+pause
