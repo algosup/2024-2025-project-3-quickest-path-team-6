@@ -414,7 +414,7 @@ To perform the algorithm, we woould need to create a weighted graph.
 
 **Graph Construction**:
 A weighted graph is constructed, where:
-10 global nodes are determined as the graphs' edges.
+Several global nodes are determined as the graphs' edges.
 These nodes are connected to every single node, and connections are stored in a list.
 
 The edges are handled as a structure:
@@ -430,27 +430,27 @@ The global nodes are determined through a simple calculation process:
 
 - The first node is chosen randomly.
 
-<!-- photo here -->
+<img width="250" src="https://github.com/user-attachments/assets/c0f3425d-dd8b-4286-8fb1-b99d9c021f8c" />
 
 - Then, the second node is the furthest away from the first one.
 
-<!-- photo here -->
+<img width="250" src="https://github.com/user-attachments/assets/175ade78-d762-4078-85e2-b4dea4d713ef" />
 
 - And the following ones are the furthest away from the other ones.
 
-<!-- photo here -->
+<img width="250" src="https://github.com/user-attachments/assets/aeae0d9d-5393-449e-9d25-c34d709c1615" />
 
 - Finally, we connect these global nodes to all the other ones.
 
-<!-- photo here -->
+<img width="250" src="https://github.com/user-attachments/assets/b738ec30-4239-4cae-8c9d-d3dca83a298f" />
 
-Since all nodes are connected to 10 global nodes, we can estimate the distance between two nodes in the graph by calculating the difference between their respective distances to a global node.
+- Since all nodes are connected to several global nodes, we can estimate the distance between two nodes in the graph by calculating the difference between their respective distances to a global node.
 
-<!-- photo here -->
+<img width="250" src="https://github.com/user-attachments/assets/7fa6c9a1-3445-4c37-bb91-d3b86ce8ca9d" />
 
-And with this estimation, we can perform the primary algorithm.
+- And with this estimation, we can perform the primary algorithm.
 
-<!-- photo here -->
+<img width="250" src="https://github.com/user-attachments/assets/89ddd532-cfd3-4cc3-836d-2fae10995d2e" />
 
 **Shortest Path Calculation**:
 
