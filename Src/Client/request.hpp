@@ -21,17 +21,12 @@ void closeSocketRequest(int socket)
 }
 
 // URL encoding function
-string urlEncode(const string &str)
-{
+string urlEncode(const string &str) {
     ostringstream encoded;
-    for (unsigned char c : str)
-    {
-        if (isalnum(c) || c == '-' || c == '_' || c == '.' || c == '~')
-        {
+    for (unsigned char c : str) {
+        if (isalnum(c) || c == '-' || c == '_' || c == '.' || c == '~') {
             encoded << c;
-        }
-        else
-        {
+        } else {
             encoded << '%' << setw(2) << setfill('0') << hex << (int)c;
         }
     }
@@ -39,8 +34,7 @@ string urlEncode(const string &str)
 }
 
 // Function to send the request and handle the response
-void sendRequestQuickPath(int start, int end, string file_format)
-{
+void sendRequestQuickPath(int start, int end, string file_format) {
     cout << "Calculating shortest path..." << endl
          << endl;
     auto time_start = chrono::high_resolution_clock::now(); // get time
@@ -64,24 +58,19 @@ void sendRequestQuickPath(int start, int end, string file_format)
     string body;
     sendRequest(http_request, body);
 
-    if (server_is_online)
-    {
+    if (server_is_online) {
         // Write the body to a file
         string filename = "Bin/pathQuick." + format;
         ofstream file(filename, ios::out);
-        if (!file)
-        {
+        if (!file) {
             cerr << "Error opening file for writing!" << endl;
             return;
         }
-        if (format == "json")
-        {
+        if (format == "json") {
             json json_obj = json::parse(body);
             file << setw(4) << json_obj.dump(4);
             ;
-        }
-        else
-        {
+        } else {
             file << body;
         }
         file.close();
@@ -91,13 +80,10 @@ void sendRequestQuickPath(int start, int end, string file_format)
         // Measure time
         auto stop = chrono::high_resolution_clock::now();
         auto duration = chrono::duration_cast<chrono::milliseconds>(stop - time_start);
-        if (duration.count() > 2000)
-        {
+        if (duration.count() > 2000) {
             cout << endl
                  << "Path calculated in " << duration.count() / 1000 << " seconds." << endl;
-        }
-        else
-        {
+        } else {
             cout << endl
                  << "Path calculated in " << duration.count() << " milliseconds." << endl;
         }
@@ -106,10 +92,8 @@ void sendRequestQuickPath(int start, int end, string file_format)
         cerr << "Error connecting to server!" << endl;
 }
 
-void sendRequestId(int &lowest_id, int &highest_id)
-{
-    while (true)
-    {
+void sendRequestId(int &lowest_id, int &highest_id) {
+    while (true) {
         // Build the HTTP GET request
         string http_request = "GET /id? HTTP/1.1\r\n"
                               "Host: localhost:8080\r\n"
@@ -119,18 +103,15 @@ void sendRequestId(int &lowest_id, int &highest_id)
         string body;
         sendRequest(http_request, body);
 
-        if (!server_is_online)
-        {
+        if (!server_is_online) {
             lowest_id = 0;
             highest_id = 0;
         }
-        else if (server_is_online && lowest_id == 0 && highest_id == 0)
-        {
+        else if (server_is_online && lowest_id == 0 && highest_id == 0) {
             istringstream query_stream(body);
             string param;
 
-            while (getline(query_stream, param, '&'))
-            {
+            while (getline(query_stream, param, '&')) {
                 size_t eq_pos = param.find('=');
                 if (eq_pos == string::npos)
                     continue;
@@ -138,12 +119,10 @@ void sendRequestId(int &lowest_id, int &highest_id)
                 string key = param.substr(0, eq_pos);
                 string value = param.substr(eq_pos + 1);
 
-                if (key == "min_id")
-                {
+                if (key == "min_id") {
                     lowest_id = stoi(value);
                 }
-                else if (key == "max_id")
-                {
+                else if (key == "max_id") {
                     highest_id = stoi(value);
                 }
             }
@@ -151,8 +130,7 @@ void sendRequestId(int &lowest_id, int &highest_id)
     }
 }
 
-void sendRequest(string http_request, string &body)
-{
+void sendRequest(string http_request, string &body) {
     #ifdef _WIN32
 
     WSADATA wsaData;
@@ -177,8 +155,7 @@ void sendRequest(string http_request, string &body)
     inet_pton(AF_INET, "127.0.0.1", &server_addr.sin_addr); // Server address
 
     // Connect to the server
-    if (connect(sockfd, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0)
-    {
+    if (connect(sockfd, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0) {
         closeSocketRequest(sockfd);
         server_is_online = false;
         return;
@@ -197,8 +174,7 @@ void sendRequest(string http_request, string &body)
     ssize_t bytes_received;
 #endif
 
-    while ((bytes_received = recv(sockfd, buffer, sizeof(buffer) - 1, 0)) > 0)
-    {
+    while ((bytes_received = recv(sockfd, buffer, sizeof(buffer) - 1, 0)) > 0) {
         buffer[bytes_received] = '\0';
         response += buffer;
     }
@@ -207,8 +183,7 @@ void sendRequest(string http_request, string &body)
 
     // Separate the HTTP headers and body
     size_t header_end = response.find("\r\n\r\n");
-    if (header_end == string::npos)
-    {
+    if (header_end == string::npos) {
         return;
     }
 
