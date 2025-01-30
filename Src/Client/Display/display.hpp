@@ -1,19 +1,15 @@
-#include <iostream>
-#include <chrono>
-#include <fstream>
-#include <sstream>
-#include <iomanip>
+#ifndef DISPLAY_HPP
+#define DISPLAY_HPP
+#include "../Includes/includes.hpp"
 #include "../Input/userInput.hpp"
 #include "../request.hpp"
-
-using namespace std;
 
 void mainMenu();
 void findMyWayMenu();
 void creditsMenu();
 
-const int LOWEST_ID = 1;
-const int HIGHEST_ID = 23947347;
+int lowest_id = 0;
+int highest_id = 0;
 
 int page = 1;
 
@@ -59,7 +55,7 @@ void mainMenu(){
              << "-+-------------+\n"
              << "0| Exit        |\n" 
              << "-+-------------+" << endl;
-        handleException();
+        handleException(server_is_online, page);
         cout << "Your choice -> ";
         input = userInputInt(&input_exception);
         switch(input){
@@ -67,7 +63,10 @@ void mainMenu(){
                 page = 0;
                 break;
             case 1:
-                page = 2;
+                if(server_is_online)
+                    page = 2;
+                else
+                    page = 1;
                 break;
             case 2:
                 page = 3;
@@ -86,24 +85,24 @@ void findMyWayMenu(){
     int destination_point = 0;
     bool chosen_format = false; // false = json / true = xml
     bool is_algorithm_done = false;
-    while(page == 2 || input_exception){
+    while(page == 2 && server_is_online || input_exception){
         clearScreen();
         cout << "+----------------------_-------------------_------------------------------+\n"
              << "|                     |_ o ._   _| M \\/\\/ (_| \\/              |/ \\|       |\n"
              << "|  |\\ /|              |  | | | (_| Y          /                           |\n"
              << "+-------------------------------------------------------------------------+\n";
         if(input != 1 && !is_algorithm_done){
-            cout << "Available _points between " << LOWEST_ID << " and " << HIGHEST_ID << "\n" << endl;
-            if(departure_point <= 0 || departure_point > HIGHEST_ID){
-                handleException();
+            cout << "Available points between " << lowest_id << " and " << highest_id << "\n" << endl;
+            if(departure_point <= 0 || departure_point > highest_id){
+                handleException(server_is_online, page);
                 cout << "Choose a departure -> ";
                 departure_point = userInputInt(&input_exception);
             }
-            else if(destination_point <= 0 || destination_point > HIGHEST_ID){
+            else if(destination_point <= 0 || destination_point > highest_id){
                 cout << "+----------\n"
                      << "| Departure: " << departure_point << "\n"
                      << "+----------" << endl;
-                handleException();
+                handleException(server_is_online, page);
                 cout << "Choose a destination -> ";
                 destination_point = userInputInt(&input_exception);
             }
@@ -123,7 +122,7 @@ void findMyWayMenu(){
                      << "-+-----------------------+\n"
                      << "0| Go back to main menu  |\n" 
                      << "-+-----------------------+\n" << endl;
-                handleException();
+                handleException(server_is_online, page);
                 cout << "Your choice -> ";
                 input = userInputInt(&input_exception);
                 switch(input){
@@ -131,15 +130,19 @@ void findMyWayMenu(){
                         page = 1;
                         break;
                     case 1:
+                        page = 2;
                         break;
                     case 2:
+                        page = 2;
                         chosen_format = !chosen_format;
                         break;
                     case 3:
+                        page = 2;
                         departure_point = 0;
                         destination_point = 0;
                         break;
                     default:
+                        page = 2;
                         input_exception = true;
                         break;
                 }
@@ -152,16 +155,20 @@ void findMyWayMenu(){
                  << "+----------\n" << endl;
             if(!is_algorithm_done){
                 string format = chosen_format == false ? "json" : "xml";
-                sendRequest(departure_point, destination_point, format);
+                sendRequestQuickPath(departure_point, destination_point, format);
                 is_algorithm_done = true;
             }
-            handleException();
+            handleException(server_is_online, page);
             cout << "0| Go to main menu? -> ";
             input = userInputInt(&input_exception);
             if(input != 0)
                 input_exception = true;
             else
                 page = 1;
+        }
+        if (!server_is_online){
+            input_exception = false;
+            page = 1;
         }
     }
 }
@@ -197,7 +204,7 @@ void creditsMenu()
              << "|                       -> the Project Manager:                           |\n"
              << "|                             Evan UHRING                                 |\n"
              << "+-------------------------------------------------------------------------+\n";
-        handleException();
+        handleException(server_is_online, page);
         cout << "0| Go to main menu? -> ";
         input = userInputInt(&input_exception);
         if(input != 0)
@@ -206,3 +213,4 @@ void creditsMenu()
             page = 1;
     }
 }
+#endif // !DISPLAY_HPP
