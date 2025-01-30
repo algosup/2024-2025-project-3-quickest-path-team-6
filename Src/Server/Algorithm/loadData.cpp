@@ -70,7 +70,6 @@ unordered_map<int, vector<Edge>> loadDataset() {
 void getData(const string& file_name)
 {
     if (!file.is_open()) {
-        cerr << "Opening file to get data" << "\r" << flush;
         file.open(file_name);
     }
     string line;
