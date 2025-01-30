@@ -1,8 +1,8 @@
 #ifndef DIJKSTRA
 #define DIJKSTRA
 
-#include "unitTesting.hpp"
-#include "display.hpp"
+#include "../unitTesting.hpp"
+#include "../display.hpp"
 
 #include <thread>
 #include <future>
@@ -64,7 +64,7 @@ void dijkstraTesting()
     for (; pathIt != testPaths.end() && resultIt != results.end(); ++pathIt, ++resultIt)
     {
         const auto &[start, end] = *pathIt;
-        double path_time; // Resulting time
+        int path_time; // Resulting time
         vector<int> path; // Resulting path
 
         // Use a promise and future to handle the timeout
