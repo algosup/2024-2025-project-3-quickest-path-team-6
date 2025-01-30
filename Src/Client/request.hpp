@@ -1,6 +1,6 @@
 #ifndef REQUEST_HPP
 #define REQUEST_HPP
-#include "../includes.hpp"
+#include "./includes/includes.hpp"
 #include "../Libraries/Nlohmann/json.hpp"
 
 using json = nlohmann::json;
@@ -141,6 +141,14 @@ void sendRequestId(int &lowest_id, int &highest_id)
     }
 }
 
+void closeSocket(int socket) {
+    #ifdef _WIN32
+        closesocket(socket); // Use Winsock's closesocket on Windows
+    #else
+        close(socket);       // Use POSIX's close on Linux/macOS
+    #endif
+}
+
 void sendRequest(string http_request, string &body)
 {
     // Set up the socket
@@ -159,7 +167,7 @@ void sendRequest(string http_request, string &body)
     // Connect to the server
     if (connect(sockfd, (struct sockaddr *)&server_addr, sizeof(server_addr)) < 0)
     {
-        close(sockfd);
+        closesocket(sockfd);
         server_is_online = false;
         return;
     }
@@ -171,7 +179,11 @@ void sendRequest(string http_request, string &body)
     // Receive the response
     string response;
     char buffer[4096];
-    ssize_t bytes_received;
+    #ifdef _WIN32
+        SSIZE_T bytes_received;
+    #else
+        ssize_t bytes_received;
+    #endif
 
     while ((bytes_received = recv(sockfd, buffer, sizeof(buffer) - 1, 0)) > 0)
     {
@@ -179,7 +191,7 @@ void sendRequest(string http_request, string &body)
         response += buffer;
     }
 
-    close(sockfd); // Close the socket
+    closesocket(sockfd); // Close the socket
 
     // Separate the HTTP headers and body
     size_t header_end = response.find("\r\n\r\n");

@@ -25,5 +25,7 @@
 #include <termios.h>
 #endif
 
+#include <limits>
+using namespace std;
 
 #endif // !INCLUDES_HPP

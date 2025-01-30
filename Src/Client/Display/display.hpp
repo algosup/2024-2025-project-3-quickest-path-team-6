@@ -1,10 +1,9 @@
 #ifndef DISPLAY_HPP
 #define DISPLAY_HPP
-#include "../includes.hpp"
+#include "../includes/includes.hpp"
 #include "../Input/userInput.hpp"
 #include "../request.hpp"
 
-using namespace std;
 
 void mainMenu();
 void findMyWayMenu();
