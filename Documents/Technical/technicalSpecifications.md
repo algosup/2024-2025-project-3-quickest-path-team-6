@@ -405,13 +405,17 @@ Here's a detailed look at how it would operate:
 
 **Data Validation**:
 
-The algorithm starts by validating the input data from the `USA-roads.csv` file.
+The algorithm can validate the input data from the `USA-roads.csv` file.
 It checks for missing or malformed entries, ensures the graph is bidirectional, and verifies connectivity between landmarks.
+
+#### Core Algorithm
+
+To perform the algorithm, we woould need to create a weighted graph.
 
 **Graph Construction**:
 A weighted graph is constructed, where:
-Nodes represent landmarks.
-Edges represent roads, with weights corresponding to travel time or distance.
+10 global nodes are determined as the graphs' edges.
+These nodes are connected to every single node, and connections are stored in a list.
 
 The edges are handled as a structure:
 
@@ -422,7 +426,31 @@ struct Edge {
 };
 ```
 
-#### Core Algorithm
+The global nodes are determined through a simple calculation process:
+
+- The first node is chosen randomly.
+
+<!-- photo here -->
+
+- Then, the second node is the furthest away from the first one.
+
+<!-- photo here -->
+
+- And the following ones are the furthest away from the other ones.
+
+<!-- photo here -->
+
+- Finally, we connect these global nodes to all the other ones.
+
+<!-- photo here -->
+
+Since all nodes are connected to 10 global nodes, we can estimate the distance between two nodes in the graph by calculating the difference between their respective distances to a global node.
+
+<!-- photo here -->
+
+And with this estimation, we can perform the primary algorithm.
+
+<!-- photo here -->
 
 **Shortest Path Calculation**:
 
@@ -433,11 +461,6 @@ When speed is critical for large datasets, a **Bidirectional Dijkstra** approach
 
 For near-instant results, the A* (A-star) algorithm is leveraged with heuristic functions based on geographical distance.
 This ensures routes are within 10% of the optimal shortest path while significantly reducing processing time.
-
-**Dynamic Query Handling**:
-
-The algorithm supports real-time queries, dynamically adapting to changes in the dataset without requiring a complete re-computation.
-This is achieved by caching frequent queries and reusing partial results for overlapping routes.
 
 #### Output Generation
 
