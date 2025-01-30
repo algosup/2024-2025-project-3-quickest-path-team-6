@@ -1,4 +1,4 @@
-#include "./includes/includes.hpp"
+#include "Includes/includes.hpp"
 #include "Display/display.hpp"
 
 int main()

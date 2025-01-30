@@ -1,6 +1,6 @@
 #ifndef USER_INPUT_HPP
 #define USER_INPUT_HPP
-#include "../includes/includes.hpp"
+#include "../Includes/includes.hpp"
 
 int input = 0;
 bool input_exception = false;
