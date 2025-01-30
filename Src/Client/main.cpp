@@ -1,5 +1,4 @@
-#include <iostream>
-#include <thread>
+#include "../includes.hpp"
 #include "Display/display.hpp"
 
 int main()

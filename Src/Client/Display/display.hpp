@@ -1,8 +1,6 @@
-#include <iostream>
-#include <chrono>
-#include <fstream>
-#include <sstream>
-#include <iomanip>
+#ifndef DISPLAY_HPP
+#define DISPLAY_HPP
+#include "../includes.hpp"
 #include "../Input/userInput.hpp"
 #include "../request.hpp"
 
@@ -209,3 +207,4 @@ void creditsMenu()
             page = 1;
     }
 }
+#endif // !DISPLAY_HPP
