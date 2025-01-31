@@ -21,6 +21,25 @@
 bool sleeping = false;
 void sleepingAnimation();
 
+bool isInteger(const std::string &input) {
+    int number;
+    // Check if input contains only digits (allowing negative numbers)
+    size_t i = 0;
+
+    while (i < input.size()) {
+        if (!std::isdigit(input[i])) return false; // Ensure all characters are digits
+        i++;
+    }
+
+    try {
+        number = std::stoi(input); // Convert string to integer
+    } catch (const std::out_of_range &) {
+        return false; // Handle integer overflow
+    }
+
+    return true; // Valid integer
+}
+
 void Api::closeSocket(int socket) {
     #ifdef _WIN32
         closesocket(socket); // Use Winsock's closesocket on Windows
@@ -178,7 +197,13 @@ std::string Api::processRequest(const std::string &request) {
 
         // Validate parameters
         if (source.empty() || destination.empty()) {
-            return generateErrorResponse("Source or destination cannot be empty", 400);
+            return generateErrorResponse("Source or destination cannot be empty\n", 400);
+        } else if (std::stoi(source) > max_id || std::stoi(destination) > max_id) {
+            return generateErrorResponse("Source or destination cannot be over " + std::to_string(max_id) + "\n", 400);
+        } else if (std::stoi(source) < min_id || std::stoi(destination) < min_id) {
+            return generateErrorResponse("Source or destination cannot be under " + std::to_string(min_id) + "\n", 400);
+        } else if (!isInteger(source) || !isInteger(destination)){
+            return generateErrorResponse("Source and destination need to be integers\n", 400);
         }
 
         // Perform your graph traversal using the parsed parameters
