@@ -20,6 +20,20 @@ void closeSocketRequest(int socket)
 #endif
 }
 
+void writeToFile(const string& format, const string& body){
+    // Write the body to a file
+    string filename = "Bin/pathQuick." + format;
+    ofstream file(filename, ios::out);
+    if (!file) {
+        cerr << "Error opening file for writing!" << endl;
+        return;
+    }
+    file << body;
+    file.close();
+
+    cout << "Response written to " << filename;
+}
+
 // URL encoding function
 string urlEncode(const string &str) {
     ostringstream encoded;
@@ -59,28 +73,12 @@ void sendRequestQuickPath(int start, int end, string file_format) {
     sendRequest(http_request, body);
 
     if (server_is_online) {
-        // Write the body to a file
-        string filename = "Bin/pathQuick." + format;
-        ofstream file(filename, ios::out);
-        if (!file) {
-            cerr << "Error opening file for writing!" << endl;
-            return;
-        }
-        if (format == "json") {
-            json json_obj = json::parse(body);
-            file << setw(4) << json_obj.dump(4);
-            ;
-        } else {
-            file << body;
-        }
-        file.close();
-
-        cout << "Response written to " << filename;
+        writeToFile(format, body);
 
         // Measure time
         auto stop = chrono::high_resolution_clock::now();
         auto duration = chrono::duration_cast<chrono::milliseconds>(stop - time_start);
-        if (duration.count() > 2000) {
+        if (duration.count() > 1500) {
             cout << endl
                  << "Path calculated in " << duration.count() / 1000 << " seconds." << endl;
         } else {

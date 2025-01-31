@@ -219,7 +219,7 @@ std::string Api::processRequest(const std::string &request) {
             nlohmann::json json_data;
             convertIntoJson(path, path_time, json_data);
 
-            std::string json_body = json_data.dump(); // `dump()` converts JSON to a string
+            std::string json_body = json_data.dump(4); // `dump()` converts JSON to a string
 
             return Api::createHttpResponse(json_body, "application/json");
         } else if (format == "xml") {
@@ -233,10 +233,14 @@ std::string Api::processRequest(const std::string &request) {
         } else {
             // Default to plain text response
             std::ostringstream response;
-            response << "Travel Time: " << path_time << "\nPath: ";
+
+            cout << "Request completed with unrecognized file format. Path converted into plain text response.\n" << endl;
+
+            response << "File format not recognized.\nTravel Time: " << path_time << "\nPath: ";
             for (const auto &landmark : path) {
                 response << landmark << " ";
             }
+
             return Api::createHttpResponse(response.str(), "text/plain");
         }
     } 
