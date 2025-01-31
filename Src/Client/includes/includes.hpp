@@ -21,12 +21,10 @@
 #else
 #include <unistd.h>
 #include <sys/socket.h>
+#include <Kernel/netinet/in.h>
 #include <termios.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
 #endif
 
 #include <limits>
 using namespace std;
-
 #endif // !INCLUDES_HPP
