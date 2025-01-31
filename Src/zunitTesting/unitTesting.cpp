@@ -1,6 +1,7 @@
 #include "unitTesting.hpp"
 #include "./tests/dijsktraTests.hpp"
 #include "./tests/serverTests.hpp"
+#include "./tests/dataValidationTest.hpp"
 #include "display.hpp"
 
 int main()
@@ -40,12 +41,20 @@ int main()
         {
             clearScreen();
             serverTests();
+            filesystem::remove("./unitTest.csv");
             clearScreen();
         }
         else if (input == "3")
         {
             clearScreen();
+            cout<<"This test is fully manual, first you'll have to select either a clean or unclean csv.\n"
+                << "Once selected, the program should print the result, if it is the clean csv,\n"
+                <<"it should indicate no loop, duplicate or format error. If it is the unclean csv\n"
+                <<"it should indicate duplicates and format errosr.\n";
+            system("pause");
             csvSelection();
+            clearScreen();
+            dataValidationTest();
         }
         else
         {

@@ -4,8 +4,6 @@
 #include "../unitTesting.hpp"
 #include "../display.hpp"
 
-#include <thread>
-#include <future>
 
 /**
  * This function tests the Dijkstra's algorithm.

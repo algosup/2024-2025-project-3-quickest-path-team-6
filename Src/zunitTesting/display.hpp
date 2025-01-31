@@ -82,7 +82,6 @@ void csvSelection()
         }
         else if (input == "1")
         {
-            copyFile("correct.csv");
             return;
         }
         else if (input == "2")

@@ -4,6 +4,8 @@
 #include <assert.h>
 #include <list>
 #include <fstream>
+#include <thread>
+#include <future>
 
 #include "../Server/Algorithm/algorithm.cpp"
 
