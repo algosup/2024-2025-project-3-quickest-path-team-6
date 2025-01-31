@@ -1,8 +1,6 @@
-#include <iostream>
-#include <vector>
-#include "../../Libraries/Tinyxml2/tinyxml2.h"
-
-using namespace std;
+#ifndef CONVERSION_XML
+#define CONVERSION_XML
+#include "../Includes/includes.hpp"
 
 void convertIntoXml(vector<int> path, int task_duration, tinyxml2::XMLDocument& xml_doc) {
     // Add a root element
@@ -22,3 +20,5 @@ void convertIntoXml(vector<int> path, int task_duration, tinyxml2::XMLDocument& 
 
     cout << "Request completed. Path converted into XML response.\n" << endl;
 }
+
+#endif

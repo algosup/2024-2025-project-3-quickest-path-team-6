@@ -1,16 +1,7 @@
-#include <thread>
-#include <chrono>
-#ifdef _WIN32
-#include <Windows.h>
-#else
-#include <unistd.h>
-#endif
+#ifndef LOAD_DATA_CPP
+#define LOAD_DATA_CPP
+#include "../Includes/includes.hpp"
 #include "../DataValidation/validateCsv.cpp"
-
-using namespace std;
-using namespace std::chrono;
-namespace fs = std::filesystem;
-
 
 int min_id = 1, max_id = 0;
 
@@ -136,3 +127,5 @@ void loadingCat(string s)
     }
     cout << "Dataset loaded!    / ^.^ \\" << "\r" << flush;
 }
+
+#endif // !LOAD_DATA_CPP

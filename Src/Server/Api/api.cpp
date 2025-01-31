@@ -1,22 +1,12 @@
-#include "api.hpp"
-#include <iostream>
-#include <sstream>
-#include <vector>
-#include <chrono>
-#ifdef _WIN32
-#include <winsock2.h>
-#include <ws2tcpip.h>
-#include <windows.h>
-#else
-#include <unistd.h>
-#include <sys/socket.h>
-#include <Kernel/netinet/in.h>
-#include <termios.h>
-#endif
-#pragma comment(lib, "Ws2_32.lib")
+#ifndef API_CPP
+#define API_CPP
+
+#include "../Includes/includes.hpp"
+
 #include "../Algorithm/algorithm.cpp"
 #include "../Formatting/conversionJson.hpp"
 #include "../Formatting/conversionXml.hpp"
+#include "api.hpp"
 
 bool sleeping = false;
 void sleepingAnimation();
@@ -300,3 +290,5 @@ void sleepingAnimation()
         sleeping = false;
     }
 }
+
+#endif // !API_CPP

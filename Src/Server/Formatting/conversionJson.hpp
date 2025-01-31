@@ -1,10 +1,6 @@
-#include <iostream>
-#include <vector>
-#include <fstream>
-#include "../../Libraries/Nlohmann/json.hpp"
-#include <iomanip>
-
-using namespace std;
+#ifndef CONVERSION_JSON
+#define CONVERSION_JSON
+#include "../Includes/includes.hpp"
 
 void convertIntoJson(vector<int> path, int task_duration, nlohmann::json &json_data) {
 
@@ -14,3 +10,5 @@ void convertIntoJson(vector<int> path, int task_duration, nlohmann::json &json_d
 
     cout << "Request completed. Path converted into JSON response.\n" << endl;
 }
+
+#endif // !CONVERSION_JSON

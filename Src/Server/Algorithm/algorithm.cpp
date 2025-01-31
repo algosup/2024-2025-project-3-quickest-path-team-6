@@ -1,8 +1,7 @@
-#include <queue>
-#include <algorithm>
+#ifndef ALGORITHM_CPP
+#define ALGORITHM_CPP
+#include "../Includes/includes.hpp"
 #include "loadData.cpp"
-
-using namespace std::chrono;
 
 unordered_map<int, vector<Edge>> graph; // get the entire graph (need to be handled by the server)
 
@@ -53,3 +52,5 @@ vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int 
     reverse(path.begin(), path.end());
     return path;
 }
+
+#endif // !ALGORITHM_CPP

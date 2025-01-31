@@ -9,21 +9,8 @@
 #define NOGDI
 #define WIN32_LEAN_AND_MEAN
 
-#ifdef _WIN32
-#include <windows.h>
-#include <cstddef>
-namespace my_std = std;
-#include <winsock2.h>
-#include <ws2tcpip.h>
-#pragma comment(lib, "Ws2_32.lib")
-#define byte windows_byte
-#include <windows.h>
-#undef byte
-#endif
 
-#include <string>
-#include <vector>
-#include <iostream>
+#include "../Includes/includes.hpp"
 
 class Api {
 public:

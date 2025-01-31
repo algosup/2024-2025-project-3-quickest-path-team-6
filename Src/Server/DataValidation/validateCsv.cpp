@@ -1,15 +1,6 @@
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <vector>
-#include <unordered_map>
-#include <unordered_set>
-#include <filesystem>
-#include <string>
-
-using namespace std;
-namespace fs = std::filesystem;
-using namespace fs;
+#ifndef VALIDATE_CSV
+#define VALIDATE_CSV
+#include "../Includes/includes.hpp"
 
 // Custom hash function for pair<int, int>
 struct PairHash {
@@ -213,3 +204,5 @@ int m() {
 
     return 0;
 }
+
+#endif // !VALIDATE_CSV
