@@ -27,4 +27,4 @@ This week, our progress is correct, with new features being added to the program
 
 ## Conclusion
 
-This week has been important for the advancement on document completion and software development. Next week we will be more focussed on research and optimization.
+This week has been important for the advancement of document completion and software development. Next week we will be more focussed on research and optimization.
