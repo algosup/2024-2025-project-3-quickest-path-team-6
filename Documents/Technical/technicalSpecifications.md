@@ -144,37 +144,47 @@ The naming conventions are available [here](./conventions.md).
 
 ```md
 Src
-├─── Bin
-│   ├─── pathQuick (server's binary file)
-│   ├─── pathQuick.exe (server's executable file)
-│   ├─── pathQuick.json (JSON file to store outputs)
-│   ├─── pathQuick.xml (XML file to store outputs)
-│   └─── server (server's binary file)
-│   └─── server.exe (server's executable file)
 ├─── Client
+│   ├─── Bin
+│   │   ├─── pathQuick (client's binary file)
+│   │   ├─── pathQuick.exe (client's executable file)
+│   │   ├─── pathQuick.json (JSON file to store outputs)
+│   │   ├─── pathQuick.xml (XML file to store outputs)
 │   ├─── Display
 │   │   └─── display.hpp (prints data onto the console)
 │   ├─── Input
 │   │   └─── userInput.hpp (gets user inputs)
-│   └─── main.cpp (main program)
+│   ├─── Includes
+│   │   └─── includes.hpp (gets user inputs)
+│   ├─── main.cpp (main program)
+│   └─── request.hpp (sending request program)
+│   ├─── startClient.cmd (main program's build file for Windows)
+│   └─── startClient.sh (main program's build file for macOS)
 ├─── Libraries
 │   ├─── Nlohmann (JSON library)
 │   └─── Tinyxml2 (XML library)
-├─── start.cmd (main program's build file for Windows)
-├─── start.sh (main program's build file for macOS)
-├─── startServer.cmd (server's build file for Windows)
-├─── startServer.sh (server's build file for macOS)
 ├─── Server 
 │   ├─── Algorithm
 │   │   ├─── algorithm.hpp (processes the pathfinding)
-│   │   └─── loadData.hpp (loads .csv file's data)
+│   │   └─── loadData.hpp (loads and organizes .csv file's data)
 │   ├─── Api
-│   │   ├─── api.cpp (sets the API's functionalities)
-│   │   ├─── api.hpp (computes the API functionalities)
+│   │   ├─── api.cpp (elaborates the API's functionalities)
+│   │   ├─── api.hpp (sets the API functionalities)
 │   │   └─── server.cpp (server's main program)
+│   ├─── Bin
+│   │   ├─── server (server's binary file)
+│   │   └─── server.exe (server's executable file)
+│   ├─── DataValidation
+│   │   └─── validateCsv.cpp (validation tool's program)
 │   └─── Formatting 
-│       ├─── conversionJson.hpp (converts data into appropriate format)
-│       └─── conversionXml.hpp (converts data into appropriate format)
+│   │   ├─── conversionJson.hpp (converts data into appropriate format)
+│   │   └─── conversionXml.hpp (converts data into appropriate format)
+│   ├─── startServer.cmd (server's build file for Windows)
+│   ├─── startServer.sh (server's build file for macOS)
+│   ├─── startValidation.cmd (validation tool's build file for Windows)
+│   └─── startValidation.sh (validation tool's build file for macOS)
+├─── pathQuickLauncher.cmd (server's build file for Windows)
+├─── pathQuickLauncher.sh (server's build file for macOS)
 └─── USA-roads.csv (.csv file where the data is)
 ```
 
@@ -392,9 +402,9 @@ XML:
 
 **Error Handling**:
 
-*Invalid Parameters*: Returns a `400` Bad Request.
-*Resource Not Found*: Returns a `404` Not Found.
-*Server Error*: Returns a `500` Internal Server Error.
+- *Invalid Parameters*: Returns a `400` Bad Request.
+- *Resource Not Found*: Returns a `404` Not Found.
+- *Server Error*: Returns a `500` Internal Server Error.
 
 Here's how the server interacts with the other components:
 
