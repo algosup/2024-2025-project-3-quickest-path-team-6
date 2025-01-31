@@ -16,6 +16,9 @@
   - [Project Roles](#project-roles)
   - [Other Stakeholders](#other-stakeholders)
 - [Functional Requirements](#functional-requirements)
+- [Dataset Requirements](#dataset-requirements)
+  - [Dataset Structure](#dataset-structure)
+  - [Usage In The Program](#usage-in-the-program)
 - [UI Snapshots](#ui-snapshots)
   - [Main Menu](#main-menu)
   - [Find My Way](#find-my-way)
@@ -48,6 +51,7 @@ This project aims to create a software tool that calculates the fastest route be
 | ------------------------------------------------------------------------------ |
 | Implementing shortest-path calculation using efficient algorithms (e.g., A\*). |
 | Creating a REST API with endpoints to look for the shortest paths.             |
+| Processing input data from a required CSV file containing landmarks.           |
 | Dataset validation to ensure graph integrity and connectivity.                 |
 
 | Out of Scope                                                   |
@@ -108,7 +112,7 @@ This project aims to create a software tool that calculates the fastest route be
   - `destination_id`: Destination landmark ID.
 - **Response Formats:**
   - JSON:
-    ```json
+    ```JSON
     {
       "path": ["101", "303"],
       "time": 35
@@ -138,6 +142,35 @@ This project aims to create a software tool that calculates the fastest route be
 **User Data**
 
 - The program should not require user data.
+
+
+## Dataset Requirements
+The program relies on the USA-roads.csv file to work. This file contains the links between landmarks and must be located in the src directory, or else it wont be detected.
+
+### Dataset Structure
+The dataset must follow this format:
+```
+StartPoint,EndPoint,Distance
+1,2,5062
+3,4,1035
+6,5,359
+7,8,5822
+10,9,7211
+11,12,6217
+14,13,20
+15,16,3481
+17,18,3782
+19,16,40717
+```
+
+- Start Point (ID): Identifies the starting landmark.
+- End Point (ID): Identifies the destination landmark.
+- Distance: Represents the “span” between the two landmarks in an abstract unit.
+
+### Usage In The Program
+- The dataset is used to create a directed graph, with nodes representing landmarks and edges representing connections between them.
+- The Distance column is used by the shortest-path algorithm (A*) to compute the quickest routes.
+
 
 ## UI Snapshots
 
@@ -188,7 +221,7 @@ Key details displayed during this process include:
 
 ## Use Cases
 
-| Use case number | Name                    | Description                                                                   | Pre-conditions                                       | Flow of events                                                                                                          | Exit criteria                                                             | Note                                |
+| Use case ID | Name                    | Description                                                                   | Pre-conditions                                       | Flow of events                                                                                                          | Exit criteria                                                             | Note                                |
 | --------------- | ----------------------- | ----------------------------------------------------------------------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ----------------------------------- |
 | 1               | PathQuick Menu          | The user wants to enter the PathQuick menu.                                   | Having the latest version downloaded and unzipped.   | - mac: execute start.sh<br>- windows: execute start.cmd                                                                 | You've entered the menu and can select an option.                         |                                     |
 | 2               | Calculate Shortest Path | Input numbers to see the travel time between them.                            | Being on the menu.                                   | Type 1, then choose a departure and a destination number. Validate with 1 if your choice is correct to have the result. | Have access to the travel time, and calculation time.                     |                                     |
@@ -271,6 +304,7 @@ Performances (0% approximation rule)
 Web based UI
 Several transportation routes (bus, routes, car).
 +multi stops +offline routes.
+being able to chose which csv file you want to use among several ones. 
 
 
 
@@ -285,12 +319,7 @@ Several transportation routes (bus, routes, car).
 
 
 
-
-
-
-
-
-## Error handling
+## Error Handling
 
 | Error type           | Scenario                                                      | Message Example                                                                              |
 | -------------------- | ------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
