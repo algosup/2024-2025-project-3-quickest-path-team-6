@@ -1,46 +1,40 @@
 # Functional Specifications
 
-
 <details>
 <summary>
 
-
-
-## Table Of Contents 
+## Table Of Contents
 
 </summary>
 
-
-- [Project Overview](#project-overview)  
-   - [Project Definition](#project-definition)  
-   - [Objectives](#objectives)  
-   - [Project Scopes](#project-scopes)  
-   - [Deliverables](#deliverables)  
-- [Stakeholders](#stakeholders)  
-   - [Project Roles](#project-roles)  
-   - [Other Stakeholders](#other-stakeholders)  
-- [Functional Requirements](#functional-requirements)  
-- [UI Snapshots](#ui-snapshots)  
-   - [Main Menu](#main-menu)  
-   - [Find My Way](#find-my-way)  
-   - [Loading Screens](#loading-screens)  
-- [Personas](#personas)  
-- [Use Cases](#use-cases)  
-- [Non-Functional Requirements](#non-functional-requirements)  
-- [Available Resources](#available-resources)  
-   - [Learning Resources](#learning-resources)  
-- [Future Improvements](#future-improvements)  
+- [Project Overview](#project-overview)
+  - [Project Definition](#project-definition)
+  - [Objectives](#objectives)
+  - [Project Scopes](#project-scopes)
+  - [Deliverables](#deliverables)
+- [Stakeholders](#stakeholders)
+  - [Project Roles](#project-roles)
+  - [Other Stakeholders](#other-stakeholders)
+- [Functional Requirements](#functional-requirements)
+- [UI Snapshots](#ui-snapshots)
+  - [Main Menu](#main-menu)
+  - [Find My Way](#find-my-way)
+  - [Loading Screens](#loading-screens)
+- [Personas](#personas)
+- [Use Cases](#use-cases)
+- [Non-Functional Requirements](#non-functional-requirements)
+- [Available Resources](#available-resources)
+  - [Learning Resources](#learning-resources)
+- [Future Improvements](#future-improvements)
 - [Glossary](#glossary)
 
-
 </details>
-
 
 ## Project Overview
 
 ### Project Definition
 
-This project aims to create a software tool that calculates the fastest route between two landmarks in the United States. It will handle large datasets and provide results through a user-friendly REST API supporting common data formats.
+This project aims to create a software tool that calculates the fastest route between two landmarks in the United States. It will handle a large dataset and provide results through a user-friendly REST API supporting common data formats.
 
 #### Objectives
 
@@ -227,14 +221,9 @@ Key details displayed during this process include:
 
 ---
 
-
-
 ### Learning Resources
 
 To have a better understanding of C++, data structures, algorithms, and REST API development, the following resources were given to the students:
-
-
-
 
 #### Videos
 
@@ -245,9 +234,6 @@ To have a better understanding of C++, data structures, algorithms, and REST API
 - [Data Structures and Algorithms in C++](https://youtu.be/8hly31xKli0?si=xUAj3fC6d9h0oKAm)  
   Focused on practical implementations in C++.
 
-
-
-
 #### Articles
 
 - [An Open Guide to Data Structures and Algorithms](https://open.umn.edu/opentextbooks/textbooks/an-open-guide-to-data-structures-and-algorithms)  
@@ -257,24 +243,57 @@ To have a better understanding of C++, data structures, algorithms, and REST API
 - [Building RESTful APIs with C++](https://medium.com/@AlexanderObregon/building-restful-apis-with-c-4c8ac63fe8a7)  
   Step-by-step guide to implementing REST APIs in C++.
 
-
-
-<!-- 
-## Future Improvements
-
- -->
-
-
 ## Glossary
 
-| Term Used                    | Definition                                                                                                  |
-| ---------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| PathQuick                    | The name of the tool designed to calculate the shortest path between two landmarks.                         |
-| JSON                         | Lightweight data-interchange format used to represent structured data in a readable format.               |
+| Term Used                    | Definition                                                                                             |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------ |
+| PathQuick                    | The name of the tool designed to calculate the shortest path between two landmarks.                    |
+| JSON                         | Lightweight data-interchange format used to represent structured data in a readable format.            |
 | XML                          | Markup language used to encode documents in a format that is both human-readable and machine-readable. |
-| Dataset                      | Collection of data points, here representing landmarks and their connections.                             |
-| DAG (Directed Acyclic Graph) | Graph with directed edges where no cycles are present, used for shortest-path calculations.               |
-| REST API                     | Architectural style for designing networked applications that use standard HTTP methods.                 |
-| Landmark                     | Node or point in the dataset representing a location within the transportation network.                   |
-| A\*                          | Graph traversal and pathfinding algorithm that is widely used for shortest-path calculations.             |
-| Bin Folder                   | Folder where the output files (e.g., JSON/XML results) are stored by the program.                           |
+| Dataset                      | Collection of data points, here representing landmarks and their connections.                          |
+| DAG (Directed Acyclic Graph) | Graph with directed edges where no cycles are present, used for shortest-path calculations.            |
+| REST API                     | Architectural style for designing networked applications that use standard HTTP methods.               |
+| Landmark                     | Node or point in the dataset representing a location within the transportation network.                |
+| A\*                          | Graph traversal and pathfinding algorithm that is widely used for shortest-path calculations.          |
+| Bin Folder                   | Folder where the output files (e.g., JSON/XML results) are stored by the program.                      |
+
+
+## Future Improvements
+
+
+
+### Call For Tender Compliant 
+Performances (0% approximation rule)
+-    +reduce memory usage
+
+
+### Beyond Call For Tender
+Web based UI
+Several transportation routes (bus, routes, car).
++multi stops +offline routes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Error handling
+
+| Error type           | Scenario                                                      | Message Example                                                                              |
+| -------------------- | ------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| Invalid input        | The user provides a non-numeric value when a number is required.      | "Invalid input! Expected a number from the list."                                            |
+| Server Disconnection | The user attempts to use PathQuick while the server is offline. | "Server not connected. Wait until it is connected."                                          |
+|                      | The server disconnects while the user is entering input.      | "Error: The server was disconnected while processing input. Please reconnect and try again." |
