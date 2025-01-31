@@ -4,6 +4,11 @@
 #include "../unitTesting.hpp"
 #include "../display.hpp"
 
+/**
+ * This function requests the verification of the first csv file found in the "Src" folder.
+ * @param None
+ * @result Prints if there are duplicates, loops or mistakes in the format of a csv file.
+ */
 void dataValidationTest()
 {
     string file_name;
