@@ -6,6 +6,11 @@
 #include "../../Client/request.hpp"
 #include "../../Libraries/nlohmann/json.hpp"
 
+/**
+ * This function sends a ping to the server to check if it is online.
+ * @param None
+ * @result Toggle the variable "server_is_online" if the server sends the ping back.
+ */
 void sendPingRequest()
 {
     // Build a lightweight HTTP GET request
@@ -18,6 +23,13 @@ void sendPingRequest()
     sendRequest(http_request, body);
 }
 
+/**
+ * This function compares the expected result to the json file which stores the server's output.
+ * @param
+ * expected: A pointer to a json variable.
+ * testID: An int representing the ID of the current test.
+ * @result Prints if the test is successful or nor, in the later case, prints what is expected and the current value.
+ */
 void compareJSON(const json &expected, int testID)
 {
     // Open the file
@@ -64,9 +76,9 @@ void compareJSON(const json &expected, int testID)
 }
 
 /**
- * This function tests the Dijkstra's algorithm.
+ * This function tests the connection and interactions with the server.
  * @param None
- * @result A list of 14 tests, each test is displayed on the terminal.
+ * @result A list of 6 tests, each test is displayed on the terminal.
  * If the test takes longer than expected or is incorrect, it is highlighted
  * along with the reason for the failure.
  */
@@ -74,6 +86,8 @@ void serverTests()
 {
     // Compile server.cpp and run it in another terminal
     system("start cmd.exe /K \"title Server && g++ -std=c++17 ../Server/Api/server.cpp ../Libraries/Tinyxml2/tinyxml2.cpp -o server.exe -IInclude -Llib -lws2_32 && server.exe\"");
+
+    // Every 5 seconds, test if the server is online, repeat 10 times.
     for (int i = 0; i < 10; i++)
     {
         this_thread::sleep_for(std::chrono::seconds(5));
@@ -90,7 +104,7 @@ void serverTests()
         return;
     }
 
-    // Declare and initialize testPaths
+    // Paths used for the tests
     list<pair<int, int>> testPaths = {
         {1, 2},     // Test 1
         {9, 6},     // Test 2
@@ -98,6 +112,7 @@ void serverTests()
         {946, 483}, // Test 4
         {123, 321}, // Test 5
     };
+    // Expected contents of the json file.
     list<json> results = {
         {// Test 1
          {"path", {1, 2}},
@@ -115,16 +130,14 @@ void serverTests()
         {{"path", {123, 82031, 100, 99, 120, 121, 122, 82045, 82044, 82043, 82037, 82035, 82036, 82033, 82163, 82164, 82135, 82134, 82136, 4386, 93, 83, 56, 189, 186, 187, 283, 143, 132, 128, 129, 280, 127, 126, 242, 319, 320, 321}},
          {"time", 296801}},
     };
-    auto pathIt = testPaths.begin();
-    auto resultIt = results.begin();
-    int testID = 1;
+    auto pathIt = testPaths.begin(); // Iterator of testPaths
+    auto resultIt = results.begin(); // Iterator of results
+    int testID = 1;                  // ID of the current test
 
     // Iterate through testPaths and results simultaneously
     for (; pathIt != testPaths.end() && resultIt != results.end(); ++pathIt, ++resultIt)
     {
         const auto &[start, end] = *pathIt;
-        int path_time;    // Resulting time
-        vector<int> path; // Resulting path
 
         // Use a promise and future to handle the timeout
         promise<bool> resultPromise;
@@ -133,7 +146,7 @@ void serverTests()
         thread thread([&]()
                       {
             try {
-                sendRequestQuickPath(start, end, "json");
+                sendRequestQuickPath(start, end, "json"); // Send the request to the server to find the path
                 resultPromise.set_value(true);
             }
             catch (...) {
@@ -151,11 +164,10 @@ void serverTests()
         else
         {
             thread.join(); // Ensure the thread finishes
-            compareJSON(*resultIt, testID);
+            compareJSON(*resultIt, testID); 
         }
         testID++;
 
-        // Iterate through testPaths and results simultaneously
     }
     system("pause");
 }
