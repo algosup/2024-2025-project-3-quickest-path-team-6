@@ -2,7 +2,7 @@
 
 ## Overview
 
-This week, our progress is correct, with new features being added on the program. The documents are mostly finished.
+This week, our progress is correct, with new features being added to the program. The documents are mostly finished.
 
 ## Accomplishment
 
@@ -16,7 +16,7 @@ This week, our progress is correct, with new features being added on the program
 ## Challenges
 
 - **Mac and Windows compatibility:**
-    - Because of the differences between these two OSs, we had difficulties to make the program compatible for these two.
+    - Because of the differences between these two OSs, we had difficulties making the program compatible for these two.
 - **Algorithm optimization:**
     - We struggle to find a way to optimize the algorithm, but we are still trying possible ways to do it such as multithreading.
 
@@ -27,4 +27,4 @@ This week, our progress is correct, with new features being added on the program
 
 ## Conclusion
 
-This week has been important for the advancement on the document completion and the software development. Next week we will more focussed on research and optimization.
+This week has been important for the advancement on document completion and software development. Next week we will be more focussed on research and optimization.
