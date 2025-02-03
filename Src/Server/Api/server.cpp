@@ -34,7 +34,7 @@ int main() {
     disableInput();
     const int PORT = 8080;
 
-    if(!loadDataset()){
+    if(!initServer()){
         cout << "No .csv file found. Server shutting down." << "\r" << flush << endl;
         return 0;
     }

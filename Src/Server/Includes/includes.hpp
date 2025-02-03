@@ -49,5 +49,6 @@ using namespace std;
 using namespace fs;
 using namespace std::chrono;
 
+bool pause_cat = false;
 
 #endif // !INCLUDES_HPP

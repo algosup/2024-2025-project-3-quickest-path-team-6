@@ -62,6 +62,8 @@ bool processFile(const string& file_name, unordered_map<int, vector<int>>& graph
     string line;
     size_t line_count = 0;
 
+    pause_cat = true;
+
     while (getline(file, line)) {
         line_count++;
         stringstream ss(line);
@@ -93,10 +95,11 @@ bool processFile(const string& file_name, unordered_map<int, vector<int>>& graph
             return false;
         }
 
-        if (line_count % 7000000 == 0) {
-            cout << "Processed " << line_count << " lines" << endl << endl;
-        }
+        cout << "Processed " << (line_count * 100) / 28854312 << "\% of the file..." << "\r" << flush;
+        
     }
+
+    cout << endl;
 
     file.close();
     return true;

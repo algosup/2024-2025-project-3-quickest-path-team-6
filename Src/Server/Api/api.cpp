@@ -274,9 +274,11 @@ void Api::serverOnline(int server_socket){
 
 void sleepingAnimation()
 {
+    int cat_state = 0;
     while(true){
+        while(pause_cat == true){wait(1000);}
         auto start = high_resolution_clock::now();
-        while(!sleeping){
+        while(!sleeping && pause_cat == false){
             cout << "\\(^owo^)  " << "\r" << flush;
             auto stop = high_resolution_clock::now();
             auto duration = duration_cast<seconds>(stop - start);
@@ -285,10 +287,14 @@ void sleepingAnimation()
             }
             wait(1000);
         }
-        while(sleeping){
-            cout << "_(^-w-^)z " << "\r" << flush;
-            wait(500000);
-            cout << "_(^-w-^) z" << "\r" << flush;
+        while(sleeping && pause_cat == false){
+            if(cat_state == 0) {
+                cout << "_(^-w-^)z " << "\r" << flush;
+                cat_state = 1;
+            } else if(cat_state == 1) {
+                cout << "_(^-w-^) z" << "\r" << flush;
+                cat_state = 0;
+            }
             wait(500000);
         }
         sleeping = false;
