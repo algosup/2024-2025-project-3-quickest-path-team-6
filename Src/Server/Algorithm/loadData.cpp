@@ -73,7 +73,7 @@ void getData(const string& file_name) {
     while (getline(file, line)) {
         stringstream ss(line);
         int from, to;
-        int time;
+        double time;
         char comma;
         ss >> from >> comma >> to >> comma >> time;
 
@@ -83,8 +83,8 @@ void getData(const string& file_name) {
         if(to > max_id){
             max_id = to;
         }
-        data_graph[from].push_back({to, time});
-        data_graph[to].push_back({from, time}); // Bidirectional connection
+        data_graph.push_back({from, to, time});
+        data_graph.push_back({to, from, time}); // Bidirectional connection
     }
 }
 
