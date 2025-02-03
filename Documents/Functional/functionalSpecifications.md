@@ -100,8 +100,8 @@ This project aims to create a software tool that calculates the fastest route be
 
 **Shortest Path Calculation**
 
-- Input: IDs of source and destination landmarks.
-- Output:
+- **Input:** IDs of source and destination landmarks.
+- **Output:**
   - Total travel time as an integer.
   - Ordered list of landmarks in the computed path.
 
@@ -146,7 +146,7 @@ This project aims to create a software tool that calculates the fastest route be
 
 ## Dataset Requirements
 
-The program relies on the USA-roads.csv file to work. This file contains the links between landmarks and must be located in the src directory, or else it wont be detected.
+The program relies on the USA-roads.csv file to work. This file contains the links between landmarks and must be located in the src directory, or else it won't be detected.
 
 ### Dataset Structure
 
@@ -166,9 +166,9 @@ StartPoint,EndPoint,Distance
 19,16,40717
 ```
 
-- Start Point (ID): Identifies the starting landmark.
-- End Point (ID): Identifies the destination landmark.
-- Distance: Represents the “span” between the two landmarks in an abstract unit.
+- **Start Point (ID):** Identifies the starting landmark.
+- **End Point (ID):** Identifies the destination landmark.
+- **Distance:** Represents the “span” between the two landmarks in an abstract unit.
 
 ### Usage In The Program
 
@@ -191,8 +191,8 @@ The main menu serves as the starting point for all user interactions. From here,
 
 This section allows users to input their desired departure and destination points to calculate the shortest path. Users must select values between 1 and 23,947,347.
 
-- Step 1: Enter the departure number.
-- Step 2: Enter the destination number.
+- **Step 1:** Enter the departure number.
+- **Step 2:** Enter the destination number.
 
 Once both inputs are validated, the system processes the request to calculate the shortest path.
 
@@ -227,7 +227,7 @@ Key details displayed during this process include:
 | Use case ID | Name                    | Description                                                                   | Pre-conditions                                       | Flow of events                                                                                                          | Exit criteria                                                             | Note                                |
 | ----------- | ----------------------- | ----------------------------------------------------------------------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ----------------------------------- |
 | 1           | PathQuick Menu          | The user wants to enter the PathQuick menu.                                   | Having the latest version downloaded and unzipped.   | - mac: execute start.sh<br>- windows: execute start.cmd                                                                 | You've entered the menu and can select an option.                         |                                     |
-| 2           | Calculate Shortest Path | Input numbers to see the travel time between them.                            | Being on the menu.                                   | Type 1, then choose a departure and a destination number. Validate with 1 if your choice is correct to have the result. | Have access to the travel time, and calculation time.                     |                                     |
+| 2           | Calculate Shortest Path | Input numbers to see the travel time between them.                            | Being on the menu.                                   | Type 1, then choose a departure and a destination number. Validate with 1 if your choice is correct to have the result. | Have access to the travel time and calculation time.                      |                                     |
 | 3           | Credits                 | The user wants to view the credits for the application.                       | The program is running, and the user is on the menu. | 1. User selects option 2 from the menu.<br>2. The system shows the contributors and tools used.                         | The user views the credits and can return to the main menu by pressing 0. |                                     |
 | 4           | Exit to Console         | The user wants to leave the menu and return to the console.                   | The program is running, and the user is in the menu. | 1. User selects option 0 from the menu.<br>2. The system terminates and returns control to the console.                 | The program closes, and the terminal is ready for new commands.           | Ensure all processes are terminated |
 | 5           | Validated Bin Output    | The user wants to check if JSON and XML files were created in the bin folder. | The program is running, and the user is in the menu. | The user goes into the Bin folder and checks if the files are here.                                                     | The user knows whether the JSON and XML files were successfully created.  |
@@ -236,18 +236,18 @@ Key details displayed during this process include:
 
 **User Experience**
 
-- The program should include a user interface, in which users can navigate and use features included in the latest release.
+- The program should include a minimal user interface, in which users can navigate and use features included in the latest release.
 - The interface should be minimal and usable through a computer's terminal.
 - The interface should be understandable enough so that the user does not need external help while using the program.
 
 **User Interaction**
 
 - The server should not take longer than a minute to set up itself.
-- Between each human and machine interaction there should be a visual indicator that shows the program is still running, the user should not wait for more than 5 seconds to see a visual response.
+- Between each human and machine interaction there should be a visual indicator that shows the program is still running, the user should not wait for more than a few seconds to see a visual response.
 
 **Portability**
 
-- The program should work on MacOS, Windows and Linux.
+- The program should work on MacOS, Windows, and Linux.
 
 ## Available Resources
 
@@ -279,38 +279,29 @@ To have a better understanding of C++, data structures, algorithms, and REST API
 - [Building RESTful APIs with C++](https://medium.com/@AlexanderObregon/building-restful-apis-with-c-4c8ac63fe8a7)  
   Step-by-step guide to implementing REST APIs in C++.
 
-
-
-
 ## Error Handling
 
-| Error Type           | Scenario                                                    | Message                                                  |
-|----------------------|-------------------------------------------------------------|----------------------------------------------------------------|
-| **Server Issues**    | The server fails to compile on Windows.                     | "Cannot compile."                                              |
-|                      | The server fails to compile on MacOS.                       | "Cannot compile."                                              |
-|                      | The server is not running when the user makes a request.   | "Server not connected. Wait until it is connected."            |
-|                      | The server shuts down unexpectedly.                         | "The server shuts down."                                       |
-|                      | The server disconnects while processing input.             | "Error: The server was disconnected while processing input."   |
-| **Input Errors**     | The user provides a blank input.                            | "Source or destination cannot be empty."                      |
-|                      | The user enters a number larger than 23,947,347.           | "Source or destination cannot be over 23,947,347."            |
-|                      | The user enters a character instead of a number.           | "Invalid input! Expected a number from the list."             |
-|                      | The user enters a string instead of a number.              | "Invalid input! Expected a number from the list."             |
-|                      | The user enters a floating-point number.                   | "Source and destination need to be integers."                 |
-|                      | The user enters a negative number.                         | "Source or destination cannot be under 1."                    |
-|                      | The user enters zero as an input.                          | "Source or destination cannot be under 1."                    |
+| Error Type           | Scenario                                                   | Message                                                          |
+| -------------------- | ---------------------------------------------------------- | ---------------------------------------------------------------- |
+| **Server Issues**    | The server fails to compile on Windows.                    | "Cannot compile."                                                |
+|                      | The server fails to compile on MacOS.                      | "Cannot compile."                                                |
+|                      | The server is not running when the user makes a request.   | "Server not connected. Wait until it is connected."              |
+|                      | The server shuts down unexpectedly.                        | "The server shuts down."                                         |
+|                      | The server disconnects while processing input.             | "Error: The server was disconnected while processing input."     |
+| **Input Errors**     | The user provides a blank input.                           | "Source or destination cannot be empty."                         |
+|                      | The user enters a character instead of a number.           | "Invalid input! Expected a number from the list."                |
+|                      | The user enters a string instead of a number.              | "Invalid input! Expected a number from the list."                |
+|                      | The user enters a floating-point number.                   | "Source and destination need to be integers."                    |
+|                      | The user enters a negative number.                         | "Source or destination cannot be under 1."                       |
+|                      | The user enters zero as an input.                          | "Source or destination cannot be under 1."                       |
 | **Algorithm Issues** | The algorithm does not return the shortest path.           | "No errors written, the algorithm isn't going in further steps." |
-|                      | The program does not proceed to the next step as expected. | "Not going to the next step but no errors shown."             |
-|                      | The response time exceeds the expected limit.              | "1 to 23,947,347 in 3 sec."                                   |
-| **Output Format**    | The user requests an unsupported file format.              | "File format not recognized."                                  |
-|                      | The XML and JSON files contain different data.             | "Mismatch in JSON and XML output."                            |
-|                      | No external files are created for JSON/XML output.        | "The path is found but no external files were created."       |
-| **Validation Tool**  | The CSV file contains duplicate entries.                    | "The program found two duplicates."                           |
-|                      | The CSV file contains loops.                               | "The program returned a loop."                              |
-|                      | The dataset is not fully connected.                        | "The program returned an error."                              |
-|                      | The file format is incorrect.                              | "Invalid file format. Expected CSV."                         |
-
-
-
+|                      | The program does not proceed to the next step as expected. | "Not going to the next step but no errors shown."                |
+| **Output Format**    | The user requests an unsupported file format.              | "File format not recognized."                                    |
+|                      | The XML and JSON files contain different data.             | "Mismatch in JSON and XML output."                               |
+|                      | No external files are created for JSON/XML output.         | "The path is found but no external files were created."          |
+| **Validation Tool**  | The CSV file contains loops.                               | "The program returned a loop."                                   |
+|                      | The dataset is not fully connected.                        | "The program returned an error."                                 |
+|                      | The file format is incorrect.                              | "Invalid file format. Expected CSV."                             |
 
 ## Future Improvements
 
@@ -327,8 +318,6 @@ To have a better understanding of C++, data structures, algorithms, and REST API
 - Enable users to define multiple waypoints between the start and destination.
 - Allow users to choose different CSV datasets to adapt route calculations to different regions or transportation networks.
 
-
-
 ## Glossary
 
 | Term Used                    | Definition                                                                                             |
@@ -342,4 +331,3 @@ To have a better understanding of C++, data structures, algorithms, and REST API
 | Landmark                     | Node or point in the dataset representing a location within the transportation network.                |
 | A\*                          | Graph traversal and pathfinding algorithm that is widely used for shortest-path calculations.          |
 | Bin Folder                   | Folder where the output files (e.g., JSON/XML results) are stored by the program.                      |
-
