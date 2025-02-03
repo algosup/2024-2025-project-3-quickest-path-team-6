@@ -5,12 +5,11 @@ This project was requested by [ALGOSUP](https://algosup.com), a French computer 
 This project aims to create a quick pathfinding<sup><a href="#1">[1]</a></sup> server according to a CSV<sup><a href="#1">[2]</a></sup> file of USA-roads.
 
 <details>
-<summary>Table of Contents</summary>
+<summary>Table Of Contents</summary>
 
 - [Introduction](#introduction)
   - [Overview](#overview)
 - [Testing Strategy](#testing-strategy)
-  <!-- - [Quality Assurance Team](#quality-assurance-team) -->
   - [Testing Scope](#testing-scope)
     - [In Scope](#in-scope)
     - [Out Of Scope](#out-of-scope)
@@ -47,7 +46,7 @@ This project aims to create a quick pathfinding<sup><a href="#1">[1]</a></sup> s
 
 ### Overview
 
-The team was asked to create a pathfinder based on a .csv file about the USA roads. To implement it, a localhost server<sup><a href="#1">[3]</a></sup> should be created as well as all the algorithm<sup><a href="#1">[4]</a></sup> behind it. \
+The team was asked to create a pathfinder based on a .csv file representing the USA roads. To implement it, a localhost server<sup><a href="#1">[3]</a></sup> should be created as well as all the algorithm<sup><a href="#1">[4]</a></sup> behind it. \
 It should return the time needed to complete the journey and a list of all the landmarks it passes by. \
 Moreover, a validation tool should be created to verify the .csv file formatting (LANDMARK_A__ID, LANDMARK_B_ID, TIME).
 
@@ -74,15 +73,6 @@ The document testing would be done following the template previously done on the
 These different reviews<sup><a href="#1">[17]</a></sup> would be done for each document's final version, once they are pushed on their own branch (document for the functionalSpecification.md, technicalSpecification.md, userManual.md, and testPlan.md | management for the different management artifacts).
 
 These reviews must be done before the document deliverables which is on the 7th of February of 2025.
-
-<!-- ### Quality Assurance Team
-
-The quality assurance team is only composed of myself. However, there are other quality assurances in other teams. We could, therefore, create a quality assurance team between us. To improve our global test quality and to brainstorm test cases among us.
-
-It would lead the quality assurance team to improve their document and the global experience of the team. It would also be a plus for the development team, they would have more feedback on their product and could correct any issues detected more efficiently.
-
-Finally, you can find our line of thoughts and different documents created between us in this particular folder: "[QualityAssuranceTeamArtifacts]()". -->
-<!-- Unused for now -->
 
 ### Testing Scope
 

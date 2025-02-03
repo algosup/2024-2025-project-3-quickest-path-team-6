@@ -64,6 +64,34 @@ The following test cases would be assigned a priority from high to medium follow
 | Test Case Priority        | Low 3                                                                                                |
 | Test Case Assigned To     | Maxime Thizeau                                                                                       |
 
+### REST API: Validation
+
+| Test Case ID              | 25                                                                                                   |
+|---------------------------|------------------------------------------------------------------------------------------------------|
+| Test Case Name            | REST API: Validation                                                                                 |
+| Test Case Description     | Verify the data integrity of the CSV file provided to the server.                                    |
+| Test Case Pre-conditions  | The server should be running. A CSV file should be given to the server.                              |
+| Test Case Steps           | 1. Open your terminal with the server. <br> 2. Click on `C`.                                         |
+| Test Case Expected Result | The server should verify the data integrity of the file. (no errors)                                 |
+| Test Case Actual Result   | Actual result of the test (could differ from what's expected)                                        |
+| Test Case Status          | To Test                                                                                              |
+| Test Case Priority        | Medium 2                                                                                             |
+| Test Case Assigned To     | Maxime Thizeau                                                                                       |
+
+### REST API: No CSV
+
+| Test Case ID              | 26                                                                                                         |
+|---------------------------|------------------------------------------------------------------------------------------------------------|
+| Test Case Name            | REST API: No CSV                                                                                           |
+| Test Case Description     | Verify an error is return when no CSV file are present in the `Src folder` at the launching of the server. |
+| Test Case Pre-conditions  | The server should be running. A CSV file should be given to the server.                                    |
+| Test Case Steps           | 1. Remove all CSV files of the `Src folder`. <br> 2. Open your terminal with the server.                   |
+| Test Case Expected Result | The server should return an error.                                                                         |
+| Test Case Actual Result   | Actual result of the test (could differ from what's expected)                                              |
+| Test Case Status          | To Test                                                                                                    |
+| Test Case Priority        | Medium 2                                                                                                   |
+| Test Case Assigned To     | Maxime Thizeau                                                                                             |
+
 ### REST API: GET Method
 
 #### Input: Blank Space
