@@ -25,6 +25,7 @@
       - [Core Algorithm](#core-algorithm)
       - [Output Generation](#output-generation)
       - [Advanced Features](#advanced-features)
+      - [Big-O Complexity](#big-o-complexity)
   - [Glossary](#glossary)
 
 </details>
@@ -75,7 +76,7 @@ These checks are infrequent, allowing the use of a simpler and potentially less 
 
 **C++ Source Code**: Well-documented code with comments, limited to STL and libraries necessary for the Web server.
 
-**Time and Space Complexity**: Provide Big O notation for the main algorithms.
+**Time And Space Complexity**: Provide Big O notation for the main algorithms.
 
 **REST API Implementation**: Support for both XML and JSON response formats, demonstrating flexibility.
 
@@ -143,37 +144,47 @@ The naming conventions are available [here](./conventions.md).
 
 ```md
 Src
-├─── Bin
-│   ├─── pathQuick (server's binary file)
-│   ├─── pathQuick.exe (server's executable file)
-│   ├─── pathQuick.json (JSON file to store outputs)
-│   ├─── pathQuick.xml (XML file to store outputs)
-│   └─── server (server's binary file)
-│   └─── server.exe (server's executable file)
 ├─── Client
+│   ├─── Bin
+│   │   ├─── pathQuick (client's binary file)
+│   │   ├─── pathQuick.exe (client's executable file)
+│   │   ├─── pathQuick.json (JSON file to store outputs)
+│   │   ├─── pathQuick.xml (XML file to store outputs)
 │   ├─── Display
 │   │   └─── display.hpp (prints data onto the console)
 │   ├─── Input
 │   │   └─── userInput.hpp (gets user inputs)
-│   └─── main.cpp (main program)
+│   ├─── Includes
+│   │   └─── includes.hpp (gets user inputs)
+│   ├─── main.cpp (main program)
+│   └─── request.hpp (sending request program)
+│   ├─── startClient.cmd (main program's build file for Windows)
+│   └─── startClient.sh (main program's build file for macOS)
 ├─── Libraries
 │   ├─── Nlohmann (JSON library)
 │   └─── Tinyxml2 (XML library)
-├─── start.cmd (main program's build file for Windows)
-├─── start.sh (main program's build file for macOS)
-├─── startServer.cmd (server's build file for Windows)
-├─── startServer.sh (server's build file for macOS)
 ├─── Server 
 │   ├─── Algorithm
-│   │   ├─── algorithm.hpp (processes the path finding)
-│   │   └─── loadData.hpp (loads .csv file's data)
+│   │   ├─── algorithm.hpp (processes the pathfinding)
+│   │   └─── loadData.hpp (loads and organizes .csv file's data)
 │   ├─── Api
-│   │   ├─── api.cpp (sets the API's functionalities)
-│   │   ├─── api.hpp (computes the API functionalities)
+│   │   ├─── api.cpp (elaborates the API's functionalities)
+│   │   ├─── api.hpp (sets the API functionalities)
 │   │   └─── server.cpp (server's main program)
+│   ├─── Bin
+│   │   ├─── server (server's binary file)
+│   │   └─── server.exe (server's executable file)
+│   ├─── DataValidation
+│   │   └─── validateCsv.cpp (validation tool's program)
 │   └─── Formatting 
-│       ├─── conversionJson.hpp (converts data into appropriate format)
-│       └─── conversionXml.hpp (converts data into appropriate format)
+│   │   ├─── conversionJson.hpp (converts data into appropriate format)
+│   │   └─── conversionXml.hpp (converts data into appropriate format)
+│   ├─── startServer.cmd (server's build file for Windows)
+│   ├─── startServer.sh (server's build file for macOS)
+│   ├─── startValidation.cmd (validation tool's build file for Windows)
+│   └─── startValidation.sh (validation tool's build file for macOS)
+├─── pathQuickLauncher.cmd (server's build file for Windows)
+├─── pathQuickLauncher.sh (server's build file for macOS)
 └─── USA-roads.csv (.csv file where the data is)
 ```
 
@@ -362,6 +373,7 @@ class Connection {
 The REST API serves as a critical program for the software, enabling efficient extraction and interaction with data stored in the .csv file. The API operates on a **localhost server**, restricting access to the host machine for enhanced security and development simplicity.
 
 **Base URL**:
+
 The API's base URL is: `http://localhost:8080`
 
 **Route Calculation Endpoint**:
@@ -372,11 +384,12 @@ The API's base URL is: `http://localhost:8080`
 - Parameters:
   - `source` (*Required*): Landmark ID of the starting point.
   - `destination` (*Required*): Landmark ID of the endpoint.
-  - `format` (*Required*): Specifies the response format. Accepts xml or json.
+  - `format` (*Required*): Specifies the response format. Accepts XML or JSON.
 - Example Request:
   `curl "http://localhost:8080/route?source=1&destination=2&format=json"`
 
 **Response Structure**:
+
 As responses will be available in both JSON and XML formats, the response structure should fit the format.
 
 JSON:
@@ -388,9 +401,10 @@ XML:
 <img src="https://github.com/user-attachments/assets/02773b24-5621-4d9e-88de-63333a37304a" width=250>
 
 **Error Handling**:
-*Invalid Parameters*: Returns a `400` Bad Request.
-*Resource Not Found*: Returns a `404` Not Found.
-*Server Error*: Returns a `500` Internal Server Error.
+
+- *Invalid Parameters*: Returns a `400` Bad Request.
+- *Resource Not Found*: Returns a `404` Not Found.
+- *Server Error*: Returns a `500` Internal Server Error.
 
 Here's how the server interacts with the other components:
 
@@ -410,10 +424,12 @@ It checks for missing or malformed entries, ensures the graph is bidirectional, 
 
 #### Core Algorithm
 
-To perform the algorithm, we woould need to create a weighted graph.
+To perform the algorithm, we would need to create a weighted graph.
 
 **Graph Construction**:
+
 A weighted graph is constructed, where:
+
 Several global nodes are determined as the graphs' edges.
 These nodes are connected to every single node, and connections are stored in a list.
 
@@ -469,7 +485,7 @@ This ensures routes are within 10% of the optimal shortest path while significan
 Once the optimal path is determined, it is formatted as an ordered list of landmarks.
 The list is converted into both XML and JSON data, in dedicated files.
 
-To handle writing into the appropriate file formats, we'd need the `nlohmann-json` and `tinyxml2` libraries. 
+To handle writing into the appropriate file formats, we would need the `nlohmann-json` and `tinyxml2` libraries. 
 Refer to the [libraries part](#specific-libraries) for more information.
 
 **Performance Metrics**:
@@ -489,6 +505,28 @@ The algorithm handles datasets with millions of nodes and edges, maintaining per
 
 Robust mechanisms ensure graceful handling of invalid or incomplete queries, providing meaningful error messages or fallback routes.
 
+#### Big-O Complexity
+
+**Graph Construction**: *O(N²)*
+
+**Pathfinding**:
+- **O((V + E) log V)** (Dijkstra)
+- **O((V + E)¹/² log V)** (Bidirectional Dijkstra)
+
+For large graphs, **Bidirectional Dijkstra or A\*** will dominate, making the overall worst-case complexity:
+
+**O((V + E)¹/² log V) + O(N²)**
+
+If **E = O(V²)**, then the worst-case complexity simplifies to:
+
+**O(V log V) + O(N²)**
+
+Since **N ≈ V** (landmarks = nodes), the final complexity is approximately:
+
+**O(N²) (graph construction) + O(N log N) (pathfinding)**
+
+Overall, the dominant term is **O(N²)**, making this the worst-case complexity.
+
 ## Glossary
 
 | Term | Link |
@@ -499,3 +537,6 @@ Robust mechanisms ensure graceful handling of invalid or incomplete queries, pro
 | **REST (Representational State Transfer)** is a software architectural style that was created to guide the design and development of the architecture for the World Wide Web. | [Wikipedia](https://en.wikipedia.org/wiki/REST) |
 | An **Application Programming Interface (API)** is a connection between computers or between computer programs. It is a type of software interface, that offers a service to other pieces of software. | [Wikipedia](https://en.wikipedia.org/wiki/API) |
 | **Dijkstra's Algorithm**  is an algorithm for finding the shortest paths between nodes in a weighted graph, which may represent, for example, a road network. | [Wikipedia](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm) |
+| **Big O notation** is a mathematical notation that describes the limiting behavior of a function when the argument tends towards a particular value or infinity. | [Wikipedia](https://en.wikipedia.org/wiki/Big_O_notation) |
+| A **weighted graph** is a graph where each edge has a numerical value called a weight. | [Wikipedia](https://en.wikipedia.org/wiki/Big_O_notation) |
+| A weighted graph in this context is made up of **nodes** (representing the points) which are connected by **edges** (representing the lines). | [Wikipedia](https://en.wikipedia.org/wiki/Graph_theory) |
