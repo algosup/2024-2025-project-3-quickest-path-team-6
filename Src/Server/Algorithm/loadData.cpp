@@ -7,7 +7,7 @@
 ifstream file;
 bool ended = false;
 
-void initServer(const string& file_name);
+void loadData(const string& file_name);
 void loadingCat(string s);
 
 void wait(int time)
@@ -19,7 +19,20 @@ void wait(int time)
     #endif
 }
 
-bool loadDataset() {
+void writeIntoTxt(){
+    remove("paths");
+    ofstream outfile("paths");
+    if (!outfile) {
+        std::cerr << "Error opening file!" << std::endl;
+    }
+
+    for (const auto& edge : visited_paths) {
+        outfile << edge.from << ", " << edge.to << ", " << edge.time << '\n';
+    }
+    outfile.close();
+}
+
+bool initServer() {
     auto start = high_resolution_clock::now(); // get time
     string file_name;
 
@@ -36,11 +49,11 @@ bool loadDataset() {
         }
     }
 
-    thread initServerThread(initServer, file_name);
-    // thread loadingCatThread(loadingCat, "Loading the file");
+    thread loadDataThread(loadData, file_name);
+    thread loadingCatThread(loadingCat, "Loading the file");
 
-    initServerThread.join();
-    // loadingCatThread.join();
+    loadDataThread.join();
+    loadingCatThread.join();
 
     file.close();
 
@@ -76,20 +89,18 @@ void getData(const string& file_name) {
 }
 
 void graphMaker() {
-    int node;
-    for (int i = 1; i < 11; i++) {
-        if (i == 1) {
-            srand((unsigned) time(NULL));
-            node = (rand()%max_id) + 1;
-            modifiedDijkstra(data_graph, node);
-        } else {
-            // node = farthest_node;
-            modifiedDijkstra(data_graph, node);
-        }
-    }
+    srand((unsigned) time(NULL));
+    int global_node = (rand()%max_id) + 1;
+    
+    cout << "Linking" << "\r" << flush;
+
+    modifiedDijkstra(data_graph, global_node);
+
+    writeIntoTxt();
+
 }
 
-void initServer(const string& file_name) {
+void loadData(const string& file_name) {
     getData(file_name);
     graphMaker();
     ended = true;
@@ -120,7 +131,8 @@ void verifyData(const string& file_name)
         cout << "No duplicate connections found." << endl;
     }
 
-    cout << endl << endl;
+    cout << endl;
+    pause_cat = false;
 }
 
 void loadingCat(string s)

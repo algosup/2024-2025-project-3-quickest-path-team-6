@@ -199,7 +199,7 @@ std::string Api::processRequest(const std::string &request) {
         // Perform your graph traversal using the parsed parameters
         int start = std::stoi(source);
         int end = std::stoi(destination);
-        int path_time;
+        int path_time = 0;
 
         sleeping = false;
         std::vector<int> path; // = aStarAlgorithm

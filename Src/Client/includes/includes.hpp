@@ -21,8 +21,9 @@
 #else
 #include <unistd.h>
 #include <sys/socket.h>
-#include <Kernel/netinet/in.h>
+#include <netinet/in.h>
 #include <termios.h>
+#include <arpa/inet.h>
 #endif
 
 #include <limits>
