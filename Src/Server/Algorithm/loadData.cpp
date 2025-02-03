@@ -6,6 +6,8 @@
 
 ifstream file;
 bool ended = false;
+bool datasetLoaded = false;
+int min_id = 1, max_id = 0;
 
 void loadData(const string& file_name);
 void loadingCat(string s);
@@ -73,7 +75,7 @@ void getData(const string& file_name) {
     while (getline(file, line)) {
         stringstream ss(line);
         int from, to;
-        int time;
+        double time;
         char comma;
         ss >> from >> comma >> to >> comma >> time;
 
@@ -86,18 +88,16 @@ void getData(const string& file_name) {
         data_graph.push_back({from, to, time});
         data_graph.push_back({to, from, time}); // Bidirectional connection
     }
+    datasetLoaded = true;
 }
 
 void graphMaker() {
     srand((unsigned) time(NULL));
     int global_node = (rand()%max_id) + 1;
-    
-    cout << "Linking" << "\r" << flush;
 
-    modifiedDijkstra(data_graph, global_node);
+    modifiedDijkstra(data_graph, 1, max_id);
 
-    writeIntoTxt();
-
+    // writeIntoTxt();
 }
 
 void loadData(const string& file_name) {
@@ -148,6 +148,9 @@ void loadingCat(string s)
         wait(1000000);
         cout << s << ".. / -.- \\" << "\r" << flush;
         wait(150000);
+        if (datasetLoaded && s != "Setting the data"){
+            s = "Setting the data";
+        }
     }
     cout << "Dataset loaded!    / ^.^ \\" << "\r" << flush;
 }
