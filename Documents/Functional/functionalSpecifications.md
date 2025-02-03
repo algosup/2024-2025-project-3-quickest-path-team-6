@@ -1,11 +1,9 @@
 # Functional Specifications
 
-<details>
-<summary>
-
 ## Table Of Contents
 
-</summary>
+<details>
+<summary>Click to expand</summary>
 
 - [Project Overview](#project-overview)
   - [Project Definition](#project-definition)
@@ -28,7 +26,10 @@
 - [Non-Functional Requirements](#non-functional-requirements)
 - [Available Resources](#available-resources)
   - [Learning Resources](#learning-resources)
+- [Error Handling](#error-handling)
 - [Future Improvements](#future-improvements)
+  - [Call For Tender Compliant](#call-for-tender-compliant)
+  - [Beyond Call For Tender](#beyond-call-for-tender)
 - [Glossary](#glossary)
 
 </details>
@@ -143,12 +144,14 @@ This project aims to create a software tool that calculates the fastest route be
 
 - The program should not require user data.
 
-
 ## Dataset Requirements
+
 The program relies on the USA-roads.csv file to work. This file contains the links between landmarks and must be located in the src directory, or else it wont be detected.
 
 ### Dataset Structure
+
 The dataset must follow this format:
+
 ```
 StartPoint,EndPoint,Distance
 1,2,5062
@@ -168,9 +171,9 @@ StartPoint,EndPoint,Distance
 - Distance: Represents the “span” between the two landmarks in an abstract unit.
 
 ### Usage In The Program
-- The dataset is used to create a directed graph, with nodes representing landmarks and edges representing connections between them.
-- The Distance column is used by the shortest-path algorithm (A*) to compute the quickest routes.
 
+- The dataset is used to create a directed graph, with nodes representing landmarks and edges representing connections between them.
+- The Distance column is used by the shortest-path algorithm (A\*) to compute the quickest routes.
 
 ## UI Snapshots
 
@@ -222,12 +225,12 @@ Key details displayed during this process include:
 ## Use Cases
 
 | Use case ID | Name                    | Description                                                                   | Pre-conditions                                       | Flow of events                                                                                                          | Exit criteria                                                             | Note                                |
-| --------------- | ----------------------- | ----------------------------------------------------------------------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ----------------------------------- |
-| 1               | PathQuick Menu          | The user wants to enter the PathQuick menu.                                   | Having the latest version downloaded and unzipped.   | - mac: execute start.sh<br>- windows: execute start.cmd                                                                 | You've entered the menu and can select an option.                         |                                     |
-| 2               | Calculate Shortest Path | Input numbers to see the travel time between them.                            | Being on the menu.                                   | Type 1, then choose a departure and a destination number. Validate with 1 if your choice is correct to have the result. | Have access to the travel time, and calculation time.                     |                                     |
-| 3               | Credits                 | The user wants to view the credits for the application.                       | The program is running, and the user is on the menu. | 1. User selects option 2 from the menu.<br>2. The system shows the contributors and tools used.                         | The user views the credits and can return to the main menu by pressing 0. |                                     |
-| 4               | Exit to Console         | The user wants to leave the menu and return to the console.                   | The program is running, and the user is in the menu. | 1. User selects option 0 from the menu.<br>2. The system terminates and returns control to the console.                 | The program closes, and the terminal is ready for new commands.           | Ensure all processes are terminated |
-| 5               | Validated Bin Output    | The user wants to check if JSON and XML files were created in the bin folder. | The program is running, and the user is in the menu. | The user goes into the Bin folder and checks if the files are here.                                                     | The user knows whether the JSON and XML files were successfully created.  |
+| ----------- | ----------------------- | ----------------------------------------------------------------------------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ----------------------------------- |
+| 1           | PathQuick Menu          | The user wants to enter the PathQuick menu.                                   | Having the latest version downloaded and unzipped.   | - mac: execute start.sh<br>- windows: execute start.cmd                                                                 | You've entered the menu and can select an option.                         |                                     |
+| 2           | Calculate Shortest Path | Input numbers to see the travel time between them.                            | Being on the menu.                                   | Type 1, then choose a departure and a destination number. Validate with 1 if your choice is correct to have the result. | Have access to the travel time, and calculation time.                     |                                     |
+| 3           | Credits                 | The user wants to view the credits for the application.                       | The program is running, and the user is on the menu. | 1. User selects option 2 from the menu.<br>2. The system shows the contributors and tools used.                         | The user views the credits and can return to the main menu by pressing 0. |                                     |
+| 4           | Exit to Console         | The user wants to leave the menu and return to the console.                   | The program is running, and the user is in the menu. | 1. User selects option 0 from the menu.<br>2. The system terminates and returns control to the console.                 | The program closes, and the terminal is ready for new commands.           | Ensure all processes are terminated |
+| 5           | Validated Bin Output    | The user wants to check if JSON and XML files were created in the bin folder. | The program is running, and the user is in the menu. | The user goes into the Bin folder and checks if the files are here.                                                     | The user knows whether the JSON and XML files were successfully created.  |
 
 ## Non-Functional Requirements
 
@@ -276,6 +279,56 @@ To have a better understanding of C++, data structures, algorithms, and REST API
 - [Building RESTful APIs with C++](https://medium.com/@AlexanderObregon/building-restful-apis-with-c-4c8ac63fe8a7)  
   Step-by-step guide to implementing REST APIs in C++.
 
+
+
+
+## Error Handling
+
+| Error Type           | Scenario                                                    | Message                                                  |
+|----------------------|-------------------------------------------------------------|----------------------------------------------------------------|
+| **Server Issues**    | The server fails to compile on Windows.                     | "Cannot compile."                                              |
+|                      | The server fails to compile on MacOS.                       | "Cannot compile."                                              |
+|                      | The server is not running when the user makes a request.   | "Server not connected. Wait until it is connected."            |
+|                      | The server shuts down unexpectedly.                         | "The server shuts down."                                       |
+|                      | The server disconnects while processing input.             | "Error: The server was disconnected while processing input."   |
+| **Input Errors**     | The user provides a blank input.                            | "Source or destination cannot be empty."                      |
+|                      | The user enters a number larger than 23,947,347.           | "Source or destination cannot be over 23,947,347."            |
+|                      | The user enters a character instead of a number.           | "Invalid input! Expected a number from the list."             |
+|                      | The user enters a string instead of a number.              | "Invalid input! Expected a number from the list."             |
+|                      | The user enters a floating-point number.                   | "Source and destination need to be integers."                 |
+|                      | The user enters a negative number.                         | "Source or destination cannot be under 1."                    |
+|                      | The user enters zero as an input.                          | "Source or destination cannot be under 1."                    |
+| **Algorithm Issues** | The algorithm does not return the shortest path.           | "No errors written, the algorithm isn't going in further steps." |
+|                      | The program does not proceed to the next step as expected. | "Not going to the next step but no errors shown."             |
+|                      | The response time exceeds the expected limit.              | "1 to 23,947,347 in 3 sec."                                   |
+| **Output Format**    | The user requests an unsupported file format.              | "File format not recognized."                                  |
+|                      | The XML and JSON files contain different data.             | "Mismatch in JSON and XML output."                            |
+|                      | No external files are created for JSON/XML output.        | "The path is found but no external files were created."       |
+| **Validation Tool**  | The CSV file contains duplicate entries.                    | "The program found two duplicates."                           |
+|                      | The CSV file contains loops.                               | "The program returned a loop."                              |
+|                      | The dataset is not fully connected.                        | "The program returned an error."                              |
+|                      | The file format is incorrect.                              | "Invalid file format. Expected CSV."                         |
+
+
+
+
+## Future Improvements
+
+### Call For Tender Compliant
+
+- Delivering results with full precision and zero error in path calculation.
+- Reduce the memory usage.
+- Introduce caching mechanisms for frequently requested routes.
+
+### Beyond Call For Tender
+
+- Implement a graphical interface accessible via a web browser for ease of use.
+- Allow users to calculate shortest paths for different travel modes (bus, train, car, bicycle, walking).
+- Enable users to define multiple waypoints between the start and destination.
+- Allow users to choose different CSV datasets to adapt route calculations to different regions or transportation networks.
+
+
+
 ## Glossary
 
 | Term Used                    | Definition                                                                                             |
@@ -290,39 +343,3 @@ To have a better understanding of C++, data structures, algorithms, and REST API
 | A\*                          | Graph traversal and pathfinding algorithm that is widely used for shortest-path calculations.          |
 | Bin Folder                   | Folder where the output files (e.g., JSON/XML results) are stored by the program.                      |
 
-
-## Future Improvements
-
-
-
-### Call For Tender Compliant 
-Performances (0% approximation rule)
--    +reduce memory usage
-
-
-### Beyond Call For Tender
-Web based UI
-Several transportation routes (bus, routes, car).
-+multi stops +offline routes.
-being able to chose which csv file you want to use among several ones. 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Error Handling
-
-| Error type           | Scenario                                                      | Message Example                                                                              |
-| -------------------- | ------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| Invalid input        | The user provides a non-numeric value when a number is required.      | "Invalid input! Expected a number from the list."                                            |
-| Server Disconnection | The user attempts to use PathQuick while the server is offline. | "Server not connected. Wait until it is connected."                                          |
-|                      | The server disconnects while the user is entering input.      | "Error: The server was disconnected while processing input. Please reconnect and try again." |
