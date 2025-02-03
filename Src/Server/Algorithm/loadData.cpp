@@ -2,18 +2,13 @@
 #define LOAD_DATA_CPP
 #include "../Includes/includes.hpp"
 #include "../DataValidation/validateCsv.cpp"
-
-int min_id = 1, max_id = 0;
+#include "algorithm.cpp"
 
 ifstream file;
 bool ended = false;
-void getData(const string& file_name);
-void loadingCat(string s);
 
-struct Edge {
-    int to;
-    int time;
-};
+void initServer(const string& file_name);
+void loadingCat(string s);
 
 void wait(int time)
 {
@@ -24,10 +19,7 @@ void wait(int time)
     #endif
 }
 
-unordered_map<int, vector<Edge>> data_graph;
-
-unordered_map<int, vector<Edge>> loadDataset() {
-
+bool loadDataset() {
     auto start = high_resolution_clock::now(); // get time
     string file_name;
 
@@ -39,14 +31,16 @@ unordered_map<int, vector<Edge>> loadDataset() {
             cout << "Opening " << p << '\n' << endl;
             file_name = p.path().string();
             break;
+        } else {
+            return false;
         }
     }
 
-    thread getDataThread(getData, file_name);
-    thread loadingCatThread(loadingCat, "Loading the file");
+    thread initServerThread(initServer, file_name);
+    // thread loadingCatThread(loadingCat, "Loading the file");
 
-    getDataThread.join();
-    loadingCatThread.join();
+    initServerThread.join();
+    // loadingCatThread.join();
 
     file.close();
 
@@ -55,11 +49,10 @@ unordered_map<int, vector<Edge>> loadDataset() {
 
     cout << "\nLoaded in " << duration.count() << " seconds!\n" 
          << "Available landmarks from " << min_id << " to " << max_id << "\n" << endl;
-    return data_graph;
+    return true;
 }
 
-void getData(const string& file_name)
-{
+void getData(const string& file_name) {
     if (!file.is_open()) {
         file.open(file_name);
     }
@@ -80,6 +73,25 @@ void getData(const string& file_name)
         data_graph[from].push_back({to, time});
         data_graph[to].push_back({from, time}); // Bidirectional connection
     }
+}
+
+void graphMaker() {
+    int node;
+    for (int i = 1; i < 11; i++) {
+        if (i == 1) {
+            srand((unsigned) time(NULL));
+            node = (rand()%max_id) + 1;
+            modifiedDijkstra(data_graph, node);
+        } else {
+            // node = farthest_node;
+            modifiedDijkstra(data_graph, node);
+        }
+    }
+}
+
+void initServer(const string& file_name) {
+    getData(file_name);
+    graphMaker();
     ended = true;
 }
 

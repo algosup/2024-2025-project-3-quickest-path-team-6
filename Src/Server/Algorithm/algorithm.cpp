@@ -1,11 +1,17 @@
 #ifndef ALGORITHM_CPP
 #define ALGORITHM_CPP
 #include "../Includes/includes.hpp"
-#include "loadData.cpp"
 
-unordered_map<int, vector<Edge>> graph; // get the entire graph (need to be handled by the server)
+struct Edge {
+    int from;
+    int to;
+    int time;
+};
 
-vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int start, int end, int* time) {
+int min_id = 1, max_id = 0;
+unordered_map<int, vector<Edge>> data_graph;
+
+void modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int start) {
 
     vector<int> path;
 
@@ -23,10 +29,10 @@ vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int 
         auto [current_time, current_node] = pq.top();
         pq.pop();
 
-        if (current_node == end) {
-            *time = current_time;
-            break; // Early exit if we reach the destination
-        }
+        // if (current_node == end) {
+        //     *time = current_time;
+        //     break; // Early exit if we reach the destination
+        // }
 
         if (graph.find(current_node) == graph.end()) {
             continue; // Skip nodes with no outgoing edges
@@ -43,14 +49,18 @@ vector<int> modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int 
         }
     }
 
-    // Reconstruct the path
-    for (int at = end; at != -1; at = previous[at]) {
-        path.push_back(at);
-        if (at == start) break; // Reached the start point
-    }
+    // // Reconstruct the path
+    // for (int at = end; at != -1; at = previous[at]) {
+    //     path.push_back(at);
+    //     if (at == start) break; // Reached the start point
+    // }
 
-    reverse(path.begin(), path.end());
-    return path;
+    // reverse(path.begin(), path.end());
+    // return path;
+}
+
+void aStarAlgorithm(){
+
 }
 
 #endif // !ALGORITHM_CPP

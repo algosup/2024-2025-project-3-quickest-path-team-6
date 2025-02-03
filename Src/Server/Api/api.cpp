@@ -3,7 +3,7 @@
 
 #include "../Includes/includes.hpp"
 
-#include "../Algorithm/algorithm.cpp"
+#include "../Algorithm/loadData.cpp"
 #include "../Formatting/conversionJson.hpp"
 #include "../Formatting/conversionXml.hpp"
 #include "api.hpp"
@@ -202,7 +202,7 @@ std::string Api::processRequest(const std::string &request) {
         int path_time;
 
         sleeping = false;
-        std::vector<int> path = modifiedDijkstra(graph, start, end, &path_time);
+        std::vector<int> path; // = aStarAlgorithm
 
         // Generate JSON, XML or plain text response based on the format
         if (format == "json") {
