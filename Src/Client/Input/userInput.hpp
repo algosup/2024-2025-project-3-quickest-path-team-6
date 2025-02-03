@@ -5,27 +5,39 @@
 int input = 0;
 bool input_exception = false;
 
+bool isInteger(const std::string &input) {
+    int number;
+    // Check if input contains only digits (allowing negative numbers)
+    size_t i = 0;
+
+    while (i < input.size()) {
+        if (!std::isdigit(input[i])) return false; // Ensure all characters are digits
+        i++;
+    }
+
+    try {
+        number = std::stoi(input); // Convert string to integer
+    } catch (const std::out_of_range &) {
+        return false; // Handle integer overflow
+    }
+
+    return true; // Valid integer
+}
+
 int userInputInt(bool* exception)
 {
-    int num;
+    string num;
 
     cin >> num;
 
     // Check for type mismatch of the input
-    if (cin.fail()) 
-    {
-        // Clear the failbit and ignore the remaining input
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+    if (!isInteger(num)) {
         *exception = true;
-    }
-    else 
-    {
-        // Input is valid
+        return -1;
+    } else {
         *exception = false;
+        return stoi(num);
     }
-
-    return num;
 }
 
 void handleException(bool server_is_online, int page)

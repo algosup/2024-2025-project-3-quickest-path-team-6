@@ -93,10 +93,14 @@ void findMyWayMenu(){
              << "+-------------------------------------------------------------------------+\n";
         if(input != 1 && !is_algorithm_done){
             cout << "Available points between " << lowest_id << " and " << highest_id << "\n" << endl;
-            if(departure_point <= 0 || departure_point > highest_id){
+            if(departure_point <= 0){
                 handleException(server_is_online, page);
                 cout << "Choose a departure -> ";
                 departure_point = userInputInt(&input_exception);
+                if (departure_point > highest_id  || departure_point <= 0){
+                    input_exception = true;
+                    departure_point = 0;
+                }
             }
             else if(destination_point <= 0 || destination_point > highest_id){
                 cout << "+----------\n"
@@ -105,6 +109,10 @@ void findMyWayMenu(){
                 handleException(server_is_online, page);
                 cout << "Choose a destination -> ";
                 destination_point = userInputInt(&input_exception);
+                if (destination_point > highest_id || destination_point <= 0){
+                    input_exception = true;
+                    destination_point = 0;
+                }
             }
             else if(departure_point != 0 && destination_point != 0 || input_exception){
                 cout << "+----------\n"
