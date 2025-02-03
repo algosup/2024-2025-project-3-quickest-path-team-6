@@ -75,7 +75,7 @@ void getData(const string& file_name) {
     while (getline(file, line)) {
         stringstream ss(line);
         int from, to;
-        double time;
+        int time;
         char comma;
         ss >> from >> comma >> to >> comma >> time;
 
@@ -95,7 +95,7 @@ void graphMaker() {
     srand((unsigned) time(NULL));
     int global_node = (rand()%max_id) + 1;
 
-    modifiedDijkstra(data_graph, 1, max_id);
+    modifiedDijkstra(data_graph, global_node, max_id);
 
     // writeIntoTxt();
 }
