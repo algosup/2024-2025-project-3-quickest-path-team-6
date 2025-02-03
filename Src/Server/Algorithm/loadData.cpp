@@ -73,7 +73,7 @@ void getData(const string& file_name) {
     while (getline(file, line)) {
         stringstream ss(line);
         int from, to;
-        double time;
+        int time;
         char comma;
         ss >> from >> comma >> to >> comma >> time;
 
