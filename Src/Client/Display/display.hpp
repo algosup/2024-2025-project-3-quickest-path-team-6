@@ -1,27 +1,30 @@
 #ifndef DISPLAY_HPP
 #define DISPLAY_HPP
+
 #include "../Includes/includes.hpp"
 #include "../Input/userInput.hpp"
 #include "../request.hpp"
 
+// Function prototypes for menu displays
 void mainMenu();
 void findMyWayMenu();
 void creditsMenu();
 
+// Global variables to track ID range and current page state
 int lowest_id = 0;
 int highest_id = 0;
-
 int page = 1;
 
+// Function to clear the console screen based on OS
 void clearScreen(){
-    // clears the console depending on your architecture
     #if defined _WIN32
-        system("cls");
+        system("cls"); // Windows
     #elif defined (__LINUX__) || defined(__gnu_linux__) || defined(__linux__) || defined (__APPLE__)
-        system("clear");
+        system("clear"); // Linux/macOS
     #endif
 }
 
+// Main display loop handling different menu pages
 void display(){
     while(page != 0){
         switch(page){
@@ -42,9 +45,12 @@ void display(){
     cout << "\nBye! See you later!\n" << endl;
 }
 
+// Main menu function handling user input and navigation
 void mainMenu(){
     while (page == 1 || input_exception){
         clearScreen();
+        
+        // Display menu options
         cout << "+-------------------------------------------_--------------_--------------+\n"
              << "| \\    / _  |  _  _  ._ _   _    _|_  _    |_) _. _|_ |_  / \\     o  _ |  |\n"
              << "|  \\/\\/ (/_ | (_ (_) | | | (/_    |_ (_)   |  (_|  |_ | | \\_X |_| | (_ |< |\n"
@@ -55,9 +61,12 @@ void mainMenu(){
              << "-+-------------+\n"
              << "0| Exit        |\n" 
              << "-+-------------+" << endl;
+        
         handleException(server_is_online, page);
         cout << "Your choice -> ";
         input = userInputInt(&input_exception);
+
+        // Handle user input
         switch(input){
             case 0:
                 page = 0;
@@ -79,20 +88,27 @@ void mainMenu(){
     input = 0;
 }
 
+// Menu for finding a path between landmarks
 void findMyWayMenu(){
     int travel_time = 0;
     int departure_point = 0;
     int destination_point = 0;
-    bool chosen_format = false; // false = json / true = xml
+    bool chosen_format = false; // false = JSON, true = XML
     bool is_algorithm_done = false;
+
     while(page == 2 && server_is_online || input_exception){
         clearScreen();
+        
+        // Display menu header
         cout << "+----------------------_-------------------_------------------------------+\n"
              << "|                     |_ o ._   _| M \\/\\/ (_| \\/              |/ \\|       |\n"
              << "|  |\\ /|              |  | | | (_| Y          /                           |\n"
              << "+-------------------------------------------------------------------------+\n";
+        
         if(input != 1 && !is_algorithm_done){
             cout << "Available points between " << lowest_id << " and " << highest_id << "\n" << endl;
+
+            // User chooses departure point
             if(departure_point <= 0){
                 handleException(server_is_online, page);
                 cout << "Choose a departure -> ";
@@ -102,6 +118,7 @@ void findMyWayMenu(){
                     departure_point = 0;
                 }
             }
+            // User chooses destination point
             else if(destination_point <= 0 || destination_point > highest_id){
                 cout << "+----------\n"
                      << "| Departure: " << departure_point << "\n"
@@ -114,6 +131,7 @@ void findMyWayMenu(){
                     destination_point = 0;
                 }
             }
+            // Confirm choices and handle options
             else if(departure_point != 0 && destination_point != 0 || input_exception){
                 cout << "+----------\n"
                      << "| Departure: " << departure_point << "\n"
@@ -121,6 +139,7 @@ void findMyWayMenu(){
                      << "| Destination: " << destination_point << "\n"
                      << "+----------\n"
                      << "Output file format: " << (chosen_format == false ? "JSON\n" : "XML\n") << endl;
+                
                 cout << "-+-----------------------+\n"
                      << "1| Everything is correct |\n"
                      << "-+-----------------------+\n"
@@ -130,9 +149,11 @@ void findMyWayMenu(){
                      << "-+-----------------------+\n"
                      << "0| Go back to main menu  |\n" 
                      << "-+-----------------------+\n" << endl;
+                
                 handleException(server_is_online, page);
                 cout << "Your choice -> ";
                 input = userInputInt(&input_exception);
+
                 switch(input){
                     case 0:
                         page = 1;
@@ -158,9 +179,9 @@ void findMyWayMenu(){
         }
         else if(input == 1 || input_exception){
             cout << "| Departure: " << departure_point << "\n"
-                 << "|     \\/\n"
-                 << "| Destination: " << destination_point << "\n" 
-                 << "+----------\n" << endl;
+                << "|     \\/\n"
+                << "| Destination: " << destination_point << "\n" 
+                << "+----------\n" << endl;
             if(!is_algorithm_done){
                 string format = chosen_format == false ? "json" : "xml";
                 sendRequestQuickPath(departure_point, destination_point, format);
@@ -181,11 +202,11 @@ void findMyWayMenu(){
     }
 }
 
-void creditsMenu()
-{
-    while(page == 3 || input_exception)
-    {
+// Credits menu displaying team members
+void creditsMenu(){
+    while(page == 3 || input_exception){
         clearScreen();
+        
         cout << "+--------------------------_----------------------------------------------+\n"
              << "|                         /  ._ _   _| o _|_  _                           |\n"
              << "|                         \\_ | (/_ (_| |  |_ _>                           |\n"
@@ -212,6 +233,7 @@ void creditsMenu()
              << "|                       -> the Project Manager:                           |\n"
              << "|                             Evan UHRING                                 |\n"
              << "+-------------------------------------------------------------------------+\n";
+        
         handleException(server_is_online, page);
         cout << "0| Go to main menu? -> ";
         input = userInputInt(&input_exception);
@@ -221,4 +243,5 @@ void creditsMenu()
             page = 1;
     }
 }
-#endif // !DISPLAY_HPP
+
+#endif // DISPLAY_HPP
