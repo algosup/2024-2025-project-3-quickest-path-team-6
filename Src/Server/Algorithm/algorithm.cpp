@@ -10,8 +10,11 @@ struct Edge {
 
 unordered_map<int, vector<Edge>> heuristic_graph;
 unordered_map<int, vector<Edge>> data_graph;
+vector<int> global_nodes = {};
 
-void modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int start, int max_id) {
+int modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int start, int max_id) {
+    int farthest = 0;
+    int farthest_distance = 0;
     // Min-heap: (total time, landmark ID)
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<>> pq;
 
@@ -42,7 +45,15 @@ void modifiedDijkstra(const unordered_map<int, vector<Edge>>& graph, int start, 
         } else {
             heuristic_graph[start].push_back({start, i, distances[i]});
         }
+        for (const int& node : global_nodes) {
+            if (distances[i] > farthest_distance && farthest != node) {
+                farthest = i;
+                farthest_distance = distances[i];
+            }
+        }
+        
     }
+    return farthest;
 }
 
 void aStarAlgorithm(){
