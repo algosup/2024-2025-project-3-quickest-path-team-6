@@ -231,15 +231,22 @@ inline bool loadDataset() {
     string file_name;
     string path = "../../Src";
     string ext(".csv");
+    bool file_found = false;
     for (auto& p : fs::recursive_directory_iterator(path)) {
         if (p.path().extension() == ext) {
             cout << "Opening " << p.path().string() << "\n" << endl;
             file_name = p.path().string();
+            file_found = true;
             break;
-        } else {
-            return false;
         }
     }
+
+    if (!file_found)
+    {
+        return false; // exit if the .csv file is not found
+    }
+    
+
     thread getDataThread(getData, file_name);
     thread loadingCatThread(loadingCat, "Loading the file");
     getDataThread.join();
