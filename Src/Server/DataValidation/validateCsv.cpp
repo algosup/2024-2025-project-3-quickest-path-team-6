@@ -131,6 +131,43 @@ bool isFullyConnected(UnionFind& uf) {
 
 // Ensure `main` is properly defined when compiling standalone
 #ifdef STANDALONE
+// Function to clear the console screen based on OS
+void clearScreen(){
+    #if defined _WIN32
+        system("cls"); // Windows
+    #elif defined (__LINUX__) || defined(__gnu_linux__) || defined(__linux__) || defined (__APPLE__)
+        system("clear"); // Linux/macOS
+    #endif
+}
+
+/*
+    Checks if a given string represents a valid integer
+    This functions returns true if the string represents an integer, false otherwise
+
+    Parameters: 
+        - input, the string to check
+*/
+bool isInteger(const std::string &input) {
+    int number;
+    size_t i = 0;
+
+    // Ensure all characters are digits (does not handle negative numbers correctly)
+    while (i < input.size()) {
+        if (!std::isdigit(input[i])) return false;
+        i++;
+    }
+
+    // Try converting string to integer
+    try {
+        number = std::stoi(input);
+    } catch (const std::out_of_range &) {
+        return false; // Handle cases where the number is too large
+    }
+
+    return true; // String is a valid integer
+}
+
+// main function to be executed on standalone
 int main() {
     string file_name;
     string constructed_path_str_dbg = "../../Src";
@@ -146,32 +183,46 @@ int main() {
     unordered_map<int, vector<int>> graph;
     UnionFind uf;
     bool has_duplicates = false;
-    int choice;
+    std::string choice;
+    int input;
+    bool error_detected = false;
+
     while (true) {
+        clearScreen();
+
+        if (error_detected)
+            cout << "Invalid input. Please enter 1, 2, or 3.\n" << endl;
         cout << "Select an option:\n";
         cout << "1. Check for duplicates\n";
         cout << "2. Check for loops\n";
         cout << "3. Check for full connectivity\n";
         cout << "Enter your choice: ";
         
-        cin >> choice;
+        getline(cin, choice); // Read input from the user
 
-        if (cin.fail()) { // If input is not an integer
-            cin.clear(); // Clear the error state
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard invalid input
-            cout << "Invalid choice. Please enter 1, 2, or 3." << endl;
-        } else if (choice >= 1 && choice <= 3) {
-            break; // Valid choice, exit loop
+        if (choice == "") {
+            error_detected = true;
+        } else if (isInteger(choice)) {
+            input = std::stoi(choice);
+            if (input >= 1 && input <= 3) {
+                break; // Valid input, exit loop
+                error_detected = false;
+            } else {
+                error_detected = true;
+            }
         } else {
-            cout << "Invalid choice. Please enter 1, 2, or 3." << endl;
+            error_detected = true;
         }
     }
+
+    clearScreen();
     cout << "Processing..." << endl;
+
     if (!processFile(file_name, graph, uf, has_duplicates)) {
         cerr << "Error while processing the file." << endl;
         return 1;
     }
-    switch (choice) {
+    switch (input) {
         case 1:
             cout << (has_duplicates ? "The file contains duplicate connections." : "No duplicate connections found.") << endl;
             break;
