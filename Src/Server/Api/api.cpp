@@ -251,22 +251,28 @@ void Api::serverOnline(int server_socket) {
 
 // Displays a simple sleep animation; toggles state based on elapsed time.
 void sleepingAnimation() {
-    while(true) {
-        auto start = std::chrono::high_resolution_clock::now();
-        while(!sleeping) {
-            std::cout << "\\(^owo^)  " << "\r" << std::flush;
-            auto stop = std::chrono::high_resolution_clock::now();
-            auto duration = std::chrono::duration_cast<std::chrono::seconds>(stop - start);
-            if(duration.count() >= 10) {
+    int cat_state = 0;
+    while(true){
+        while(pause_cat == true){wait_ms(1);}
+        auto start = high_resolution_clock::now();
+        while(!sleeping && pause_cat == false){
+            cout << "\\(^owo^)  " << "\r" << flush;
+            auto stop = high_resolution_clock::now();
+            auto duration = duration_cast<seconds>(stop - start);
+            if(duration.count() >= 10){
                 sleeping = true;
             }
-            std::this_thread::sleep_for(std::chrono::milliseconds(1));  // wait for 1 ms
+            wait_ms(1);
         }
-        while(sleeping) {
-            std::cout << "_(^-w-^)z " << "\r" << std::flush;
-            std::this_thread::sleep_for(std::chrono::milliseconds(500));  // wait for 500 ms
-            std::cout << "_(^-w-^) z" << "\r" << std::flush;
-            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        while(sleeping && pause_cat == false){
+            if(cat_state == 0) {
+                cout << "_(^-w-^)z " << "\r" << flush;
+                cat_state = 1;
+            } else if(cat_state == 1) {
+                cout << "_(^-w-^) z" << "\r" << flush;
+                cat_state = 0;
+            }
+            wait_ms(500);
         }
         sleeping = false;
     }

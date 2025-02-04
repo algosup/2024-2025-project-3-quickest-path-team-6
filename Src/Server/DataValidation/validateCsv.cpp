@@ -1,5 +1,6 @@
 #ifndef VALIDATE_CSV
 #define VALIDATE_CSV
+
 #include "../Includes/includes.hpp"
 // Custom hash function for pair<int, int>
 struct PairHash {
@@ -45,15 +46,15 @@ void addEdge(unordered_map<int, vector<int>>& graph, int u, int v) {
 }
 // Function to check for duplicates and build the graph
 bool processFile(const string& file_name, unordered_map<int, vector<int>>& graph, UnionFind& uf, bool& has_duplicates) {
+
     ifstream file(file_name);
     if (!file.is_open()) {
-        cerr << "Opening file to process" << endl;
         file.open(file_name);
     }
     unordered_set<pair<int, int>, PairHash> edges;
     string line;
     size_t line_count = 0;
-    pause_cat = true;
+    
     while (getline(file, line)) {
         line_count++;
         stringstream ss(line);
@@ -80,7 +81,9 @@ bool processFile(const string& file_name, unordered_map<int, vector<int>>& graph
             cerr << "Error: Invalid line format: " << line << endl;
             return false;
         }
+
     }
+
     cout << endl;
     file.close();
     return true;
@@ -125,6 +128,9 @@ bool isFullyConnected(UnionFind& uf) {
     }
     return true;
 }
+
+// Ensure `main` is properly defined when compiling standalone
+#ifdef STANDALONE
 int main() {
     string file_name;
     string constructed_path_str_dbg = "../../Src";
@@ -160,6 +166,7 @@ int main() {
             cout << "Invalid choice. Please enter 1, 2, or 3." << endl;
         }
     }
+    cout << "Processing..." << endl;
     if (!processFile(file_name, graph, uf, has_duplicates)) {
         cerr << "Error while processing the file." << endl;
         return 1;
@@ -177,4 +184,6 @@ int main() {
     }
     return 0;
 }
+#endif
+
 #endif // !VALIDATE_CSV
