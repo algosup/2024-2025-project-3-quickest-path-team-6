@@ -8,6 +8,7 @@ ifstream file;
 bool ended = false;
 bool datasetLoaded = false;
 int min_id = 1, max_id = 0;
+int global_node = 0;
 
 void loadData(const string& file_name);
 void loadingCat(string s);
@@ -28,7 +29,7 @@ void writeIntoTxt(){
         std::cerr << "Error opening file!" << std::endl;
     }
 
-    for (const auto& edge : visited_paths) {
+    for (const auto& edge : heuristic_graph[global_node]) {
         outfile << edge.from << ", " << edge.to << ", " << edge.time << '\n';
     }
     outfile.close();
@@ -85,19 +86,19 @@ void getData(const string& file_name) {
         if(to > max_id){
             max_id = to;
         }
-        data_graph.push_back({from, to, time});
-        data_graph.push_back({to, from, time}); // Bidirectional connection
+        data_graph[from].push_back({from, to, time});
+        data_graph[to].push_back({to, from, time}); // Bidirectional connection
     }
     datasetLoaded = true;
 }
 
 void graphMaker() {
     srand((unsigned) time(NULL));
-    int global_node = (rand()%max_id) + 1;
+    global_node = (rand()%max_id) + 1;
 
     modifiedDijkstra(data_graph, global_node, max_id);
 
-    // writeIntoTxt();
+    writeIntoTxt();
 }
 
 void loadData(const string& file_name) {
