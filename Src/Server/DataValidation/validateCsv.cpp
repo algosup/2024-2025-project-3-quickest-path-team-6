@@ -1,27 +1,23 @@
 #ifndef VALIDATE_CSV
 #define VALIDATE_CSV
 #include "../Includes/includes.hpp"
-
 // Custom hash function for pair<int, int>
 struct PairHash {
     size_t operator()(const pair<int, int>& p) const {
         return hash<int>{}(p.first) ^ (hash<int>{}(p.second) << 1);
     }
 };
-
 // Union-Find (Disjoint Set) with path compression and union by rank
 class UnionFind {
 public:
     unordered_map<int, int> parent;
     unordered_map<int, int> rank;
-
     int find(int node) {
         if (parent[node] != node) {
             parent[node] = find(parent[node]);
         }
         return parent[node];
     }
-
     void unite(int a, int b) {
         int rootA = find(a);
         int rootB = find(b);
@@ -36,7 +32,6 @@ public:
             }
         }
     }
-
     void addNode(int node) {
         if (parent.find(node) == parent.end()) {
             parent[node] = node;
@@ -44,12 +39,10 @@ public:
         }
     }
 };
-
 // Function to add an edge to the adjacency list
 void addEdge(unordered_map<int, vector<int>>& graph, int u, int v) {
     graph[u].push_back(v);
 }
-
 // Function to check for duplicates and build the graph
 bool processFile(const string& file_name, unordered_map<int, vector<int>>& graph, UnionFind& uf, bool& has_duplicates) {
     ifstream file(file_name);
@@ -57,26 +50,20 @@ bool processFile(const string& file_name, unordered_map<int, vector<int>>& graph
         cerr << "Opening file to process" << endl;
         file.open(file_name);
     }
-
     unordered_set<pair<int, int>, PairHash> edges;
     string line;
     size_t line_count = 0;
-
     pause_cat = true;
-
     while (getline(file, line)) {
         line_count++;
         stringstream ss(line);
         vector<int> edge;
         string token;
-
         while (getline(ss, token, ',')) {
             edge.push_back(stoi(token));
         }
-
         if (edge.size() == 3) {  // Ensure each line has exactly 3 values
             pair<int, int> road = make_pair(min(edge[0], edge[1]), max(edge[0], edge[1]));
-
             // Check for duplicates
             if (edges.find(road) != edges.end()) {
                 cerr << "Duplicate found: " << edge[0] << "," << edge[1] << endl;
@@ -84,7 +71,6 @@ bool processFile(const string& file_name, unordered_map<int, vector<int>>& graph
             } else {
                 edges.insert(road);
             }
-
             // Build the graph and union-find structure
             addEdge(graph, edge[0], edge[1]);
             uf.addNode(edge[0]);
@@ -94,22 +80,15 @@ bool processFile(const string& file_name, unordered_map<int, vector<int>>& graph
             cerr << "Error: Invalid line format: " << line << endl;
             return false;
         }
-
-        cout << "Processed " << (line_count * 100) / 28854312 << "\% of the file..." << "\r" << flush;
-        
     }
-
     cout << endl;
-
     file.close();
     return true;
 }
-
 // DFS function to check for cycles
 bool hasCycle(int node, unordered_map<int, vector<int>>& graph, unordered_set<int>& visited, unordered_set<int>& recursion_stack) {
     visited.insert(node);
     recursion_stack.insert(node);
-
     for (int neighbor : graph[node]) {
         if (recursion_stack.count(neighbor)) {
             return true;
@@ -118,16 +97,13 @@ bool hasCycle(int node, unordered_map<int, vector<int>>& graph, unordered_set<in
             return true;
         }
     }
-
     recursion_stack.erase(node);
     return false;
 }
-
 // Function to check if the graph is acyclic
 bool isAcyclic(unordered_map<int, vector<int>>& graph) {
     unordered_set<int> visited;
     unordered_set<int> recursion_stack;
-
     for (const auto& entry : graph) {
         int node = entry.first;
         if (!visited.count(node) && hasCycle(node, graph, visited, recursion_stack)) {
@@ -136,13 +112,11 @@ bool isAcyclic(unordered_map<int, vector<int>>& graph) {
     }
     return true;
 }
-
 // Function to check if the graph is fully connected using Union-Find
 bool isFullyConnected(UnionFind& uf) {
     if (uf.parent.empty()) {
         return false;
     }
-
     int representative = uf.find(uf.parent.begin()->first);
     for (const auto& entry : uf.parent) {
         if (uf.find(entry.first) != representative) {
@@ -151,8 +125,7 @@ bool isFullyConnected(UnionFind& uf) {
     }
     return true;
 }
-
-int m() {
+int main() {
     string file_name;
     string constructed_path_str_dbg = "../../Src";
     string ext(".csv");
@@ -164,48 +137,35 @@ int m() {
             break;
         }
     }
-
     unordered_map<int, vector<int>> graph;
     UnionFind uf;
     bool has_duplicates = false;
-
-    cout << "Select an option:\n";
-    cout << "1. Check for duplicates\n";
-    cout << "2. Check for loops\n";
-    cout << "3. Check for full connectivity\n";
-    cout << "Enter your choice: ";
     int choice;
-    cin >> choice;
-
+    while (true) {
+        cout << "Select an option:\n";
+        cout << "1. Check for duplicates\n";
+        cout << "2. Check for loops\n";
+        cout << "3. Check for full connectivity\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+        if (choice >= 1 && choice <= 3) break;
+        cout << "Invalid choice. Please enter 1, 2, or 3." << endl;
+    }
     if (!processFile(file_name, graph, uf, has_duplicates)) {
         cerr << "Error while processing the file." << endl;
         return 1;
     }
-
-    if (choice == 1) {
-        if (has_duplicates) {
-            cout << "The file contains duplicate connections." << endl;
-        } else {
-            cout << "No duplicate connections found." << endl;
-        }
-    } else if (choice == 2) {
-        if (isAcyclic(graph)) {
-            cout << "The file is free of loops." << endl;
-        } else {
-            cout << "The file contains loops." << endl;
-        }
-    } else if (choice == 3) {
-        if (isFullyConnected(uf)) {
-            cout << "The graph is fully connected. Every node can reach every other node." << endl;
-        } else {
-            cout << "The graph is NOT fully connected. Some nodes are unreachable." << endl;
-        }
-    } else {
-        cout << "Invalid choice." << endl;
-        return 1;
+    switch (choice) {
+        case 1:
+            cout << (has_duplicates ? "The file contains duplicate connections." : "No duplicate connections found.") << endl;
+            break;
+        case 2:
+            cout << (isAcyclic(graph) ? "The file is free of loops." : "The file contains loops.") << endl;
+            break;
+        case 3:
+            cout << (isFullyConnected(uf) ? "The graph is fully connected. Every node can reach every other node." : "The graph is NOT fully connected. Some nodes are unreachable.") << endl;
+            break;
     }
-
     return 0;
 }
-
 #endif // !VALIDATE_CSV
