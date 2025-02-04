@@ -28,8 +28,11 @@ int userInputInt(bool* exception)
 {
     string num;
 
-    cin >> num;
+    // cin >> num;
+    getline(cin, num);
 
+    if (num == "")
+        return -1;
     // Check for type mismatch of the input
     if (!isInteger(num)) {
         *exception = true;
