@@ -1,7 +1,4 @@
-#include <queue>
-#include <vector>
-#include <limits>
-#include <algorithm>
+#include "../Includes/includes.hpp"
 #include "loadData.hpp"
 
 using namespace std;
