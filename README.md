@@ -27,7 +27,7 @@ Accuracy with Balance: Real-world problems often demand compromises, and PQ’s 
 3. Revel in the Results: 
     - PQ doesn’t just deliver the travel time; it narrates the story of your journey through an ordered list of landmarks. XML or JSON? Your wish is our command.
 
-## Behind the Scenes Magic
+## Behind The Scenes Magic
 
 PathQuick is fueled by the raw computational power of C++, honed to perfection for speed and reliability. It wields algorithms that have been meticulously designed to navigate massive datasets, crunching through colossal .csv files with ease.
 
@@ -35,11 +35,11 @@ But we didn’t stop there! PQ also includes a robust data validation tool to en
 
 Go forth, chart your fastest adventure, and remember—all roads lead to PathQuick! 🌟
 
-## How to use PathQuick?
+## How To Use PathQuick?
 
 PathQuick is available on both macOS and Windows.
 
-To benefit from PathQuick's algorithm and path finding, you just need to perform few steps.
+To benefit from PathQuick's algorithm and pathfinding, you just need to perform few steps.
 
 1. **Obtain the project source**
 
@@ -47,12 +47,12 @@ To benefit from PathQuick's algorithm and path finding, you just need to perform
 - Clone this repository by typing `git clone https://github.com/algosup/2024-2025-project-3-quickest-path-team-6`
 - Type `cd 2024-2025-project-3-quickest-path-team-6` to get into the project's directory
 
-2. **Assure everything is set-up**
+2. **Assure everything is set up**
 
 - Type `cd Src` to get into the source folder
-- Assure a .csv file locates in the Src folder
+- Assure a .csv file is located in the Src folder
 
-1. **Run the program**
+3. **Run the program**
 
 You can run the program in various ways:
 
