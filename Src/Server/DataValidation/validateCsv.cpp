@@ -147,9 +147,18 @@ int main() {
         cout << "2. Check for loops\n";
         cout << "3. Check for full connectivity\n";
         cout << "Enter your choice: ";
+        
         cin >> choice;
-        if (choice >= 1 && choice <= 3) break;
-        cout << "Invalid choice. Please enter 1, 2, or 3." << endl;
+
+        if (cin.fail()) { // If input is not an integer
+            cin.clear(); // Clear the error state
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard invalid input
+            cout << "Invalid choice. Please enter 1, 2, or 3." << endl;
+        } else if (choice >= 1 && choice <= 3) {
+            break; // Valid choice, exit loop
+        } else {
+            cout << "Invalid choice. Please enter 1, 2, or 3." << endl;
+        }
     }
     if (!processFile(file_name, graph, uf, has_duplicates)) {
         cerr << "Error while processing the file." << endl;
