@@ -1,8 +1,5 @@
+#include "../Includes/includes.hpp"
 #include "loadData.hpp"
-#include <queue>
-#include <vector>
-#include <limits>
-#include <algorithm>
 
 using namespace std;
 using namespace std::chrono;
