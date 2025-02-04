@@ -55,7 +55,7 @@ inline void getData(const string& file_name);
 inline void computeDynamicLandmarks(int num);
 inline void computeLandmarkDistances();
 inline void verifyData(const string& file_name);
-inline unordered_map<int, vector<Edge>> loadDataset();
+inline bool loadDataset();
 inline void loadingCat(string s);
 
 // -----------------------------------------------------------------------------
@@ -226,7 +226,7 @@ inline void verifyData(const string& file_name) {
  * computes dynamic landmarks using farthest-point sampling, and then computes landmark distances.
  * Returns the constructed data_graph.
  */
-inline unordered_map<int, vector<Edge>> loadDataset() {
+inline bool loadDataset() {
     auto start = high_resolution_clock::now();
     string file_name;
     string path = "../../Src";
@@ -236,6 +236,8 @@ inline unordered_map<int, vector<Edge>> loadDataset() {
             cout << "Opening " << p.path().string() << "\n" << endl;
             file_name = p.path().string();
             break;
+        } else {
+            return false;
         }
     }
     thread getDataThread(getData, file_name);
@@ -249,7 +251,10 @@ inline unordered_map<int, vector<Edge>> loadDataset() {
     auto duration = duration_cast<seconds>(stop - start);
     cout << "\nLoaded in " << duration.count() << " seconds!\n"
          << "Available landmarks from " << min_id << " to " << max_id << "\n" << endl;
-    return data_graph;
+
+    graph = data_graph;
+    cout << "Graph loaded successfully." << endl;
+    return true;
 }
 
 /*
@@ -258,10 +263,7 @@ inline unordered_map<int, vector<Edge>> loadDataset() {
  */
 inline bool initServer() {
     try {
-        unordered_map<int, vector<Edge>> loadedGraph = loadDataset();
-        graph = loadedGraph;
-        cout << "Graph loaded successfully." << endl;
-        return true;
+        return loadDataset();
     } catch (const exception &e) {
         cerr << "Error during graph creation: " << e.what() << endl;
         return false;
