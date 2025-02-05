@@ -8,11 +8,12 @@
 #include "../Formatting/conversionXml.hpp"
 #include "api.hpp"
 
+// Global flag for sleep animation
 bool sleeping = false;
 void sleepingAnimation();
 
+// Checks if a string represents a valid integer
 bool isInteger(const std::string &input) {
-    // Check if input contains only digits (allowing negative numbers)
     for (char c : input) {
         if (!std::isdigit(c)) return false;
     }
@@ -24,17 +25,19 @@ bool isInteger(const std::string &input) {
     return true;
 }
 
+// Close a socket using the appropriate platform-specific call
 void Api::closeSocket(int socket) {
 #ifdef _WIN32
-    closesocket(socket); // Use Winsock's closesocket on Windows
+    closesocket(socket);
 #else
-    close(socket);       // Use POSIX's close on Linux/macOS
+    close(socket);
 #endif
 }
 
-// Constructor to initialize the API with a specific port
+// Constructor: Initializes the API with a specific port
 Api::Api(int port) : port(port), server_socket(-1) {}
 
+// Starts the server: initializes networking, loads the graph, and listens for connections
 void Api::start() {
 #ifdef _WIN32
     WSADATA wsa_data;
@@ -89,9 +92,11 @@ void Api::start() {
     std::cout << "Press 'C' to verify the target .csv file." << std::endl;
     std::cout << "Press 'SPACE' to shut down the server.\n" << std::endl;
 
+    //Start sleep animation and server online thread.
     std::thread(sleepingAnimation).detach();
     std::thread(&Api::serverOnline, this, server_socket).detach();
     
+    //main loop: process user input for verification or shutdown 
     char key;
     while(true){
         std::cin.get(key);
@@ -113,6 +118,7 @@ void Api::start() {
     }
 }
 
+// Handles a single client connection
 void Api::handleClient(int client_socket) {
     try {
         char buffer[1024] = {0};
@@ -130,6 +136,7 @@ void Api::handleClient(int client_socket) {
     closeSocket(client_socket);
 }
 
+// Constructs an HTTP response with the specified body and content type 
 std::string Api::createHttpResponse(const std::string &body, const std::string &content_type) {
     std::ostringstream response;
     response << "HTTP/1.1 200 OK\r\n"
@@ -141,8 +148,8 @@ std::string Api::createHttpResponse(const std::string &body, const std::string &
     return response.str();
 }
 
+// Processes an HTTP request and generates an appropriate response
 std::string Api::processRequest(const std::string &request) {
-    // Find the starting position of the query string
     size_t query_pos = request.find("/route?");
     if (query_pos != std::string::npos) {
         query_pos += 7; // Skip "/route?"
@@ -183,7 +190,7 @@ std::string Api::processRequest(const std::string &request) {
         sleeping = false;
         std::vector<int> path = bidirectionalDijkstra(graph, start, end, &path_time);
 
-        // Generate JSON, XML or plain text response based on the format
+        // Generate JSON or XML response based on the format
         if (format == "json") {
             nlohmann::json json_data;
             convertIntoJson(path, path_time, json_data);
@@ -215,6 +222,7 @@ std::string Api::processRequest(const std::string &request) {
     }
 }
 
+// Generates an error HTTP response
 std::string Api::generateErrorResponse(const std::string &error_message, int status_code) {
     std::ostringstream response;
     response << "HTTP/1.1 " << status_code;
@@ -229,6 +237,7 @@ std::string Api::generateErrorResponse(const std::string &error_message, int sta
     return response.str();
 }
 
+// Continuously accepts clients connections and spawns a new thread for each
 void Api::serverOnline(int server_socket) {
     while(true) {
         int client_socket = accept(server_socket, nullptr, nullptr);
@@ -240,23 +249,30 @@ void Api::serverOnline(int server_socket) {
     }
 }
 
+// Displays a simple sleep animation; toggles state based on elapsed time.
 void sleepingAnimation() {
-    while(true) {
-        auto start = std::chrono::high_resolution_clock::now();
-        while(!sleeping) {
-            std::cout << "\\(^owo^)  " << "\r" << std::flush;
-            auto stop = std::chrono::high_resolution_clock::now();
-            auto duration = std::chrono::duration_cast<std::chrono::seconds>(stop - start);
-            if(duration.count() >= 10) {
+    int cat_state = 0;
+    while(true){
+        while(pause_cat == true){wait_ms(1);}
+        auto start = high_resolution_clock::now();
+        while(!sleeping && pause_cat == false){
+            cout << "\\(^owo^)  " << "\r" << flush;
+            auto stop = high_resolution_clock::now();
+            auto duration = duration_cast<seconds>(stop - start);
+            if(duration.count() >= 10){
                 sleeping = true;
             }
-            std::this_thread::sleep_for(std::chrono::milliseconds(1));  // wait for 1 ms
+            wait_ms(1);
         }
-        while(sleeping) {
-            std::cout << "_(^-w-^)z " << "\r" << std::flush;
-            std::this_thread::sleep_for(std::chrono::milliseconds(500));  // wait for 500 ms
-            std::cout << "_(^-w-^) z" << "\r" << std::flush;
-            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        while(sleeping && pause_cat == false){
+            if(cat_state == 0) {
+                cout << "_(^-w-^)z " << "\r" << flush;
+                cat_state = 1;
+            } else if(cat_state == 1) {
+                cout << "_(^-w-^) z" << "\r" << flush;
+                cat_state = 0;
+            }
+            wait_ms(500);
         }
         sleeping = false;
     }
