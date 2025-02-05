@@ -1,31 +1,46 @@
 # PathQuick - Chart Your Fastest Adventure! 🚀
 
+<img width="500" src="https://github.com/user-attachments/assets/fd2f07a2-2fb0-4889-998e-5180cd3a2041" />
+
 Welcome to PathQuick, the ultimate guide to uncovering the quickest routes between! Whether you're a virtual road tripper or a logistical mastermind, PQ is here to deliver blazing-fast route calculations and seamless navigation.
 
 ## What Is PathQuick?
 
 PathQuick is more than a piece of software—it's your trusty digital cartographer. With its cutting-edge algorithms, PQ scours the labyrinth of roads connecting the landmarks and delivers routes with precision and efficiency.
 
+<img width="250" src="https://github.com/user-attachments/assets/67537a4d-605d-4f44-b31c-3bf8e306c498" />
+
 ## Why PathQuick Stands Out?
 
 PathQuick isn't just about getting you from Point A to Point B; it’s about doing so with flair and finesse. We've poured our love for problem-solving and optimization into this project to ensure:
 
-Speed: Responses so quick, you’ll think we have a crystal ball.
+Speed: Responses so quick, you’ll think we have a crystal ball.</br>
+<img width="250" src="https://github.com/user-attachments/assets/edc56237-beff-4c30-bf30-9250c09f0d5e" />
 
-Flexibility: Love XML? Adore JSON? We’ve got you covered.
-
-Accuracy with Balance: Real-world problems often demand compromises, and PQ’s heuristics ensure a near-perfect route—always within 10% of the shortest path.
+Flexibility: Love XML? Adore JSON? We’ve got you covered.</br>
+<img width="350" src="https://github.com/user-attachments/assets/8bb23971-9afe-455d-8136-9e398598570f" />
 
 ## How Does It Work?
 
 1. Give It a Quest:
     - Feed PathQuick the IDs of your starting and ending landmarks.
+<img width="300" src="https://github.com/user-attachments/assets/9f6a3a41-a169-4b09-89e2-ed7d45c5e9c5" />
 
-2. Sit Back and Relax:
+2. Give It a Format:
+    - Feed PathQuick the format of the expected answer.
+<img width="200" src="https://github.com/user-attachments/assets/9bf0db44-08f2-4ca6-93af-47eeb0881f33" />
+
+3. Sit Back and Relax:
     - Our REST API takes over, conjuring up the optimal path in the blink of an eye.
+<img width="200" src="https://github.com/user-attachments/assets/aaf0142f-3543-4829-8327-57fe7205943e" />
 
-3. Revel in the Results:
-    - PQ doesn’t just deliver the travel time; it narrates the story of your journey through an ordered list of landmarks. XML or JSON? Your wish is our command.
+4. Revel in the Results:
+    - PQ doesn’t just deliver the travel time; it narrates the story of your journey through an ordered list of landmarks.
+  
+<img width="250" src="https://github.com/user-attachments/assets/7c69ef73-3abb-4445-b9a2-8467a79701f5" />
+<img width="250" src="https://github.com/user-attachments/assets/a6851b10-f668-454c-a280-fe26f06bd4ce" /></br>
+<img width="150" src="https://github.com/user-attachments/assets/2f0e4383-5f11-4a5a-b564-9309cc3f70b1" />
+<img width="300" src="https://github.com/user-attachments/assets/4eba4b1b-3f98-4d43-9114-556e43461000" />
 
 ## Behind The Scenes Magic
 
