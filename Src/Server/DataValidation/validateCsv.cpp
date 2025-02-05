@@ -84,7 +84,6 @@ bool processFile(const string& file_name, unordered_map<int, vector<int>>& graph
 
     }
 
-    cout << endl;
     file.close();
     return true;
 }
