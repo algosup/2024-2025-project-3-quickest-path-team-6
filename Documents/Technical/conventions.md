@@ -2,7 +2,7 @@
 
 This file outlines the conventions of the project, including the *writing and code* ones.
 
-## Writing conventions
+## Writing Conventions
 
 **All documentations** have to be written in **proper English**.
 
@@ -48,7 +48,7 @@ This file outlines the conventions of the project, including the *writing and co
 ## The Other Part
 ```
 
-### Commits conventions
+### Commits Conventions
 
 - **All the commits** have to be named regarding what changes have been done.
 
@@ -78,7 +78,7 @@ The requirements part has been added to the functional specifications. The gloss
 The checking algorithm has been implemented into the code base. It returns the expected time to the main program.
 ```
 
-## Code conventions
+## Code Conventions
 
 - **All the classes** have to be named in **PascalCase**.
 

@@ -14,7 +14,9 @@ namespace fs = std::filesystem;
 inline int min_id = 1, max_id = 0;      // Track minimum and maximum node IDs encountered.
 inline ifstream file;                   // File stream for reading CSV data.
 inline bool ended = false;              // Flag indicating completion of data loading.
+inline bool datasetLoaded = false;              // Flag indicating completion of graph construction.
 inline const int INF = numeric_limits<int>::max();
+inline vector<string> found_paths = {};
 
 // -----------------------------------------------------------------------------
 // Edge Structure
@@ -28,7 +30,6 @@ struct Edge {
 // Graph Data Structures
 // -----------------------------------------------------------------------------
 // The graph is stored in two maps; landmarks will be computed dynamically.
-inline unordered_map<int, vector<Edge>> graph;
 inline unordered_map<int, vector<Edge>> data_graph;
 // Replace the unordered_map version of landmark distances with a vector-of-vectors.
 // For each landmark (in the same order as in the 'landmarks' vector), the inner vector
@@ -62,6 +63,42 @@ inline void loadingCat(string s);
 // Function Definitions
 // -----------------------------------------------------------------------------
 
+/*
+    Checks if a given string represents a valid integer
+    This functions returns true if the string represents an integer, false otherwise
+
+    Parameters: 
+        - input, the string to check
+*/
+bool isInteger(const string &input) {
+    int number;
+    size_t i = 0;
+
+    // Ensure all characters are digits (does not handle negative numbers correctly)
+    while (i < input.size()) {
+        if (!isdigit(input[i])) return false;
+        i++;
+    }
+
+    // Try converting string to integer
+    try {
+        number = stoi(input);
+    } catch (const out_of_range &) {
+        return false; // Handle cases where the number is too large
+    }
+
+    return true; // String is a valid integer
+}
+
+// Function to clear the console screen based on OS
+void clearScreen(){
+    #if defined _WIN32
+        system("cls"); // Windows
+    #elif defined (__LINUX__) || defined(__gnu_linux__) || defined(__linux__) || defined (__APPLE__)
+        system("clear"); // Linux/macOS
+    #endif
+}
+
 inline void getData(const string& file_name) {
     if (!file.is_open()) {
         file.open(file_name);
@@ -78,6 +115,9 @@ inline void getData(const string& file_name) {
         data_graph[from].push_back({to, time});
         data_graph[to].push_back({from, time});
     }
+    datasetLoaded = true;
+    computeDynamicLandmarks(8);
+    computeLandmarkDistances();
     ended = true;
 }
 
@@ -219,6 +259,74 @@ inline void verifyData(const string& file_name) {
         cout << "No duplicate connections found." << endl;
     cout << endl << endl;
 }
+/**
+ * @brief getCsvFile returns the name of the chosen .csv file to analyze. 
+ * This function checks all possible .csv file in the Src directory, and let the user choose which one he wants
+ */
+string getCsvFile(){
+    string file;
+    string path = "../../Src";
+    string ext(".csv");
+    bool file_found = false;
+
+    // First, check the current folder
+    for (const auto& p : fs::directory_iterator(path)) {
+        if (p.is_regular_file() && p.path().extension() == ext) {
+            found_paths.push_back(p.path().string());
+            file_found = true;
+        }
+    }
+    // If not found, check subfolders
+    if (!file_found) {
+        for (const auto& p : fs::recursive_directory_iterator(path)) {
+            if (p.is_regular_file() && p.path().extension() == ext) {
+                found_paths.push_back(p.path().string());
+                file_found = true;
+            }
+        }
+    }
+    // If no csv found, return false
+    if (!file_found) {
+        return "File not Found";
+    } else if (found_paths.size() > 1) {
+        bool found = false;
+        while (found == false){
+            clearScreen();
+            cout << "Files found:" << endl;
+            int i = 1;
+            for (const string& path : found_paths) {
+                cout << i << ". " << path << endl;
+                i++;
+            }
+
+            cout << endl << "Choose the .csv file: ";
+            i = 1;
+            string input;
+            
+            getline(cin, input); // Read input from the user
+
+
+            if (input != "" && isInteger(input)){
+                for (const string& path : found_paths) {
+                    if (stoi(input) == i) {
+                        clearScreen();
+                        file = path;
+                        cout << "\nOpening " << path << endl << endl;
+                        found = true;
+                        break;
+                    }
+                    i++;
+                }
+            }
+        }
+    } else {
+        clearScreen();
+        file = found_paths[0];
+        cout << "Opening " << file << endl << endl;
+    }
+
+    return file;
+}
 
 /*
  * loadDataset:
@@ -228,38 +336,23 @@ inline void verifyData(const string& file_name) {
  */
 inline bool loadDataset() {
     auto start = high_resolution_clock::now();
-    string file_name;
-    string path = "../../Src";
-    string ext(".csv");
-    bool file_found = false;
-    for (auto& p : fs::recursive_directory_iterator(path)) {
-        if (p.path().extension() == ext) {
-            cout << "Opening " << p.path().string() << "\n" << endl;
-            file_name = p.path().string();
-            file_found = true;
-            break;
-        }
-    }
+    string file_name = getCsvFile();
 
-    if (!file_found)
-    {
-        return false; // exit if the .csv file is not found
+    if (file_name == "File not Found"){
+        return false;
     }
     
-
     thread getDataThread(getData, file_name);
     thread loadingCatThread(loadingCat, "Loading the file");
     getDataThread.join();
     loadingCatThread.join();
+
     file.close();
-    computeDynamicLandmarks(8);
-    computeLandmarkDistances();
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<seconds>(stop - start);
     cout << "\nLoaded in " << duration.count() << " seconds!\n"
          << "Available landmarks from " << min_id << " to " << max_id << "\n" << endl;
 
-    graph = data_graph;
     cout << "Graph loaded successfully." << endl;
     return true;
 }
@@ -283,16 +376,22 @@ inline bool initServer() {
 // -----------------------------------------------------------------------------
 // Loading Cat Animation (Moved to the Bottom)
 // -----------------------------------------------------------------------------
-inline void loadingCat(string s) {
-    for (size_t i = 0; i < s.length(); i++) {
+inline void loadingCat(string s)
+{
+    for (int i = 0; i < s.length(); i++)
+    {
         cout << " ";
     }
+    
     cout << "    /\\_/\\\n" << flush;
-    while (!ended) {
+    while(!ended){
         cout << s << ".. / o.o \\" << "\r" << flush;
         wait_ms(1000);
         cout << s << ".. / -.- \\" << "\r" << flush;
         wait_ms(150);
+        if (datasetLoaded && s != "Setting the data"){
+            s = "Setting the data";
+        }
     }
     cout << "Dataset loaded!    / ^.^ \\" << "\r" << flush;
 }
