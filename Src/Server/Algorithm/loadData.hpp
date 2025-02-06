@@ -15,6 +15,7 @@ inline int min_id = 1, max_id = 0;      // Track minimum and maximum node IDs en
 inline ifstream file;                   // File stream for reading CSV data.
 inline bool ended = false;              // Flag indicating completion of data loading.
 inline const int INF = numeric_limits<int>::max();
+inline vector<string> found_paths = {};
 
 // -----------------------------------------------------------------------------
 // Edge Structure
@@ -61,6 +62,42 @@ inline void loadingCat(string s);
 // -----------------------------------------------------------------------------
 // Function Definitions
 // -----------------------------------------------------------------------------
+
+/*
+    Checks if a given string represents a valid integer
+    This functions returns true if the string represents an integer, false otherwise
+
+    Parameters: 
+        - input, the string to check
+*/
+bool isInteger(const string &input) {
+    int number;
+    size_t i = 0;
+
+    // Ensure all characters are digits (does not handle negative numbers correctly)
+    while (i < input.size()) {
+        if (!isdigit(input[i])) return false;
+        i++;
+    }
+
+    // Try converting string to integer
+    try {
+        number = stoi(input);
+    } catch (const out_of_range &) {
+        return false; // Handle cases where the number is too large
+    }
+
+    return true; // String is a valid integer
+}
+
+// Function to clear the console screen based on OS
+void clearScreen(){
+    #if defined _WIN32
+        system("cls"); // Windows
+    #elif defined (__LINUX__) || defined(__gnu_linux__) || defined(__linux__) || defined (__APPLE__)
+        system("clear"); // Linux/macOS
+    #endif
+}
 
 inline void getData(const string& file_name) {
     if (!file.is_open()) {
@@ -219,6 +256,74 @@ inline void verifyData(const string& file_name) {
         cout << "No duplicate connections found." << endl;
     cout << endl << endl;
 }
+/**
+ * @brief getCsvFile returns the name of the chosen .csv file to analyze. 
+ * This function checks all possible .csv file in the Src directory, and let the user choose which one he wants
+ */
+string getCsvFile(){
+    string file;
+    string path = "../../Src";
+    string ext(".csv");
+    bool file_found = false;
+
+    // First, check the current folder
+    for (const auto& p : fs::directory_iterator(path)) {
+        if (p.is_regular_file() && p.path().extension() == ext) {
+            found_paths.push_back(p.path().string());
+            file_found = true;
+        }
+    }
+    // If not found, check subfolders
+    if (!file_found) {
+        for (const auto& p : fs::recursive_directory_iterator(path)) {
+            if (p.is_regular_file() && p.path().extension() == ext) {
+                found_paths.push_back(p.path().string());
+                file_found = true;
+            }
+        }
+    }
+    // If no csv found, return false
+    if (!file_found) {
+        return "File not Found";
+    } else if (found_paths.size() > 1) {
+        bool found = false;
+        while (found == false){
+            clearScreen();
+            cout << "Files found:" << endl;
+            int i = 1;
+            for (const string& path : found_paths) {
+                cout << i << ". " << path << endl;
+                i++;
+            }
+
+            cout << endl << "Choose the .csv file: ";
+            i = 1;
+            string input;
+            
+            getline(cin, input); // Read input from the user
+
+
+            if (input != "" && isInteger(input)){
+                for (const string& path : found_paths) {
+                    if (stoi(input) == i) {
+                        clearScreen();
+                        file = path;
+                        cout << "\nOpening " << path << endl << endl;
+                        found = true;
+                        break;
+                    }
+                    i++;
+                }
+            }
+        }
+    } else {
+        clearScreen();
+        file = found_paths[0];
+        cout << "Opening " << file << endl << endl;
+    }
+
+    return file;
+}
 
 /*
  * loadDataset:
@@ -228,25 +333,12 @@ inline void verifyData(const string& file_name) {
  */
 inline bool loadDataset() {
     auto start = high_resolution_clock::now();
-    string file_name;
-    string path = "../../Src";
-    string ext(".csv");
-    bool file_found = false;
-    for (auto& p : fs::recursive_directory_iterator(path)) {
-        if (p.path().extension() == ext) {
-            cout << "Opening " << p.path().string() << "\n" << endl;
-            file_name = p.path().string();
-            file_found = true;
-            break;
-        }
-    }
+    string file_name = getCsvFile();
 
-    if (!file_found)
-    {
-        return false; // exit if the .csv file is not found
+    if (file_name == "File not Found"){
+        return false;
     }
     
-
     thread getDataThread(getData, file_name);
     thread loadingCatThread(loadingCat, "Loading the file");
     getDataThread.join();

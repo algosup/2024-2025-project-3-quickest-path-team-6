@@ -12,19 +12,6 @@
 bool sleeping = false;
 void sleepingAnimation();
 
-// Checks if a string represents a valid integer
-bool isInteger(const std::string &input) {
-    for (char c : input) {
-        if (!std::isdigit(c)) return false;
-    }
-    try {
-        std::stoi(input);
-    } catch (const std::out_of_range &) {
-        return false;
-    }
-    return true;
-}
-
 // Close a socket using the appropriate platform-specific call
 void Api::closeSocket(int socket) {
 #ifdef _WIN32
