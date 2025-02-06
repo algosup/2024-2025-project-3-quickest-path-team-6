@@ -24,7 +24,9 @@ int main()
         handleException(); // If the previous input is invalid, print an error message
 
         cout << "\n";
-        cin >> input;
+
+        getline(cin, input);
+        
         if (input == "0")
         {
             clearScreen();

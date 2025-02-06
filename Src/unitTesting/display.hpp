@@ -22,22 +22,6 @@ void printVector(const vector<int> &vec)
 }
 
 /**
- * Clear the terminal.
- * @param None
- * @result The terminal is cleared.
- */
-void clearScreen()
-{
-#if defined _WIN32
-    system("cls");
-#elif defined(__LINUX__) || defined(__gnu_linux__) || defined(__linux__)
-    system("clear");
-#elif defined(__APPLE__)
-    system("clear");
-#endif
-}
-
-/**
  * This function handles exceptions related to user inputs.
  * @param None
  * @result If the user entered an incorrect input, prints an error message.

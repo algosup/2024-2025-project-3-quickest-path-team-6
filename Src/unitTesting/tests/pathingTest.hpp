@@ -72,7 +72,7 @@ void pathingTesting()
         thread dijkstraThread([&]()
                               {
             try {
-                vector<int> result = bidirectionalDijkstra(graph, start, end, &path_time);
+                vector<int> result = bidirectionalDijkstra(data_graph, start, end, &path_time);
                 resultPromise.set_value(result);
             }
             catch (...) {
