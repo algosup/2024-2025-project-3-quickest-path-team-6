@@ -1,6 +1,6 @@
 #include "unitTesting.hpp"
-#include "./tests/dijsktraTests.hpp"
-#include "./tests/serverTests.hpp"
+#include "./tests/pathingTest.hpp"
+#include "./tests/serverTest.hpp"
 #include "./tests/dataValidationTest.hpp"
 #include "display.hpp"
 
@@ -33,9 +33,10 @@ int main()
         else if (input == "1")
         {
             clearScreen();
-            copyFile("./correct.csv");
+            copyFile("../csv/correct.csv");
 
-            dijkstraTesting();
+            pathingTesting();
+            filesystem::remove("./unitTest.csv");
         }
         else if (input == "2")
         {

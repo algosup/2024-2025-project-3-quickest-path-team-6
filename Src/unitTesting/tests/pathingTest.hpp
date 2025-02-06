@@ -6,13 +6,13 @@
 
 
 /**
- * This function tests the Dijkstra's algorithm.
+ * This function tests the pathing algorithm.
  * @param None
  * @result A list of 14 tests, each test is displayed on the terminal.
  * If the test takes longer than expected or is incorrect, it is highlighted
  * along with the reason for the failure.
  */
-void dijkstraTesting()
+void pathingTesting()
 {
     // Declare and initialize testPaths
     list<pair<int, int>> testPaths = {
@@ -49,7 +49,7 @@ void dijkstraTesting()
         {28, vector<int>{10, 4, 2, 8}}, // Test 13
         {1, vector<int>{9, 8}}};        // Test 14
 
-    graph = loadDataset();
+    loadDataset();
     clearScreen();
     cout << "Testing Dijkstra's algorithm:\n";
 
@@ -72,7 +72,7 @@ void dijkstraTesting()
         thread dijkstraThread([&]()
                               {
             try {
-                vector<int> result = modifiedDijkstra(graph, start, end, &path_time);
+                vector<int> result = bidirectionalDijkstra(graph, start, end, &path_time);
                 resultPromise.set_value(result);
             }
             catch (...) {

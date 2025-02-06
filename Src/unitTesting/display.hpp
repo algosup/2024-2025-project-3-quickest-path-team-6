@@ -82,11 +82,12 @@ void csvSelection()
         }
         else if (input == "1")
         {
+            copyFile("./csv/correct.csv");
             return;
         }
         else if (input == "2")
         {
-            copyFile("incorrect.csv");
+            copyFile("./csv/incorrect.csv");
             return;
         }
         else

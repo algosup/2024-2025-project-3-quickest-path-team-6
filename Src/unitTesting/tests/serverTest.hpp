@@ -84,11 +84,13 @@ void compareJSON(const json &expected, int testID)
  */
 void serverTests()
 {
-    // Compile server.cpp and run it in another terminal
-    system("start cmd.exe /K \"title Server && g++ -std=c++17 ../Server/Api/server.cpp ../Libraries/Tinyxml2/tinyxml2.cpp -o server.exe -IInclude -Llib -lws2_32 && server.exe\"");
-
-    // Every 5 seconds, test if the server is online, repeat 10 times.
-    for (int i = 0; i < 10; i++)
+    #ifdef _WIN32
+    system("start cmd /c \"Bin\\server.exe\"");
+    #else
+    system("osascript -e 'tell application \"Terminal\" to do script \"./Bin/server\"'");
+    #endif // DEBUG
+    // Every 5 seconds, test if the server is online, repeat 20 times.
+    for (int i = 0; i < 20; i++)
     {
         this_thread::sleep_for(std::chrono::seconds(5));
         sendPingRequest();
@@ -156,7 +158,7 @@ void serverTests()
         // Wait for the result with a timeout
         if (resultFuture.wait_for(chrono::seconds(1)) == future_status::timeout)
         {
-            cout << "\e[0;31m===========================Test " << testID << "===========================\n";
+            cout << "\e[0;31m=========================== Test " << testID << "===========================\n";
             cout << "Test timed out after 1 second.\n";
             cout << "============================================================\n\e[0;37m";
             thread.detach(); // Let the thread run in the background
