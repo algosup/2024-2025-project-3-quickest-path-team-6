@@ -270,19 +270,10 @@ string getCsvFile(){
     bool file_found = false;
 
     // First, check the current folder
-    for (const auto& p : fs::directory_iterator(path)) {
+    for (const auto& p : fs::recursive_directory_iterator(path)) {
         if (p.is_regular_file() && p.path().extension() == ext) {
             found_paths.push_back(p.path().string());
             file_found = true;
-        }
-    }
-    // If not found, check subfolders
-    if (!file_found) {
-        for (const auto& p : fs::recursive_directory_iterator(path)) {
-            if (p.is_regular_file() && p.path().extension() == ext) {
-                found_paths.push_back(p.path().string());
-                file_found = true;
-            }
         }
     }
     // If no csv found, return false
