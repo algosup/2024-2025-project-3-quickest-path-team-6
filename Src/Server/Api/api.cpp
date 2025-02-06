@@ -175,7 +175,7 @@ std::string Api::processRequest(const std::string &request) {
         int end = std::stoi(destination);
         int path_time;
         sleeping = false;
-        std::vector<int> path = bidirectionalDijkstra(graph, start, end, &path_time);
+        std::vector<int> path = bidirectionalDijkstra(data_graph, start, end, &path_time);
 
         // Generate JSON or XML response based on the format
         if (format == "json") {

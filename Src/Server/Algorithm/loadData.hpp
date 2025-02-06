@@ -14,6 +14,7 @@ namespace fs = std::filesystem;
 inline int min_id = 1, max_id = 0;      // Track minimum and maximum node IDs encountered.
 inline ifstream file;                   // File stream for reading CSV data.
 inline bool ended = false;              // Flag indicating completion of data loading.
+inline bool datasetLoaded = false;              // Flag indicating completion of graph construction.
 inline const int INF = numeric_limits<int>::max();
 inline vector<string> found_paths = {};
 
@@ -29,7 +30,6 @@ struct Edge {
 // Graph Data Structures
 // -----------------------------------------------------------------------------
 // The graph is stored in two maps; landmarks will be computed dynamically.
-inline unordered_map<int, vector<Edge>> graph;
 inline unordered_map<int, vector<Edge>> data_graph;
 // Replace the unordered_map version of landmark distances with a vector-of-vectors.
 // For each landmark (in the same order as in the 'landmarks' vector), the inner vector
@@ -115,6 +115,9 @@ inline void getData(const string& file_name) {
         data_graph[from].push_back({to, time});
         data_graph[to].push_back({from, time});
     }
+    datasetLoaded = true;
+    computeDynamicLandmarks(8);
+    computeLandmarkDistances();
     ended = true;
 }
 
@@ -343,15 +346,13 @@ inline bool loadDataset() {
     thread loadingCatThread(loadingCat, "Loading the file");
     getDataThread.join();
     loadingCatThread.join();
+
     file.close();
-    computeDynamicLandmarks(8);
-    computeLandmarkDistances();
     auto stop = high_resolution_clock::now();
     auto duration = duration_cast<seconds>(stop - start);
     cout << "\nLoaded in " << duration.count() << " seconds!\n"
          << "Available landmarks from " << min_id << " to " << max_id << "\n" << endl;
 
-    graph = data_graph;
     cout << "Graph loaded successfully." << endl;
     return true;
 }
@@ -375,16 +376,22 @@ inline bool initServer() {
 // -----------------------------------------------------------------------------
 // Loading Cat Animation (Moved to the Bottom)
 // -----------------------------------------------------------------------------
-inline void loadingCat(string s) {
-    for (size_t i = 0; i < s.length(); i++) {
+inline void loadingCat(string s)
+{
+    for (int i = 0; i < s.length(); i++)
+    {
         cout << " ";
     }
+    
     cout << "    /\\_/\\\n" << flush;
-    while (!ended) {
+    while(!ended){
         cout << s << ".. / o.o \\" << "\r" << flush;
         wait_ms(1000);
         cout << s << ".. / -.- \\" << "\r" << flush;
         wait_ms(150);
+        if (datasetLoaded && s != "Setting the data"){
+            s = "Setting the data";
+        }
     }
     cout << "Dataset loaded!    / ^.^ \\" << "\r" << flush;
 }
