@@ -233,6 +233,8 @@ void creditsMenu(){
              << "|                       -> the Project Manager:                           |\n"
              << "|                             Evan UHRING                                 |\n"
              << "+-------------------------------------------------------------------------+\n";
+
+        cout << endl << "Algorithm's worst-case complexity: O(N^2)." << endl;
         
         handleException(server_is_online, page);
         cout << "0| Go to main menu? -> ";
