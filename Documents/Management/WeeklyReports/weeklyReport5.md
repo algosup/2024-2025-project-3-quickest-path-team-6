@@ -24,4 +24,4 @@ This week was full of progress, and we managed to finally finish the project fol
 
 ## Conclusion
 
-We succeeded to complete the program with everything we thought of implementing in it. Now we only have to present our project. We are confident about it but we know that we have to focus as much as we can to succeed.
+We succeeded in completing the program with everything we thought of implementing in it. Now we only have to present our project. We are confident about it but we know that we have to focus as much as we can to succeed.
