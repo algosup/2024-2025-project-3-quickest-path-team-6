@@ -6,6 +6,7 @@ This document is used to centralize all the management artifacts as listed below
     - [RACI Matrix](#raci-matrix)
     - [Risks \& Mitigations](#risks--mitigations)
     - [Key Performance Indicators](#key-performance-indicators)
+    - [Post Mortem](#post-mortem)
     - [Weekly Reports](#weekly-reports)
 
 
@@ -56,6 +57,18 @@ Our KPIs have been separated into different categories as followed:
 - ### Development
     - Program to verify the CSV file provided
     - The algorithm for the quickest path
+
+## Post Mortem
+
+| Person | What you learned | Problem encountered | How do you handle it | What to improve | What you liked | What you don't liked | What are you proud |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| Evan (SCRUM Master) | 
+| Manech | Make functional specifications, QA side, algorithms | Docs, dare to ask for help | Help from older works and team members | Communication skills, find references sooner | Engagement, learning the unknown | Nothing special | Docs, helping the others |
+| Enzo | Algorithms, how to optimize, api | Algorithm (how to optimize), deal with large dataset, portability between OSs | Worked on it by testing multiple ways of fixing the problems, ask others for help | Program optimization | Team, workflow, the project (did more than expected) | How the project was intended to be | What we have done, team work |
+| Pavlo | Everything | Same as Enzo, learning the language | Same as Enzo | Communication and coding skills | Working in agile, team | Nothing special | Making the algorithm |
+| Mariem | C++ | Computer issue, needed more skills | Managed it | Nothing | Team, the project, help from other team members | Nothing special | The project |
+| Maxime | Nothing | Repetitive changes in the algorithm (redo test cases) | Being patient | Finish docs earlier, learn unit tests, communication skills | Harmony, team, team work, first time a project is finished | Nothing special | Docs, the success of the project |
+| Aurelien | A bit of dijkstra, a* | Design, communication | Asked team members | Design skills, be less on the defensive when someone talks to him | Team | the role | Project |
 
 ## Weekly Reports
 
