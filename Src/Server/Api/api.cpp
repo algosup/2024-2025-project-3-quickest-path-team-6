@@ -25,7 +25,7 @@ void Api::closeSocket(int socket) {
 Api::Api(int port) : port(port), server_socket(-1) {}
 
 // Starts the server: initializes networking, loads the graph, and listens for connections
-void Api::start() {
+void Api::start(string& dataset_path) {
 #ifdef _WIN32
     WSADATA wsa_data;
     if (WSAStartup(MAKEWORD(2, 2), &wsa_data) != 0) {
@@ -88,17 +88,7 @@ void Api::start() {
     while(true){
         std::cin.get(key);
         if (key == 'c' || key == 'C') {
-            std::string file_name;
-            std::string constructed_path_str_dbg = "../../Src";
-            std::string ext(".csv");
-            for (auto& p : std::filesystem::recursive_directory_iterator(constructed_path_str_dbg)) {
-                if (p.path().extension() == ext){
-                    std::cout << "Verifying " << p.path().string() << "\n" << std::endl;
-                    file_name = p.path().string();
-                    break;
-                }
-            }
-            std::thread(verifyData, file_name).detach();
+            std::thread(verifyData, dataset_path).detach();
         } else if (key == ' ') {
             break;
         }

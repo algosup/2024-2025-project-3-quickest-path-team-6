@@ -34,9 +34,10 @@ void enableInput() {
 
 int main() {
     const int PORT = 8080;
+    string& dataset_path = *new string;
 
     // Initialize the server (loads dataset and builds the graph).
-    if (!initServer()) {
+    if (!initServer(&dataset_path)) {
         cout << "No .csv file found. Server shutting down." << "\r" << flush << endl;
         return 0;
     }
@@ -44,7 +45,7 @@ int main() {
     disableInput();
 
     Api apiServer(PORT);
-    apiServer.start();
+    apiServer.start(dataset_path);
 
     enableInput();
     cout << "Server shutting down. See you later!" << "\r" << flush << endl;

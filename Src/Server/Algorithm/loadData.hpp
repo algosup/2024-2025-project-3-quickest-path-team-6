@@ -278,7 +278,7 @@ string getCsvFile(){
     }
     // If no csv found, return false
     if (!file_found) {
-        return "File not Found";
+        return "File not found";
     } else if (found_paths.size() > 1) {
         bool found = false;
         while (found == false){
@@ -325,15 +325,15 @@ string getCsvFile(){
  * computes dynamic landmarks using farthest-point sampling, and then computes landmark distances.
  * Returns the constructed data_graph.
  */
-inline bool loadDataset() {
+inline bool loadDataset(string* datasetPath) {
     auto start = high_resolution_clock::now();
-    string file_name = getCsvFile();
+    *datasetPath = getCsvFile();
 
-    if (file_name == "File not Found"){
+    if (*datasetPath == "File not found"){
         return false;
     }
     
-    thread getDataThread(getData, file_name);
+    thread getDataThread(getData, *datasetPath);
     thread loadingCatThread(loadingCat, "Loading the file");
     getDataThread.join();
     loadingCatThread.join();
@@ -352,9 +352,9 @@ inline bool loadDataset() {
  * initServer:
  * Loads the dataset and builds the graph, returning true if successful.
  */
-inline bool initServer() {
+inline bool initServer(string* datasetPath) {
     try {
-        return loadDataset();
+        return loadDataset(datasetPath);
     } catch (const exception &e) {
         cerr << "Error during graph creation: " << e.what() << endl;
         return false;

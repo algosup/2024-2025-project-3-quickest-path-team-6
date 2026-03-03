@@ -22,7 +22,7 @@ public:
     Api(int port);
 
     // Starts the server.
-    void start();
+    void start(string& dataset_path);
 
 private:
     int port;           // Server port.
